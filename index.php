@@ -5,8 +5,6 @@
  * Date: 18/11/15
  * Time: 08:58
  */
-
-
 define('ROOT_DIR', dirname(__FILE__)); //costante root dir
 define('CORE_DIR', ROOT_DIR . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR); //costante core directory
 define('VIEW_DIR', CORE_DIR . "view" . DIRECTORY_SEPARATOR); //ecc
@@ -33,39 +31,33 @@ try {
      * Successivamente rimuovo tutto ciò che non dovrebbe stare nella richiesta e faccio split
      *
      */
-
-
     $_URL = preg_replace("/^(.*?)index.php$/", "$1", $_SERVER['SCRIPT_NAME']);
     $_URL = preg_replace("/^" . preg_quote($_URL, "/") . "/", "", urldecode($_SERVER['REQUEST_URI']));
     $_URL = preg_replace("/(\/?)(\?.*)?$/", "", $_URL);
     $_URL = explode("/", $_URL);
     if (preg_match("/^index.(?:html|php)$/i", $_URL[count($_URL) - 1]))
         unset($_URL[count($_URL) - 1]);
-
     // definisco costante IP contenente l'ip del client
     if (isset($_SERVER['HTTP_X_REAL_IP'])) {
         define('IP', $_SERVER['HTTP_X_REAL_IP']);
     } else {
         define('IP', $_SERVER['REMOTE_ADDR']);
     }
-
     /*include_once BEAN_DIR . "Utente.php"; //è necessario per mantenere l'utente nella sessione
     session_start(); //facciamo partire la sessione
-
     include_once UTILS_DIR . "Patterns.php";
     include_once UTILS_DIR . "Error.php";
     include_once UTILS_DIR . "StringUtils.php";
     include_once EXCEPTION_DIR . "ApplicationException.php";
     include_once MODEL_DIR . "Logger.php";
 */
-print_r($_URL[0]);
     if (!defined("TESTING")) {
         switch (isset($_URL[0]) ? $_URL[0] : '') {
             case '':
-                include_once VIEW_DIR . "home.html";
+                include_once VIEW_DIR. "home.php";
                 break;
             case 'template':
-                include_once VIEW_DIR . "template/components.html";
+                include_once "template.html";
                 break;
             case 'me':
                 StringUtils::checkPermission("all");
@@ -186,7 +178,6 @@ print_r($_URL[0]);
                 }
             }
                 break;
-
             case 'docente':
                 StringUtils::checkPermission("Docente");
                 switch (isset($_URL[1]) ? $_URL[1] : '') {
@@ -439,7 +430,6 @@ print_r($_URL[0]);
                         break;
                     default:
                         include_once VIEW_DIR . "Studente/Home.php";
-
                 }
                 break;
             case 'esempio':
@@ -469,8 +459,6 @@ print_r($_URL[0]);
             case 'selezionestudenti':
                 include_once VIEW_DIR . "Docente/SelezioneStudenti.php";
                 break;
-
-
             case 'homecorsostudente':
                 include_once VIEW_DIR . "Studente/HomeCorso.php";
                 break;
@@ -478,7 +466,6 @@ print_r($_URL[0]);
                 header('Location: /');
                 exit;
         }
-
     }
 } catch (Exception $ex) {
     if (DEBUG == true) throw $ex;
