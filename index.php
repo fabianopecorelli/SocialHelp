@@ -6,6 +6,7 @@
  * Time: 08:58
  */
 define('ROOT_DIR', dirname(__FILE__)); //costante root dir
+define('DOMINIO_SITO',"/SocialHelp/"); //costante root dir
 define('CORE_DIR', ROOT_DIR . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR); //costante core directory
 define('VIEW_DIR', CORE_DIR . "view" . DIRECTORY_SEPARATOR); //ecc
 define('EXCEPTION_DIR', CORE_DIR . "exception" . DIRECTORY_SEPARATOR);
@@ -64,6 +65,12 @@ try {
                 break;
              case 'inserisciAnnuncio':
                 include_once VIEW_DIR . "inserisciAnnuncio.php";
+                break;
+            case 'login':
+                include_once VIEW_DIR . "login.php";
+                break;
+            case 'register':
+                include_once VIEW_DIR . "register.php";
                 break;
             case 'me':
                 StringUtils::checkPermission("all");
