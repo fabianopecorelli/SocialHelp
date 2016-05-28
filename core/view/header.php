@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-        
+
         <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
         <link rel="stylesheet" href="plugins/iCheck/all.css">
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -28,8 +28,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               apply the skin class to the body tag so the changes take effect.
         -->
         <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+        <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
 
         <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+        
+  <link rel="stylesheet" href="plugins/select2/select2.min.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -64,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <header class="main-header">
 
                 <!-- Logo -->
-                <a href="index2.html" class="logo" style="background: #222d32">
+                <a href="<?php echo DOMINIO_SITO; ?>" class="logo" style="background: #222d32">
                     <img src="img/logoHomePiccolo.png"/>
                 </a>
 
@@ -259,8 +262,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu">
                         <li class="header">HEADER</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="#"><i class="fa fa-home"></i> <span>Home</span></a></li>
-                        <li><a href="#"><i class="fa fa-user"></i> <span>Profilo</span></a></li>
+                        <li class="active"><a href="<?php echo DOMINIO_SITO; ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                        <li><a href="<?php echo DOMINIO_SITO; ?>/profilo"><i class="fa fa-user"></i> <span>Profilo</span></a></li>
                         <li class="treeview">
                             <a href="#"><i class="fa fa-pencil"></i> <span>Gestione Annunci</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">

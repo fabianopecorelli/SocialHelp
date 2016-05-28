@@ -5,7 +5,7 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      I Picchipolli
+      
     </div>
     <!-- Default to the left -->
     <strong>SocialHelp &copy; 2016 <a href="#"></a>.</strong> All rights reserved.
