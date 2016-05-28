@@ -22,7 +22,7 @@ include_once VIEW_DIR . 'header.php';?>
         </div>
        
       <ol class="breadcrumb">
-        <li><a href="#"> Home</a></li>
+        <li><a href="/SocialHelp"> Home</a></li>
         <li class="active">Inserisci Annuncio</li>
       </ol>
        
