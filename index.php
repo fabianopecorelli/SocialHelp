@@ -59,6 +59,9 @@ try {
             case 'template':
                 include_once "template.html";
                 break;
+            case 'inserisciEsperienza':
+                include_once VIEW_DIR . "inserisciEsperienza.php";
+                break;
              case 'standard':
                 include_once "standard.html";
                 break;
