@@ -24,7 +24,7 @@ include_once VIEW_DIR . 'header.php';
         </div>
 
         <ol class="breadcrumb">
-            <li><a href="/SocialHelp"> Home</a></li>
+            <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
             <li class="active">Inserisci Annuncio</li>
         </ol>
 
@@ -32,88 +32,90 @@ include_once VIEW_DIR . 'header.php';
 
     <!-- Main content -->
     <section class="content" style="margin-top: 10%">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <span class="simple-text">Titolo annuncio:</span>
+        <form method="post">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="simple-text">Titolo annuncio:</span>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Inserisci...">
+                </div>
             </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="Inserisci...">
-            </div>
-        </div>
 
-        <div class="row" style="margin-top: 2%">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <span class="simple-text">Tipologia:</span>
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="simple-text">Tipologia:</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                <input type="radio" name="r3" class="flat-red" checked>
+                                Richiesta
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                <input type="radio" name="r3" class="flat-red">
+                                Offerta
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
+
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="simple-text">Data:</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group date">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" id="datepicker">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="simple-text">Citt&agrave:</span>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Inserisci...">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="simple-text">Descrizione:</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <textarea style="resize: none" class="form-control" rows="3" placeholder="Inserisci..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-6"></div>
+                <div class="col-md-3">
                     <div class="col-md-6">
-                        <label>
-                            <input type="radio" name="r3" class="flat-red" checked>
-                            Richiesta
-                        </label>
+
+                        <button type="reset" class="btn btn-block btn-danger btn-sm">Annulla</button>
                     </div>
                     <div class="col-md-6">
-                        <label>
-                            <input type="radio" name="r3" class="flat-red">
-                            Offerta
-                        </label>
+                        <button type="submit" class="btn btn-block btn-primary btn-sm">Conferma</button>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 2%">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <span class="simple-text">Data:</span>
-            </div>
-            <div class="col-md-3">
-                <div class="input-group date">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
-                </div>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 2%">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <span class="simple-text">Citt&agrave:</span>
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="Inserisci...">
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 2%">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <span class="simple-text">Descrizione:</span>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <textarea style="resize: none" class="form-control" rows="3" placeholder="Inserisci..."></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 2%">
-            <div class="col-md-6"></div>
-            <div class="col-md-3">
-                <div class="col-md-6">
-
-                    <button type="button" class="btn btn-block btn-danger btn-sm">Annulla</button>
-                </div>
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-block btn-primary btn-sm">Conferma</button>
-                </div>
-            </div>
-        </div>        
+            </div>  
+        </form>
         <!-- Your Page Content Here -->
 
     </section>
