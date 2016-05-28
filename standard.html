@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+        <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="plugins/iCheck/all.css">
+    </head>
+    <body>
+
+        <div class="row">
+            <div class=" col-md-4">
+                Input date: 
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right" id="datepicker">
+                </div>
+            </div>        
+            <div class=" col-md-4">
+                Input Text:
+                <input type="text" class="form-control" placeholder="Enter ...">
+            </div>
+
+            <div class=" col-md-4">
+
+                <div class="col-md-4">
+                    Radio Buttons:
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="r3" class="flat-red" checked>
+                        </label>
+                        <label>
+                            <input type="radio" name="r3" class="flat-red">
+                        </label>
+                        <label>
+                            <input type="radio" name="r3" class="flat-red" disabled>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Button conferma:
+                        <button type="button" class="btn btn-block btn-primary btn-sm">Conferma</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Button annulla:
+                        <button type="button" class="btn btn-block btn-danger btn-sm">Annulla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    Textarea
+                    <textarea style="resize: none" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <script src="dist/js/demo.js"></script>
+        <script src="dist/js/app.min.js"></script>
+        <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="plugins/iCheck/icheck.min.js"></script>
+        <script>
+            $(function () {
+
+
+                //Date picker
+                $('#datepicker').datepicker({
+                    autoclose: true
+                });
+
+                //iCheck for checkbox and radio inputs
+                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                    checkboxClass: 'icheckbox_minimal-blue',
+                    radioClass: 'iradio_minimal-blue'
+                });
+                //Red color scheme for iCheck
+                $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                    checkboxClass: 'icheckbox_minimal-red',
+                    radioClass: 'iradio_minimal-red'
+                });
+                //Flat red color scheme for iCheck
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+
+            });
+        </script>
+    </body>
+</html>

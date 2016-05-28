@@ -5,10 +5,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
+      I Picchipolli
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>SocialHelp &copy; 2016 <a href="#"></a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -101,5 +101,7 @@
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-</body>
+
+    </body>
 </html>
+

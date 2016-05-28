@@ -59,6 +59,12 @@ try {
             case 'template':
                 include_once "template.html";
                 break;
+             case 'standard':
+                include_once "standard.html";
+                break;
+             case 'inserisciAnnuncio':
+                include_once VIEW_DIR . "inserisciAnnuncio.php";
+                break;
             case 'me':
                 StringUtils::checkPermission("all");
                 include_once VIEW_DIR . "Admin/VisualizzaProfilo.php";
