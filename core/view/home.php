@@ -28,7 +28,7 @@ include_once VIEW_DIR . 'header.php';
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="box box-widget">
+                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                     <div class="box-header with-border">
                         <div class="user-block">
                             <img class="img-circle" src="dist/img/user2-160x160.jpg" alt="User Image">
