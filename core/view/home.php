@@ -20,9 +20,6 @@ include_once VIEW_DIR . 'header.php';
                     </div>
                 </div>
 
-                <ol class="breadcrumb" style="background: #e6eddc; font-size: 14px">
-                    <li class="active">Home</li>
-                </ol>
             </div>
         <div class="row">
             <div class="col-md-2"></div>
