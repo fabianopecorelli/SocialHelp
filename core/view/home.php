@@ -22,9 +22,8 @@ include_once VIEW_DIR . 'header.php';
 
             </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="nav-tabs-custom">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom" style="background: transparent; width: 100%">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tutti" onclick="initializeChart()" data-toggle="tab" aria-expanded="true">Tutti</a></li>
                         <li class=""><a href="#richieste" data-toggle="tab" aria-expanded="false">Richieste</a></li>
