@@ -1,4 +1,10 @@
 <?php
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
+ */
 ?>
 <html>
     <head>
@@ -75,6 +81,7 @@
                                     </label>
                                 </div>
                             </div>
+                            <a> Ti serve aiuto? </a>
                         </div>
                     </div>
                     <div class="row">

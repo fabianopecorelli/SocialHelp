@@ -1,7 +1,12 @@
-<?php include_once VIEW_DIR . 'header.php'; ?>
+<?php 
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
+ */
+include_once VIEW_DIR . 'header.php'; ?>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -53,12 +58,24 @@
                         <strong><i class="fa fa-map-marker margin-r-5"></i> Città</strong>
 
                         <p class="text-muted">Malibu, California</p>
+                        
+                         <hr>
+
+                        <strong><i class="fa fa-phone margin-r-5"></i> Telefono</strong>
+
+                        <p class="text-muted">3333333333</p>
+                        
+                         <hr>
+
+                        <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
+
+                        <p class="text-muted">angioletto@caputo.com</p>
 
                         <hr>
 
                         <strong><i class="fa fa-files-o margin-r-5"></i> <a style="cursor: pointer">Esperienze</a></strong>
 
-                        <p class="text-muted">Voto medio:4,5 stelle. <br/>  Basato su 34 esperienze.</p>
+                        <p class="text-muted">Voto medio: 4,5 <i class="fa fa-star-o"></i>. <br/>  Basato su 34 esperienze.</p>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -223,14 +240,9 @@
 <!-- ./wrapper -->
 
 <?php include_once VIEW_DIR . 'footer.php'; ?>
-<!-- jQuery 2.2.0 -->
-<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
+
 <!-- FastClick -->
 <script src="plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 

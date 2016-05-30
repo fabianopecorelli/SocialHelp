@@ -1,14 +1,13 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
  */
 include_once VIEW_DIR . 'header.php';
 ?>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper"">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <!-- BREADCRUMBS -->
@@ -34,7 +33,7 @@ include_once VIEW_DIR . 'header.php';
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
-                    <span class="simple-text">Parola chiave:</span>
+                    <span class="simple-text">Ricerca:</span>
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="Inserisci...">
@@ -72,6 +71,26 @@ include_once VIEW_DIR . 'header.php';
                             <span>Ultimi 30 giorni</span>
                             <i class="fa fa-caret-down"></i>
                         </button>
+                    </div>
+                </div><!-- Your Page Content Here -->
+            </div>
+            
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="simple-text">Luogo:</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control select2" style="width: 100%;">
+                            <option selected="selected">Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
                     </div>
                 </div><!-- Your Page Content Here -->
             </div>

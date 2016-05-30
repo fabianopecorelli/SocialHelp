@@ -1,10 +1,12 @@
-<?php ?>
+<?php
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
+ */
+?>
 
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
     <head>
         <meta charset="utf-8">
@@ -246,7 +248,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
 
-                    
+
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
@@ -266,3 +268,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </section>
                 <!-- /.sidebar -->
             </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" style="background: url('img/bg.jpg')">

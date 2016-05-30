@@ -1,6 +1,11 @@
 <?php
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
+ */
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">

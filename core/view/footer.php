@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
+ */
 ?>
   <!-- Main Footer -->
   <footer class="main-footer">

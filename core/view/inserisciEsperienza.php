@@ -1,14 +1,13 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * @author Fabiano Pecorelli
+ * @version 1.0
+ * @since 30/05/16
  */
 include_once VIEW_DIR . 'header.php';
 ?>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <!-- BREADCRUMBS -->
