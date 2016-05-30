@@ -9,21 +9,21 @@ include_once VIEW_DIR . 'header.php';
 ?>
 
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <!-- BREADCRUMBS -->
-        <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h2 align="CENTER">
-                    Bacheca
-                </h2>
+    
+<div class="big-title">
+                <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h2 align="CENTER">
+                            Bacheca
+                        </h2>
+                    </div>
+                </div>
+
+                <ol class="breadcrumb" style="background: #e6eddc; font-size: 14px">
+                    <li class="active">Home</li>
+                </ol>
             </div>
-        </div>
-
-    </section>
-
-    <!-- Main content -->
-    <section class="content" style="margin-top: 10%">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -215,8 +215,5 @@ include_once VIEW_DIR . 'header.php';
         </div>
         <!-- Your Page Content Here -->
 
-    </section>
-    <!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 <?php include_once VIEW_DIR . 'footer.php'; ?>

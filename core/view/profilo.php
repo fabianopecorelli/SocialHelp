@@ -8,19 +8,21 @@
 include_once VIEW_DIR . 'header.php'; ?>
 
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            User Profile
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">User profile</li>
-        </ol>
-    </section>
+   <div class="big-title">
+    <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2 align="CENTER">
+                Profilo
+            </h2>
+        </div>
+    </div>
 
-    <!-- Main content -->
-    <section class="content">
+    <ol class="breadcrumb" style="background: #e6eddc; font-size: 14px">
+        <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
+        <li class="active">Profilo</li>
+    </ol>
+</div>
 
         <div class="row">
             <div class="col-md-3">
@@ -232,10 +234,6 @@ include_once VIEW_DIR . 'header.php'; ?>
             <!-- /.col -->
         </div>
         <!-- /.row -->
-
-    </section>
-    <!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 <!-- ./wrapper -->
 

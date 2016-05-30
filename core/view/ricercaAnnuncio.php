@@ -9,26 +9,21 @@ include_once VIEW_DIR . 'header.php';
 ?>
 
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <!-- BREADCRUMBS -->
-        <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h2 align="CENTER">
-                    Ricerca Annuncio
-                </h2>
-            </div>
+<div class="big-title">
+    <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2 align="CENTER">
+                Ricerca Annuncio
+            </h2>
         </div>
+    </div>
 
-        <ol class="breadcrumb">
-            <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
-            <li class="active">Ricerca Annuncio</li>
-        </ol>
-
-    </section>
-
-    <!-- Main content -->
-    <section class="content" style="margin-top: 10%">
+    <ol class="breadcrumb" style="background: #e6eddc; font-size: 14px">
+        <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
+        <li class="active">Ricerca Annuncio</li>
+    </ol>
+</div>
         <form>
             <div class="row">
                 <div class="col-md-3"></div>
@@ -108,9 +103,6 @@ include_once VIEW_DIR . 'header.php';
                 </div>
             </div>     
         </form>
-    </section>
-    <!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 <?php include_once VIEW_DIR . 'footer.php'; ?>
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>

@@ -83,7 +83,7 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- Messages: style can be found in dropdown.less-->
-                            
+
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
@@ -177,4 +177,11 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="background: url('img/bg.jpg')">
+            <div class="content-wrapper" style="background: url('img/bg3.jpg')">
+
+                <!-- Main content -->
+                <section class="content" style="margin-top: 0%">
+                    <div class="generic-box">
+
+                        <div class="generic-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
+                            <!-- BREADCRUMBS -->

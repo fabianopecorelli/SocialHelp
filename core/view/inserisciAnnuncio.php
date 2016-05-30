@@ -9,28 +9,21 @@ include_once VIEW_DIR . 'header.php';
 ?>
 
 
-
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <!-- BREADCRUMBS -->
-        <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h2 align="CENTER">
-                    Inserisci Annuncio
-                </h2>
-            </div>
+<div class="big-title">
+    <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2 align="CENTER">
+                Inserisci Annuncio
+            </h2>
         </div>
+    </div>
 
-        <ol class="breadcrumb">
-            <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
-            <li class="active">Inserisci Annuncio</li>
-        </ol>
-
-    </section>
-
-    <!-- Main content -->
-    <section class="content" style="margin-top: 10%">
+    <ol class="breadcrumb" style="background: #e6eddc; font-size: 14px">
+        <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
+        <li class="active">Inserisci Annuncio</li>
+    </ol>
+</div>
         <form method="post">
             <div class="row">
                 <div class="col-md-3"></div>
@@ -116,12 +109,6 @@ include_once VIEW_DIR . 'header.php';
             </div>  
         </form>
         <!-- Your Page Content Here -->
-
-    </section>
-    <!-- /.content -->
-</div>
-
-
 
 
 

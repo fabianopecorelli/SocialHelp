@@ -35,7 +35,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body background="img/bg2.jpg">
+    <body background="img/bg3.jpg">
         <div class="register-logo" style="margin-top: 2%">
                 <a href="index2.html" class="logo">
                     <img src="img/logo-traccia.png"/>
@@ -43,7 +43,7 @@
             </div>
         <div class="register-box">
 
-            <div class="register-box-body" style="background: #c6d5b0;border: solid 2px;border-radius: 45px;">
+            <div class="register-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Registrazione</p>
 
                 <form action="index.html" method="post">
