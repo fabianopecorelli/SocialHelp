@@ -46,11 +46,11 @@
 
             <div class="login-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Log In</p>
-                <form action="template2.html" method="post">
+                <form action="<?php echo DOMINIO_SITO; ?>/effettuaLogin" method="post">
 
                     <div class="form-group has-feedback">
                         <div class="input-group date">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
                             <div class="input-group-addon">
                                 <i class="fa fa-envelope"></i>
                             </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group has-feedback">
                         <div class="input-group date">
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                             <div class="input-group-addon">
                                 <i class="fa fa-lock"></i>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="col-md-8">
                             <div class="checkbox icheck">
                                 <label>
-                                    <input type="checkbox" class="flat-red" style="position: absolute; opacity: 0;"> Ricordami
+                                    <input type="checkbox" name="remember" class="flat-red" style="position: absolute; opacity: 0;"> Ricordami
                                 </label>
                             </div>
                         </div>

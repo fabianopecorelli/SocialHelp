@@ -7,12 +7,17 @@
  * and open the template in the editor.
  */
 include_once CONTROL_DIR . 'Controller.php';
-static $SALT = "r#*1542&ztnsa7uABN83gtkw7lcSjy";
-static $SELECT_UTENTE = "SELECT * FROM `utente` WHERE `password`='%s' LIMIT 1";
+
 include_once MODEL_DIR . 'Utente.php'; 
 
 login($_POST['email'], $_POST['password'], (@$_POST['remember'] == "1" ? true : false));
 
+if ($_SESSION['user']){
+    include_once VIEW_DIR . "home.php";
+}
+else{
+    include_once VIEW_DIR . "login.php";
+}
 function login($email, $password, $remember) {
     if (!preg_match(Patterns::$EMAIL, $email)) {
         throw new ApplicationException(Error::$EMAIL_NON_VALIDA);
@@ -52,7 +57,8 @@ function login($email, $password, $remember) {
      * @throws ApplicationException
      */
     function getUtenteByIdentity($identity) {
-        $qr = sprintf(self::$SELECT_UTENTE, $identity);
+        $SELECT_UTENTE = "SELECT * FROM `utente` WHERE `password`='%s' LIMIT 1";
+        $qr = sprintf($SELECT_UTENTE, $identity);
 
         $res = Controller::getDB()->query($qr);
         return parseUtente($res);
@@ -67,7 +73,7 @@ function login($email, $password, $remember) {
 
     function parseUtente($res) {
         if ($obj = $res->fetch_assoc()) {
-            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['username'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data']);
+            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data']);
         } else {
             throw new ApplicationException(Error::$UTENTE_NON_TROVATO);
         }
@@ -83,5 +89,6 @@ function login($email, $password, $remember) {
     }
     
     function createIdentity($email, $pass) {
-        return md5(md5(strtolower($email) . $pass . self::$SALT) . self::$SALT);
+        $SALT = "r#*1542&ztnsa7uABN83gtkw7lcSjy";
+        return md5(md5(strtolower($email) . $pass . $SALT) . $SALT);
     }

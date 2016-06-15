@@ -81,6 +81,9 @@ try {
             case 'effettuaRegistrazione':
                 include_once CONTROL_DIR . "Register.php";
                 break;
+            case 'effettuaLogin':
+                include_once CONTROL_DIR . "Login.php";
+                break;
             case 'me':
                 StringUtils::checkPermission("all");
                 include_once VIEW_DIR . "Admin/VisualizzaProfilo.php";
