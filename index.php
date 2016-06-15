@@ -12,7 +12,6 @@ define('VIEW_DIR', CORE_DIR . "view" . DIRECTORY_SEPARATOR); //ecc
 define('EXCEPTION_DIR', CORE_DIR . "exception" . DIRECTORY_SEPARATOR);
 define('MODEL_DIR', CORE_DIR . "model" . DIRECTORY_SEPARATOR);
 define('CONTROL_DIR', CORE_DIR . "control" . DIRECTORY_SEPARATOR);
-define('BEAN_DIR', CORE_DIR . "bean" . DIRECTORY_SEPARATOR);
 define('UTILS_DIR', CORE_DIR . "utils" . DIRECTORY_SEPARATOR);
 define('DEBUG', true);
  
@@ -44,18 +43,16 @@ try {
     } else {
         define('IP', $_SERVER['REMOTE_ADDR']);
     }
-    /*include_once BEAN_DIR . "Utente.php"; //è necessario per mantenere l'utente nella sessione
     session_start(); //facciamo partire la sessione
     include_once UTILS_DIR . "Patterns.php";
     include_once UTILS_DIR . "Error.php";
     include_once UTILS_DIR . "StringUtils.php";
     include_once EXCEPTION_DIR . "ApplicationException.php";
-    include_once MODEL_DIR . "Logger.php";
-*/
+ 
     if (!defined("TESTING")) {
         switch (isset($_URL[0]) ? $_URL[0] : '') {
             case '':
-                include_once VIEW_DIR. "home.php";
+                include_once VIEW_DIR. "login.php";
                 break;
             case 'template':
                 include_once "template.html";
@@ -75,11 +72,14 @@ try {
             case 'profilo':
                 include_once VIEW_DIR . "profilo.php";
                 break;
-            case 'login':
-                include_once VIEW_DIR . "login.php";
+            case 'home':
+                include_once VIEW_DIR . "home.php";
                 break;
             case 'register':
                 include_once VIEW_DIR . "register.php";
+                break;
+            case 'effettuaRegistrazione':
+                include_once CONTROL_DIR . "Register.php";
                 break;
             case 'me':
                 StringUtils::checkPermission("all");

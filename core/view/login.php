@@ -83,7 +83,7 @@
                     
                         <a href="#">Password dimenticata?</a>
                         <br/>
-                        <a href="<?php echo DOMINIO_SITO; ?>">Registrati</a>
+                        <a href="<?php echo DOMINIO_SITO; ?>/register">Registrati</a>
                 </form>
                 
                 <!-- /.form-box -->

@@ -20,7 +20,7 @@ include_once VIEW_DIR . 'header.php';
     </div>
 
     <ol class="breadcrumb" style="background: #e6eddc; font-size: 14px">
-        <li><a href="<?php echo DOMINIO_SITO; ?>"> Home</a></li>
+        <li><a href="<?php echo DOMINIO_SITO; ?>/"> Home</a></li>
         <li class="active">Ricerca Annuncio</li>
     </ol>
 </div>

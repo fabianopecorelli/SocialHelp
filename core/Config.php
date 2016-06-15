@@ -12,10 +12,10 @@
  */
 class Config {
 
-    public static $DB_URL = "5.9.123.184";
-    public static $DB_NAME = "simplex";
-    public static $DB_USER = "simlex-user";
-    public static $DB_PASS = "WtC7kllj";
+    public static $DB_URL = "localhost";
+    public static $DB_NAME = "socialhelp";
+    public static $DB_USER = "root";
+    public static $DB_PASS = "";
 
     public static $PERMA_COOKIE = "permaCookie";
 
@@ -23,6 +23,6 @@ class Config {
      *  Varie configurazioni
      */
     public static $MIN_PASSWORD_LEN = 8;    //minima lunghezza della password
-    public static $TIPI_UTENTE = array('Disabile', 'Offerente', 'Guest');
+    public static $TIPI_UTENTE = array('Disabile', 'Offerente');
     public static $LOG_LEVEL = 0; //0 Debug, 1 Info, 2 Warning, 3 Error
 }

@@ -37,21 +37,21 @@
     </head>
     <body background="img/bg3.jpg">
         <div class="register-logo" style="margin-top: 2%">
-                <a href="index2.html" class="logo">
-                    <img src="img/logo-traccia.png"/>
-                </a>
-            </div>
+            <a href="index2.html" class="logo">
+                <img src="img/logo-traccia.png"/>
+            </a>
+        </div>
         <div class="register-box">
 
             <div class="register-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Registrazione</p>
 
-                <form action="index.html" method="post">
+                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control" placeholder="Nome e Cognome">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nome" placeholder="Nome">
                                     <div class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </div>
@@ -59,8 +59,17 @@
                             </div>
 
                             <div class="form-group has-feedback">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control" placeholder="Telefono">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="cognome" placeholder="Cognome">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="telefono" placeholder="Telefono">
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
@@ -68,27 +77,26 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="simple-text">Tipologia:</label>
+                            <label class="simple-text">Cosa ci fai qui?</label>
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>
-                                        <input type="radio" name="r3" class="flat-red" checked> Cliente
+                                        <input type="radio" name="tipologia" value="Disabile" class="flat-red" checked> Cerco servizi
                                     </label>
                                 </div>
                                 <div class="col-md-6">
                                     <label>
-                                        <input type="radio" name="r3" class="flat-red"> Offerente
+                                        <input type="radio" name="tipologia" value="Offerente" class="flat-red"> Offro servizi
                                     </label>
                                 </div>
                             </div>
-                            <a> Ti serve aiuto? </a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                <div class="input-group date">
-                                    <input type="email" class="form-control" placeholder="Email">
+                                <div class="input-group">
+                                    <input type="email" name="e-mail" class="form-control" placeholder="Email">
                                     <div class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </div>
@@ -96,15 +104,15 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control pull-right" id="datepicker" placeholder="Data di nascita">
+                                    <input type="text" class="form-control pull-right" name="data-nascita" id="datepicker" placeholder="Data di nascita">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                <div class="input-group date">
-                                    <input type="email" class="form-control" placeholder="Città">
+                                <div class="input-group">
+                                    <input type="text"  name="citta" class="form-control" placeholder="Città">
                                     <div class="input-group-addon">
                                         <i class="fa fa-map-marker"></i>
                                     </div>
@@ -114,22 +122,22 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="simple-text">Descrizione:</label>
-                                <textarea style="resize: none" class="form-control" rows="3" placeholder="Inserisci descrizione..."></textarea>
+                                <textarea style="resize: none" class="form-control" name="descrizione" rows="3" placeholder="Inserisci descrizione..."></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                <div class="input-group date">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
                                     <div class="input-group-addon">
                                         <i class="fa fa-lock"></i>
                                     </div>
                                 </div>
                             </div><div class="form-group has-feedback">
-                                <div class="input-group date">
-                                    <input type="password" class="form-control" placeholder="Conferma password">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password-retyped" placeholder="Conferma password">
                                     <div class="input-group-addon">
                                         <i class="fa fa-lock"></i>
                                     </div>
@@ -139,7 +147,7 @@
                         <div class="col-md-6">
                             <div class="user-panel">
                                 <div class="pull-left image" style="margin-bottom: 2%; margin-right: 5%">
-                                    <img src="img/user-standard.png" id="immagine" class="img-circle" alt="User Image">
+                                    <img src="img/user-standard.png" id="immagine" name="immagine" class="img-circle" alt="User Image">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Immagine personale</label>
@@ -177,45 +185,45 @@
         <script src="plugins/iCheck/icheck.min.js"></script>
 
         <script>
-            function cambiaImmagine(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+                                        function cambiaImmagine(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
 
-                    reader.onload = function (e) {
-                        $('#immagine').attr('src', e.target.result);
-                    }
+                                                reader.onload = function (e) {
+                                                    $('#immagine').attr('src', e.target.result);
+                                                }
 
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
+                                        }
 
-            $(function () {
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_square-blue',
-                    radioClass: 'iradio_square-blue',
-                    increaseArea: '20%' // optional
-                });
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                });
+                                        $(function () {
+                                            $('input').iCheck({
+                                                checkboxClass: 'icheckbox_square-blue',
+                                                radioClass: 'iradio_square-blue',
+                                                increaseArea: '20%' // optional
+                                            });
+                                            //Date picker
+                                            $('#datepicker').datepicker({
+                                                autoclose: true
+                                            });
 
-                //iCheck for checkbox and radio inputs
-                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-                    checkboxClass: 'icheckbox_minimal-blue',
-                    radioClass: 'iradio_minimal-blue'
-                });
-                //Red color scheme for iCheck
-                $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-                    checkboxClass: 'icheckbox_minimal-red',
-                    radioClass: 'iradio_minimal-red'
-                });
-                //Flat red color scheme for iCheck
-                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-            });
+                                            //iCheck for checkbox and radio inputs
+                                            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                                                checkboxClass: 'icheckbox_minimal-blue',
+                                                radioClass: 'iradio_minimal-blue'
+                                            });
+                                            //Red color scheme for iCheck
+                                            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                                                checkboxClass: 'icheckbox_minimal-red',
+                                                radioClass: 'iradio_minimal-red'
+                                            });
+                                            //Flat red color scheme for iCheck
+                                            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                                                checkboxClass: 'icheckbox_flat-green',
+                                                radioClass: 'iradio_flat-green'
+                                            });
+                                        });
         </script>
     </body>
 </html>

@@ -36,7 +36,7 @@ class Error {
     public static $NOME_NON_VALIDO = "Nome non valido";
     public static $CONGNOME_NON_VALIDO = "Cognome non valido";
     public static $TIPO_UTENTE_ERRATO = "Tipo utente errato";
-    public static $MATRICOLA_ESISTE = "Utente con questa matricola esiste già";
+    public static $EMAIL_ESISTE = "Utente con questa e-mail esiste già";
 }
 
 ?>

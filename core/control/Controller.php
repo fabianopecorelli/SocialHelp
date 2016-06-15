@@ -9,7 +9,7 @@
 include_once CORE_DIR . "Config.php";
 include_once EXCEPTION_DIR . "ConnectionException.php";
 
-class Model {
+class Controller {
 
     /** @var  mysqli */
     private static $c;
