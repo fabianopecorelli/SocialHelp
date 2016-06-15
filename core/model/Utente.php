@@ -15,14 +15,13 @@ class Utente {
     private $email;
     private $citta;
     private $password;
-    private $username;
     private $descrizione;
     private $immagine;
     private $tipologia;
     private $data;
     
     
-    public function __construct($nome, $cognome, $telefono, $email, $citta, $password, $username, $descrizione, $immagine, $tipologia, $data) {
+    public function __construct($nome, $cognome, $telefono, $email, $citta, $password, $descrizione, $immagine, $tipologia, $data) {
 
         $this->nome=$nome;
         $this->cognome=$cognome;
@@ -30,7 +29,6 @@ class Utente {
         $this->email=$email;
         $this->citta=$citta;
         $this->password=$password;
-        $this->username=$username;
         $this->descrizione=$descrizione;
         $this->immagine=$immagine;
         $this->tipologia=$tipologia;
@@ -59,10 +57,6 @@ class Utente {
     
     public function getPassword() {
         return $this->password;
-    }
-    
-    public function getUsername() {
-        return $this->username;
     }
     
     public function getDescrizione() {
@@ -102,10 +96,6 @@ class Utente {
 
     function setPassword($password) {
         $this->password = $password;
-    }
-
-    function setUsername($username) {
-        $this->username = $username;
     }
 
     function setDescrizione($descrizione) {
