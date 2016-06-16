@@ -15,9 +15,9 @@ class Annuncio {
     private $luogo;
     private $dataPubblicazione;
     private $tipologia;
-    private $username;
+    private $email;
     
-    function __construct($id, $titolo, $data, $descrizione, $luogo, $dataPubblicazione, $tipologia, $username) {
+    function __construct($id, $titolo, $data, $descrizione, $luogo, $dataPubblicazione, $tipologia, $email) {
         $this->id = $id;
         $this->titolo = $titolo;
         $this->data = $data;
@@ -25,7 +25,7 @@ class Annuncio {
         $this->luogo = $luogo;
         $this->dataPubblicazione = $dataPubblicazione;
         $this->tipologia = $tipologia;
-        $this->username = $username;
+        $this->email = $email;
     }
     
     function getId() {
@@ -56,8 +56,8 @@ class Annuncio {
         return $this->tipologia;
     }
 
-    function getUsername() {
-        return $this->username;
+    function getEmail() {
+        return $this->email;
     }
 
     function setId($id) {
@@ -88,8 +88,8 @@ class Annuncio {
         $this->tipologia = $tipologia;
     }
 
-    function setUsername($username) {
-        $this->username = $username;
+    function setEmail($email) {
+        $this->email = $email;
     }
 
 

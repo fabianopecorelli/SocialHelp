@@ -19,9 +19,10 @@ class Utente {
     private $immagine;
     private $tipologia;
     private $data;
+    private $id;
     
     
-    public function __construct($nome, $cognome, $telefono, $email, $citta, $password, $descrizione, $immagine, $tipologia, $data) {
+    public function __construct($nome, $cognome, $telefono, $email, $citta, $password, $descrizione, $immagine, $tipologia, $data, $id) {
 
         $this->nome=$nome;
         $this->cognome=$cognome;
@@ -33,12 +34,20 @@ class Utente {
         $this->immagine=$immagine;
         $this->tipologia=$tipologia;
         $this->data=$data;
+        $this->id=$id;
     }
     
     public function getNome() {
         return $this->nome;
     }
-    
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
     public function getCognome() {
         return $this->cognome;
     }

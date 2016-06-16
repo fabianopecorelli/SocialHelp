@@ -6,6 +6,10 @@
  * @since 30/05/16
  */
 include_once VIEW_DIR . 'header.php';
+include_once CONTROL_DIR . "HomeController.php";
+
+$homeController = new HomeController();
+
 ?>
 
     <!-- Content Header (Page header) -->
@@ -33,6 +37,28 @@ include_once VIEW_DIR . 'header.php';
                     <div class="tab-content">
                         <div class="tab-pane" id="offerte">
                             <div class="box-body">
+                                <!-- IL CARICAMENTO DAL DATABASE INIZIA QUI -->
+                                
+                                <?php
+                                    
+                                $allAnnunciOfferte=$homeController->getAllAnnunciOfferta();
+                                foreach($allAnnunciOfferte as $annuncio){
+                                    $utenteAnnuncio=$homeController->getUtenteByEmail($annuncio->getEmail());
+                                    printf("<div class=\"box box-widget\" style=\"border: 1px solid; border-radius: 10px; border-color: #1e9bd7;\"><div class=\"box-header with-border\"><div class=\"user-block\">");
+                                    printf("<img class=\"img-circle\" src=\"%s\" alt=\"User Image\">",$utenteAnnuncio->getImmagine());
+                                    printf("<span class=\"username\"><a href=\"#\">%s %s</a></span>",$utenteAnnuncio->getNome(), $utenteAnnuncio->getCognome());
+                                    printf("<span class=\"description\">Data pubblicazione - %s       Data servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData());
+                                    printf("<div class=\"box-body\"><p>%s</p><div class=\"col-md-8\"></div><div class=\"col-md-4\">",$annuncio->getDescrizione());
+                                    printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button></div>");
+                                    printf("</div><span class=\"pull-left text-muted\">Annuncio Offerta</span></div></div>");
+                                    
+                                }
+                                
+                                
+                                    ?>
+                                
+                                
+                                <!-- IL CARICAMENTO DAL DATABASE FINISCE QUI -->
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
@@ -97,6 +123,23 @@ include_once VIEW_DIR . 'header.php';
                         </div>
                         <div class="tab-pane" id="richieste">
                             <div class="box-body">
+                                <?php
+                                    
+                                $allAnnunciRichiesta=$homeController->getAllAnnunciRichiesta();
+                                foreach($allAnnunciRichiesta as $annuncio){
+                                    $utenteAnnuncio=$homeController->getUtenteByEmail($annuncio->getEmail());
+                                    printf("<div class=\"box box-widget\" style=\"border: 1px solid; border-radius: 10px; border-color: #1e9bd7;\"><div class=\"box-header with-border\"><div class=\"user-block\">");
+                                    printf("<img class=\"img-circle\" src=\"%s\" alt=\"User Image\">",$utenteAnnuncio->getImmagine());
+                                    printf("<span class=\"username\"><a href=\"#\">%s %s</a></span>",$utenteAnnuncio->getNome(), $utenteAnnuncio->getCognome());
+                                    printf("<span class=\"description\">Data pubblicazione - %s       Data servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData());
+                                    printf("<div class=\"box-body\"><p>%s</p><div class=\"col-md-8\"></div><div class=\"col-md-4\">",$annuncio->getDescrizione());
+                                    printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button></div>");
+                                    printf("</div><span class=\"pull-left text-muted\">Annuncio Richiesta</span></div></div>");
+                                    
+                                }
+                                
+                                
+                                    ?>
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
@@ -121,6 +164,23 @@ include_once VIEW_DIR . 'header.php';
                         </div>
                         <div class="tab-pane active" id="tutti">
                             <div class="box-body">
+                                <?php
+                                    
+                                $allAnnunci=$homeController->getAllAnnunci();
+                                foreach($allAnnunci as $annuncio){
+                                    $utenteAnnuncio=$homeController->getUtenteByEmail($annuncio->getEmail());
+                                    printf("<div class=\"box box-widget\" style=\"border: 1px solid; border-radius: 10px; border-color: #1e9bd7;\"><div class=\"box-header with-border\"><div class=\"user-block\">");
+                                    printf("<img class=\"img-circle\" src=\"%s\" alt=\"User Image\">",$utenteAnnuncio->getImmagine());
+                                    printf("<span class=\"username\"><a href=\"#\">%s %s</a></span>",$utenteAnnuncio->getNome(), $utenteAnnuncio->getCognome());
+                                    printf("<span class=\"description\">Data pubblicazione - %s       Data servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData());
+                                    printf("<div class=\"box-body\"><p>%s</p><div class=\"col-md-8\"></div><div class=\"col-md-4\">",$annuncio->getDescrizione());
+                                    printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button></div>");
+                                    printf("</div><span class=\"pull-left text-muted\">Annuncio %s</span></div></div>",$annuncio->getTipologia());
+                                    
+                                }
+                                
+                                
+                                    ?>
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
