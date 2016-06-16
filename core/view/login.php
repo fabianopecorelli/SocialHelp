@@ -14,19 +14,19 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>dist/css/AdminLTE.min.css">
         <!-- iCheck -->
-        <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/square/blue.css">
 
-        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-        <link rel="stylesheet" href="plugins/iCheck/all.css">
+        <link rel="shortcut icon" href="<?php echo STYLE_DIR; ?>img/favicon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/all.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,11 +35,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body background="img/bg3.jpg">
+    <body background="<?php echo STYLE_DIR; ?>img/bg3.jpg">
         
         <div class="login-logo" style="margin-top: 2%">
                 <a href="index2.html" class="logo">
-                    <img src="img/logo-traccia.png"/>
+                    <img src="<?php echo STYLE_DIR; ?>img/logo-traccia.png"/>
                 </a>
             </div>
         <div class="login-box">
@@ -91,13 +91,13 @@
             <!-- /.login-box -->
         </div>
         <!-- jQuery 2.2.0 -->
-        <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/jQuery/jQuery-2.2.0.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>bootstrap/js/bootstrap.min.js"></script>
         <!-- iCheck -->
-        <script src="plugins/iCheck/icheck.min.js"></script>
-        <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-        <script src="plugins/iCheck/icheck.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
 
         <script>
                                         function cambiaImmagine(input) {

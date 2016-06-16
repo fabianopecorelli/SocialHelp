@@ -7,6 +7,7 @@
  * @version 1.0
  * @since 30/05/16
  */
+include_once MODEL_DIR . 'Utente.php';
 class StringUtils {
 
     private static $IV = "3562567812345678";
@@ -24,10 +25,10 @@ class StringUtils {
      * @param $level string Livello di accesso, ad esempio Docente
      * @param string $redirect nel caso il livello è più basso, verrà reindirizzato su questo URL
      */
-    public static function checkPermission($level, $redirect = "/auth") {
+    public static function checkPermission($level, $redirect = DOMINIO_SITO . "/auth") {
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             /** @var Utente $user */
-            $user = $_SESSION['user'];
+            $user = unserialize($_SESSION['user']);
             if (strtolower($user->getTipologia()) == strtolower($level) || strtolower($level) == "all") {
                 return;
             }

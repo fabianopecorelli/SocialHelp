@@ -119,8 +119,8 @@ include_once VIEW_DIR . 'header.php';
 
 
 
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-<script src="plugins/iCheck/icheck.min.js"></script>
+<script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function () {
 

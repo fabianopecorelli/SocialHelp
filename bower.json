@@ -7,8 +7,8 @@
   "description": "Admin dashboard and control panel template",
   "main": [
     "index2.html",
-    "dist/css/AdminLTE.css",
-    "dist/js/app.js",
+    "<?php echo STYLE_DIR; ?>dist/css/AdminLTE.css",
+    "<?php echo STYLE_DIR; ?>dist/js/app.js",
     "build/less/AdminLTE.less"
   ],
   "keywords": [

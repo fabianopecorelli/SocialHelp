@@ -14,12 +14,15 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 $utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['e-mail'], $_POST['data-nascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], null);
 $newUtente = getUtente($utente->getEmail());
 $idUtente = $newUtente->getID();
-if (!($imagePath = uploadImage($idUtente))) {
+if (!($imageName = uploadImage($idUtente))) {
     echo "UPLOAD FAILED";
 }
-
+$imagePath = UPLOADS_DIR . "images/profile/" . $imageName;
 $newUtente->setImmagine($imagePath);
 updateUtente($newUtente);
+
+$_SESSION['loggedin'] = true;
+$_SESSION['user'] = serialize($newUtente);
 
 //$_SESSION['loggedin'] = true;
 //$_SESSION['user'] = $user;
@@ -80,12 +83,12 @@ function createIdentity($email, $pass) {
 }
 
 function uploadImage($idUtente) {
-    $target_dir = CORE_DIR . "uploads/images/profile/";
+    $target_dir = UPLOADS_DIR . "images/profile/";
     $target_file = $target_dir . basename($_FILES["immagine"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
-    $target_file = $target_dir . basename($idUtente . "." . $imageFileType);
+    $imageName = $idUtente . "." . $imageFileType;
+    $target_file = $target_dir . basename($imageName);
 // Check if image file is a actual image or fake image
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["immagine"]["tmp_name"]);
@@ -108,7 +111,7 @@ function uploadImage($idUtente) {
 // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["immagine"]["tmp_name"], $target_file)) {
-            return $target_file;
+            return $imageName;
         } else {
             echo "Sorry, there was an error uploading your file.";
             return false;
@@ -132,4 +135,4 @@ function getUtente($email) {
     }
 }
 
-include_once VIEW_DIR . "home.php";
+header("Location:".DOMINIO_SITO."/home");

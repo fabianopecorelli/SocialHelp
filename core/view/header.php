@@ -5,6 +5,11 @@
  * @version 1.0
  * @since 30/05/16
  */
+include_once MODEL_DIR . 'Utente.php';
+
+if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
+    $user = unserialize($_SESSION['user']);
+}
 ?>
 
 <html>
@@ -15,26 +20,26 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>dist/css/AdminLTE.min.css">
 
-        <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-        <link rel="stylesheet" href="plugins/iCheck/all.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/all.css">
         <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect.
         -->
-        <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-        <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>dist/css/skins/skin-blue.min.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/daterangepicker/daterangepicker-bs3.css">
 
-        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="<?php echo STYLE_DIR; ?>img/favicon.png" type="image/x-icon" />
 
-        <link rel="stylesheet" href="plugins/select2/select2.min.css">
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/select2/select2.min.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -70,7 +75,7 @@
 
                 <!-- Logo -->
                 <a href="<?php echo DOMINIO_SITO; ?>/" class="logo" style="background: #222d32">
-                    <img src="img/logoHomePiccolo.png"/>
+                    <img src="<?php echo STYLE_DIR; ?>img/logoHomePiccolo.png"/>
                 </a>
 
                 <!-- Header Navbar -->
@@ -85,54 +90,50 @@
                             <!-- Messages: style can be found in dropdown.less-->
 
                             <!-- User Account Menu -->
+                            <?php if (isset($user) && !empty($user)){?>
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                    <img src="<?php echo $user->getImmagine(); ?>" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Angioletto</span>
+                                    <span class="hidden-xs"><?php echo $user->getNome(); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="<?php echo $user->getImmagine(); ?>" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Angioletto - Web Developer
-                                            <small>Member since Nov. 2012</small>
+                                            <?php echo $user->getNome() ." - ". $user->getTipologia(); ?> 
+                                            <small><?php echo $user->getEmail(); ?></small>
                                         </p>
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Followers</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Sales</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Friends</a>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="<?php echo DOMINIO_SITO;?>/profilo" class="btn btn-default btn-flat">Profilo</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="<?php echo DOMINIO_SITO;?>/logout" class="btn btn-default btn-flat">Log out</a>
                                         </div>
                                     </li>
                                 </ul>
                             </li>
-                            <!-- Control Sidebar Toggle Button -->
-                            <li>
-                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            <?php }
+                            else {?>
+                             <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="<?php echo DOMINIO_SITO;?>/auth">
+                                    <!-- The user image in the navbar-->
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    
+                                    <span class="hidden-xs">Login</span>
+                                    <i class="fa fa-sign-in"></i>
+                                </a>
+                                
                             </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </nav>
@@ -144,16 +145,18 @@
                 <section class="sidebar">
 
                     <!-- Sidebar user panel (optional) -->
+                    <?php if (isset($user) && !empty($user)){?>
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="<?php echo $user->getImmagine(); ?>" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Angioletto</p>
+                            <p><?php echo $user->getNome(); ?></p>
                             <!-- Status -->
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
+                    <?php } ?>
 
                     <form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
@@ -185,7 +188,7 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="background: url('img/bg3.jpg')">
+            <div class="content-wrapper" style="background: url('<?php echo DOMINIO_SITO; ?>/style/img/bg3.jpg')">
 
                 <!-- Main content -->
                 <section class="content" style="margin-top: 0%">

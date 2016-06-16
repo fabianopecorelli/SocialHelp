@@ -62,7 +62,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user2-160x160.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user2-160x160.jpg" alt="User Image">
                                             <span class="username"><a href="#">Angioletto Caduto</a></span>
                                             <span class="description">Data pubblicazione - 7:27 Oggi</span>
                                         </div>
@@ -82,7 +82,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user3-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Michele Arcangelo</a></span>
                                             <span class="description">Data pubblicazione - 0:56 23/03/2016</span>
                                         </div>
@@ -102,7 +102,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user5-128x128.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user5-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Vanni Buglione</a></span>
                                             <span class="description">Data pubblicazione - 4:56 11/03/2016</span>
                                         </div>
@@ -143,7 +143,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user1-128x128.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Nanocon La Spada</a></span>
                                             <span class="description">Data pubblicazione - 17:43 26/07/2016</span>
                                         </div>
@@ -184,7 +184,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user2-160x160.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user2-160x160.jpg" alt="User Image">
                                             <span class="username"><a href="#">Angioletto Caduto</a></span>
                                             <span class="description">Data pubblicazione - 7:27 Oggi</span>
                                         </div>
@@ -204,7 +204,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user1-128x128.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Nanocon La Spada</a></span>
                                             <span class="description">Data pubblicazione - 17:43 26/07/2016</span>
                                         </div>
@@ -224,7 +224,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user3-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Michele Arcangelo</a></span>
                                             <span class="description">Data pubblicazione - 0:56 23/03/2016</span>
                                         </div>
@@ -244,7 +244,7 @@ $homeController = new HomeController();
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
-                                            <img class="img-circle" src="dist/img/user5-128x128.jpg" alt="User Image">
+                                            <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user5-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Vanni Buglione</a></span>
                                             <span class="description">Data pubblicazione - 4:56 11/03/2016</span>
                                         </div>
