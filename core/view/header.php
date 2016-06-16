@@ -173,6 +173,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active"><a href="<?php echo DOMINIO_SITO; ?>/"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                        <?php if (isset($user) && !empty($user)){?>
                         <li><a href="<?php echo DOMINIO_SITO; ?>/profilo"><i class="fa fa-user"></i> <span>Profilo</span></a></li>
                         <li class="treeview">
                             <a href="#"><i class="fa fa-pencil"></i> <span>Gestione Annunci</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -181,6 +182,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
                                 <li><a href="<?php echo DOMINIO_SITO; ?>/ricercaAnnuncio">Cerca Annuncio</a></li>
                             </ul>
                         </li>
+                        <?php } ?>
                     </ul>
                     <!-- /.sidebar-menu -->
                 </section>
