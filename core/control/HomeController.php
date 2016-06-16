@@ -13,9 +13,9 @@ include_once MODEL_DIR . "Annuncio.php";
 class HomeController extends Controller{
     
     private static $GET_ALL_ANNUNCI = "SELECT * FROM `annuncio`";
-    private static $GET_ANNUNCI_OFFERTA = "SELECT * FROM `annuncio`WHERE tipologia = 'Offerta'";
-    private static $GET_ANNUNCI_RICHIESTA = "SELECT * FROM `annuncio`WHERE tipologia = 'Richiesta'";
-    private static $GET_UTENTE_EMAIL = "SELECT * FROM `utente` WHERE e-mail = '%s'";
+    private static $GET_ANNUNCI_OFFERTA = "SELECT * FROM `annuncio`WHERE `tipologia` = 'Offerta'";
+    private static $GET_ANNUNCI_RICHIESTA = "SELECT * FROM `annuncio`WHERE `tipologia` = 'Richiesta'";
+    private static $GET_UTENTE_EMAIL = "SELECT * FROM `utente` WHERE `e-mail` = '%s'";
     
     public function getAllAnnunci() {
         $query = sprintf(self::$GET_ALL_ANNUNCI);
@@ -23,7 +23,7 @@ class HomeController extends Controller{
         $annunci = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['username_utente']);
+                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['email_utente']);
                 $annuncio->setId($obj['id']);
                 $annunci[] = $annuncio;            }
         }
@@ -37,7 +37,7 @@ class HomeController extends Controller{
         $annunci = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['username_utente']);
+                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['email_utente']);
                 $annuncio->setId($obj['id']);
                 $annunci[] = $annuncio;            }
         }
@@ -51,7 +51,7 @@ class HomeController extends Controller{
         $annunci = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['username_utente']);
+                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['email_utente']);
                 $annuncio->setId($obj['id']);
                 $annunci[] = $annuncio;            }
         }
@@ -68,7 +68,7 @@ class HomeController extends Controller{
     
     private function parseUtente($res) {
         if ($obj = $res->fetch_assoc()) {
-            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['email'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id']);
+            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id']);
         } else {
             throw new ApplicationException(Error::$UTENTE_NON_TROVATO);
         }
