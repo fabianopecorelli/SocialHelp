@@ -17,6 +17,9 @@ $idUtente = $newUtente->getID();
 if (!($imageName = uploadImage($idUtente))) {
     echo "UPLOAD FAILED";
 }
+else{
+    echo "ERRORE CARICAMENTO";
+}
 $imagePath = UPLOADS_DIR . "images/profile/" . $imageName;
 $newUtente->setImmagine($imagePath);
 updateUtente($newUtente);
@@ -83,7 +86,7 @@ function createIdentity($email, $pass) {
 }
 
 function uploadImage($idUtente) {
-    $target_dir = UPLOADS_DIR . "images/profile/";
+    $target_dir = ROOT_DIR . "/uploads/images/profile/";
     $target_file = $target_dir . basename($_FILES["immagine"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -95,13 +98,18 @@ function uploadImage($idUtente) {
         if ($check !== false) {
             $uploadOk = 1;
         } else {
+            echo 'errore 1';
             $uploadOk = 0;
         }
     }
     if (file_exists($target_file)) {
+        
+            echo 'errore 2';
         $uploadOk = 0;
     }
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        
+            echo 'errore 3';
         $uploadOk = 0;
     }
 
@@ -135,4 +143,4 @@ function getUtente($email) {
     }
 }
 
-header("Location:".DOMINIO_SITO."/home");
+header("Location:".DOMINIO_SITO."/");
