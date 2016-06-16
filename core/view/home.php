@@ -47,10 +47,10 @@ $homeController = new HomeController();
                                     printf("<div class=\"box box-widget\" style=\"border: 1px solid; border-radius: 10px; border-color: #1e9bd7;\"><div class=\"box-header with-border\"><div class=\"user-block\">");
                                     printf("<img class=\"img-circle\" src=\"%s\" alt=\"User Image\">",$utenteAnnuncio->getImmagine());
                                     printf("<span class=\"username\"><a href=\"#\">%s %s</a></span>",$utenteAnnuncio->getNome(), $utenteAnnuncio->getCognome());
-                                    printf("<span class=\"description\">Data pubblicazione - %s       Data servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData());
+                                    printf("<span class=\"description\">Data pubblicazione - %s &nbsp&nbsp Data servizio - %s &nbsp&nbsp Luogo servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData(),$annuncio->getLuogo());
                                     printf("<div class=\"box-body\"><p>%s</p><div class=\"col-md-8\"></div><div class=\"col-md-4\">",$annuncio->getDescrizione());
                                     printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button></div>");
-                                    printf("</div><span class=\"pull-left text-muted\">Annuncio Offerta</span></div></div>");
+                                    printf("<span class=\"pull-left text-muted\">Annuncio Offerta</span></div></div>");
                                     
                                 }
                                 
@@ -131,10 +131,10 @@ $homeController = new HomeController();
                                     printf("<div class=\"box box-widget\" style=\"border: 1px solid; border-radius: 10px; border-color: #1e9bd7;\"><div class=\"box-header with-border\"><div class=\"user-block\">");
                                     printf("<img class=\"img-circle\" src=\"%s\" alt=\"User Image\">",$utenteAnnuncio->getImmagine());
                                     printf("<span class=\"username\"><a href=\"#\">%s %s</a></span>",$utenteAnnuncio->getNome(), $utenteAnnuncio->getCognome());
-                                    printf("<span class=\"description\">Data pubblicazione - %s       Data servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData());
+                                    printf("<span class=\"description\">Data pubblicazione - %s &nbsp&nbsp Data servizio - %s &nbsp&nbsp Luogo servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData(),$annuncio->getLuogo());
                                     printf("<div class=\"box-body\"><p>%s</p><div class=\"col-md-8\"></div><div class=\"col-md-4\">",$annuncio->getDescrizione());
                                     printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button></div>");
-                                    printf("</div><span class=\"pull-left text-muted\">Annuncio Richiesta</span></div></div>");
+                                    printf("<span class=\"pull-left text-muted\">Annuncio Richiesta</span></div></div>");
                                     
                                 }
                                 
@@ -172,10 +172,10 @@ $homeController = new HomeController();
                                     printf("<div class=\"box box-widget\" style=\"border: 1px solid; border-radius: 10px; border-color: #1e9bd7;\"><div class=\"box-header with-border\"><div class=\"user-block\">");
                                     printf("<img class=\"img-circle\" src=\"%s\" alt=\"User Image\">",$utenteAnnuncio->getImmagine());
                                     printf("<span class=\"username\"><a href=\"#\">%s %s</a></span>",$utenteAnnuncio->getNome(), $utenteAnnuncio->getCognome());
-                                    printf("<span class=\"description\">Data pubblicazione - %s       Data servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData());
+                                    printf("<span class=\"description\">Data pubblicazione - %s &nbsp&nbsp Data servizio - %s &nbsp&nbsp Luogo servizio - %s</span></div></div>",$annuncio->getDataPubblicazione(),$annuncio->getData(),$annuncio->getLuogo());
                                     printf("<div class=\"box-body\"><p>%s</p><div class=\"col-md-8\"></div><div class=\"col-md-4\">",$annuncio->getDescrizione());
                                     printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button></div>");
-                                    printf("</div><span class=\"pull-left text-muted\">Annuncio %s</span></div></div>",$annuncio->getTipologia());
+                                    printf("<span class=\"pull-left text-muted\">Annuncio %s</span></div></div>",$annuncio->getTipologia());
                                     
                                 }
                                 
