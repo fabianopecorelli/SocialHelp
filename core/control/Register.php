@@ -11,8 +11,15 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 
 
+$utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['e-mail'], $_POST['data-nascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], null);
+$newUtente = getUtente($utente->getEmail());
+$idUtente = $newUtente->getID();
+if (!($imagePath = uploadImage($idUtente))) {
+    echo "UPLOAD FAILED";
+}
 
-register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['e-mail'], $_POST['data-nascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], null);
+$newUtente->setImmagine($imagePath);
+updateUtente($newUtente);
 
 //$_SESSION['loggedin'] = true;
 //$_SESSION['user'] = $user;
@@ -43,13 +50,9 @@ function register($nome, $cognome, $telefono, $tipologia, $email, $dataNascita, 
         throw new IllegalArgumentException("Password è troppo corta");
     }
     //CONVERT TO DATETIME
+    $dataNascita = str_replace('/', '-', $dataNascita);
     $birthDate = date("Y-m-d H:i:s", strtotime($dataNascita));
-
     return createUtente(new Utente($nome, $cognome, $telefono, $email, $citta, $password, $descrizione, $imagePath, $tipologia, $birthDate));
-    $idUtente = 1165; //TODO
-    if (!($imagePath = uploadImage($idUtente))) {
-        echo "UPLOAD FAILED";
-    } //SET PATH
 }
 
 function createUtente($utente) {
@@ -61,7 +64,7 @@ function createUtente($utente) {
     $INSERT_UTENTE = "INSERT INTO `utente` (`nome`, `cognome`, `telefono`, `e-mail`, `citta`, `password`, `descrizione`, `immagine`, `tipologia`, `data`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');";
 
     $query = sprintf($INSERT_UTENTE, $utente->getNome(), $utente->getCognome(), $utente->getTelefono(), $utente->getEmail(), $utente->getCitta(), $ident, $utente->getDescrizione(), $utente->getImmagine(), $utente->getTipologia(), $utente->getData());
-    echo $query;
+
     if (!Controller::getDB()->query($query)) {
         if (Controller::getDB()->errno == 1062) {
             throw new ApplicationException(Error::$EMAIL_ESISTE, Controller::getDB()->error, Controller::getDB()->errno);
@@ -87,19 +90,15 @@ function uploadImage($idUtente) {
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["immagine"]["tmp_name"]);
         if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
         } else {
-            echo "File is not an image.";
             $uploadOk = 0;
         }
     }
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
         $uploadOk = 0;
     }
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
 
@@ -109,12 +108,27 @@ function uploadImage($idUtente) {
 // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["immagine"]["tmp_name"], $target_file)) {
-            echo "The file " . basename($_FILES["immagine"]["name"]) . " has been uploaded.";
             return $target_file;
         } else {
             echo "Sorry, there was an error uploading your file.";
             return false;
         }
+    }
+}
+
+function updateUtente($newUtente) {
+    $query = "UPDATE `utente` SET `immagine`='" . $newUtente->getImmagine() . "' WHERE `e-mail` = '" . $newUtente->getEmail() . "'";
+    $res = Controller::getDB()->query($query);
+}
+
+function getUtente($email) {
+    $query = "SELECT * FROM `utente` WHERE `e-mail` = '" . $email . "'";
+    $res = Controller::getDB()->query($query);
+    $obj = $res->fetch_assoc();
+    if ($obj) {
+        return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id']);
+    } else {
+        throw new ApplicationException(Error::$UTENTE_NON_TROVATO);
     }
 }
 

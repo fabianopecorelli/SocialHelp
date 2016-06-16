@@ -22,7 +22,7 @@ class Utente {
     private $id;
     
     
-    public function __construct($nome, $cognome, $telefono, $email, $citta, $password, $descrizione, $immagine, $tipologia, $data, $id) {
+    public function __construct($nome, $cognome, $telefono, $email, $citta, $password, $descrizione, $immagine, $tipologia, $data, $id = null) {
 
         $this->nome=$nome;
         $this->cognome=$cognome;
