@@ -13,16 +13,16 @@ class Esperienza {
     private $data;
     private $descrizione;
     private $recensore;
-    private $usernameUtente;
+    private $emailUtente;
     private $voto;
     
-    function __construct($id, $titolo, $data, $descrizione, $recensore, $usernameUtente, $voto) {
+    function __construct($id, $titolo, $data, $descrizione, $recensore, $emailUtente, $voto) {
         $this->id = $id;
         $this->titolo = $titolo;
         $this->data = $data;
         $this->descrizione = $descrizione;
         $this->recensore = $recensore;
-        $this->usernameUtente = $usernameUtente;
+        $this->emailUtente = $emailUtente;
         $this->voto = $voto;
     }
     
@@ -46,8 +46,8 @@ class Esperienza {
         return $this->recensore;
     }
 
-    function getUsernameUtente() {
-        return $this->usernameUtente;
+    function getEmailUtente() {
+        return $this->emailUtente;
     }
 
     function getVoto() {
@@ -74,8 +74,8 @@ class Esperienza {
         $this->recensore = $recensore;
     }
 
-    function setUsernameUtente($usernameUtente) {
-        $this->usernameUtente = $usernameUtente;
+    function setEmailUtente($emailUtente) {
+        $this->emailUtente = $emailUtente;
     }
 
     function setVoto($voto) {
