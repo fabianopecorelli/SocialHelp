@@ -23,7 +23,7 @@ class HomeController extends Controller{
         $annunci = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['dataPubblicazione'], $obj['tipologia'], $obj['email']);
+                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['username_utente']);
                 $annuncio->setId($obj['id']);
                 $annunci[] = $annuncio;            }
         }
@@ -37,7 +37,7 @@ class HomeController extends Controller{
         $annunci = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['dataPubblicazione'], $obj['tipologia'], $obj['email']);
+                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['username_utente']);
                 $annuncio->setId($obj['id']);
                 $annunci[] = $annuncio;            }
         }
@@ -51,7 +51,7 @@ class HomeController extends Controller{
         $annunci = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['dataPubblicazione'], $obj['tipologia'], $obj['email']);
+                $annuncio = new Annuncio($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['luogo'], $obj['data_pubblicazione'], $obj['tipologia'], $obj['username_utente']);
                 $annuncio->setId($obj['id']);
                 $annunci[] = $annuncio;            }
         }
