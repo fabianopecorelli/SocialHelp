@@ -23,6 +23,6 @@ class Config {
      *  Varie configurazioni
      */
     public static $MIN_PASSWORD_LEN = 8;    //minima lunghezza della password
-    public static $TIPI_UTENTE = array('Disabile', 'Offerente');
+    public static $TIPI_UTENTE = array('Cliente', 'Offerente');
     public static $LOG_LEVEL = 0; //0 Debug, 1 Info, 2 Warning, 3 Error
 }
