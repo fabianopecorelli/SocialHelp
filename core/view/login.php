@@ -36,12 +36,12 @@
         <![endif]-->
     </head>
     <body background="<?php echo STYLE_DIR; ?>img/bg3.jpg">
-        
+
         <div class="login-logo" style="margin-top: 2%">
-                <a href="index2.html" class="logo">
-                    <img src="<?php echo STYLE_DIR; ?>img/logo-traccia.png"/>
-                </a>
-            </div>
+            <a href="index2.html" class="logo">
+                <img src="<?php echo STYLE_DIR; ?>img/logo-traccia.png"/>
+            </a>
+        </div>
         <div class="login-box">
 
             <div class="login-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
@@ -80,12 +80,16 @@
                         </div>
                         <!-- /.col -->
                     </div>
-                    
-                        <a href="#">Password dimenticata?</a>
-                        <br/>
-                        <a href="<?php echo DOMINIO_SITO; ?>/register">Registrati</a>
+                    <a href="#">Password dimenticata?</a>
+                    <br/>
+                    <a href="<?php echo DOMINIO_SITO; ?>/register">Registrati</a>
+                    <br/>
+                    <a href="<?php echo DOMINIO_SITO; ?>">Accedi come ospite</a>
+
+
+
                 </form>
-                
+
                 <!-- /.form-box -->
             </div>
             <!-- /.login-box -->
@@ -100,45 +104,45 @@
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
 
         <script>
-                                        function cambiaImmagine(input) {
-                                            if (input.files && input.files[0]) {
-                                                var reader = new FileReader();
+            function cambiaImmagine(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-                                                reader.onload = function (e) {
-                                                    $('#immagine').attr('src', e.target.result);
-                                                }
+                    reader.onload = function (e) {
+                        $('#immagine').attr('src', e.target.result);
+                    }
 
-                                                reader.readAsDataURL(input.files[0]);
-                                            }
-                                        }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
 
-                                        $(function () {
-                                            $('input').iCheck({
-                                                checkboxClass: 'icheckbox_square-blue',
-                                                radioClass: 'iradio_square-blue',
-                                                increaseArea: '20%' // optional
-                                            });
-                                            //Date picker
-                                            $('#datepicker').datepicker({
-                                                autoclose: true
-                                            });
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' // optional
+                });
+                //Date picker
+                $('#datepicker').datepicker({
+                    autoclose: true
+                });
 
-                                            //iCheck for checkbox and radio inputs
-                                            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-                                                checkboxClass: 'icheckbox_minimal-blue',
-                                                radioClass: 'iradio_minimal-blue'
-                                            });
-                                            //Red color scheme for iCheck
-                                            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-                                                checkboxClass: 'icheckbox_minimal-red',
-                                                radioClass: 'iradio_minimal-red'
-                                            });
-                                            //Flat red color scheme for iCheck
-                                            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                                                checkboxClass: 'icheckbox_flat-green',
-                                                radioClass: 'iradio_flat-green'
-                                            });
-                                        });
+                //iCheck for checkbox and radio inputs
+                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                    checkboxClass: 'icheckbox_minimal-blue',
+                    radioClass: 'iradio_minimal-blue'
+                });
+                //Red color scheme for iCheck
+                $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                    checkboxClass: 'icheckbox_minimal-red',
+                    radioClass: 'iradio_minimal-red'
+                });
+                //Flat red color scheme for iCheck
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            });
         </script>
     </body>
 </html>
