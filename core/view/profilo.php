@@ -6,6 +6,25 @@
  * @since 30/05/16
  */
 include_once VIEW_DIR . 'header.php';
+include_once CONTROL_DIR . "ProfiloController.php";
+
+$profiloController = new ProfiloController();
+
+function parseInt($Str) {
+    return (int)$Str;
+}
+
+if(isset($_URL[2])){
+    //PROFILO UTENTE CON ID
+    $utente=$profiloController->getUtenteById(parseInt($_URL[2]));
+    $utenteloggato=0;
+    
+}else{
+    //PROFILO UTENTE LOGGATO
+    $utente=unserialize($_SESSION['user']);
+    $utenteloggato=1;
+    
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -31,12 +50,12 @@ include_once VIEW_DIR . 'header.php';
         <!-- Profile Image -->
         <div class="box box-primary">
             <div class="box-body box-profile">
-                <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
+                <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; printf("%s",$utente->getImmagine()); ?>" alt="user image">
 
-                <h3 class="profile-username text-center">Jonathan Burke Jr.</h3>
+                <h3 class="profile-username text-center"><?php printf("%s %s",$utente->getNome(),$utente->getCognome());    ?></h3>
 
-                <p class="text-muted text-center">Fisioterapista</p>
-                <p class="text-center">Breve descrizione dell'utente.</p>
+                <p class="text-muted text-center"><?php  if(($utente->getTipologia())=="Offerente") {printf("%s",$utente->getProfessione());}   ?></p>
+                <p class="text-center"><?php  printf("%s",$utente->getDescrizione());      ?></p>
 
             </div>
             <!-- /.box-body -->
@@ -53,32 +72,32 @@ include_once VIEW_DIR . 'header.php';
                 <strong><i class="fa fa-calendar margin-r-5"></i> Data di nascita</strong>
 
                 <p class="text-muted">
-                    17/09/1991
+                    <?php  printf("%s",$utente->getData());  ?>
                 </p>
 
                 <hr>
 
                 <strong><i class="fa fa-map-marker margin-r-5"></i> Città</strong>
 
-                <p class="text-muted">Malibu, California</p>
+                <p class="text-muted"><?php  printf("%s",$utente->getCitta());  ?></p>
 
                 <hr>
 
                 <strong><i class="fa fa-phone margin-r-5"></i> Telefono</strong>
 
-                <p class="text-muted">3333333333</p>
+                <p class="text-muted"><?php  printf("%s",$utente->getTelefono());  ?></p>
 
                 <hr>
 
                 <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
 
-                <p class="text-muted">jonathan@gmail.com</p>
+                <p class="text-muted"><?php  printf("%s",$utente->getEmail());  ?></p>
 
                 <hr>
 
                 <strong><i class="fa fa-files-o margin-r-5"></i> <a style="cursor: pointer">Esperienze</a></strong>
 
-                <p class="text-muted">Voto medio: 4,5 <i class="fa fa-star-o"></i>. <br/>  Basato su 34 esperienze.</p>
+                <p class="text-muted">Voto medio: <?php  printf("%s",$profiloController->getVotoMedioEsperienze($utente->getEmail())); ?> <i class="fa fa-star-o"></i>. <br/>  Basato su <?php  printf("%s",$profiloController->getNumeroEsperienze($utente->getEmail())); ?> esperienze.</p>
             </div>
             <!-- /.box-body -->
         </div>
@@ -95,14 +114,30 @@ include_once VIEW_DIR . 'header.php';
             <div class="tab-content">
                 <div class="tab-pane" id="annunci">
                     <!-- Post -->
+                    <?php
+                      
+                        $allAnnunci=$profiloController->getAnnunciByEmail($utente->getEmail());
+                                foreach($allAnnunci as $annuncio){
+                        
+                        printf("<div class=\"post\"><div class=\"user-block\">");
+                        printf("<img class=\"img-circle img-bordered-sm\" src=\"STYLE_DIR %s\" alt=\"user image\">",$utente->getImmagine());
+                        printf("<span class=\"username\">");
+                        printf("<a href=\"#\">%s %s</a><a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a></span>",$utente->getNome(),$utente->getCognome());
+                        printf("<span class=\"description\">Data pubblicazione - %s &nbsp&nbsp Data servizio - %s &nbsp&nbsp Luogo servizio - %s</span></div>",$annuncio->getDataPubblicazione(),$annuncio->getData(),$annuncio->getLuogo());
+                        printf("<p>%s</p>",$annuncio->getDescrizione());
+                        printf("<span class=\"pull-left text-muted\">Annuncio %s</span><br></div>", $annuncio->getTipologia());
+                        
+                        
+                                }
+                    ?>
                     <div class="post">
                         <div class="user-block">
                             <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
                             <span class="username">
-                                <a href="#">Jonathan Burke Jr.</a>
+                           </span>
+                                  <a href="#">Jonathan Burke Jr.</a>
                                 <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                            <span class="description">Shared publicly - 7:30 PM today</span>
+                           <span class="description">Shared publicly - 7:30 PM today</span>
                         </div>
                         <!-- /.user-block -->
                         <p>
@@ -210,6 +245,29 @@ include_once VIEW_DIR . 'header.php';
                 </div>
                 <div class="tab-pane" id="esperienze">
                     <!-- Post -->
+                    
+                    <?php
+                    
+                    $allEsperienze=$profiloController->getEsperienzeByEmail($utente->getEmail());
+                                foreach($allEsperienze as $esperienza){
+                                $recensore= $profiloController->getUtenteByEmail($esperienza->getRecensore());   
+                        
+                        printf("<div class=\"post\"><div class=\"user-block\">");
+                        printf("<img class=\"img-circle img-bordered-sm\" src=\"STYLE_DIR %s\" alt=\"user image\">",$recensore->getImmagine());
+                        printf("<span class=\"username\">");
+                        printf("<a href=\"#\">%s %s</a><a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a></span>",$recensore->getNome(),$recensore->getCognome());
+                        printf("<span class=\"description\">Data pubblicazione - %s  &nbsp&nbsp Voto - %d  <i class=\"fa fa-star-o\"></i></span></div>",$esperienza->getData(),$esperienza->getVoto());
+                        printf("<p>%s</p><br></div>",$esperienza->getDescrizione());
+                        
+                        
+                        
+                                }
+                    
+                    
+                    
+                    
+                    ?>
+                    
                     <div class="post">
                         <div class="user-block">
                             <img class="profile-user-img img-responsive img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user4-128x128.jpg" alt="User profile picture">

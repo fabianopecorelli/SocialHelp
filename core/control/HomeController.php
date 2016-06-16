@@ -68,7 +68,7 @@ class HomeController extends Controller{
     
     private function parseUtente($res) {
         if ($obj = $res->fetch_assoc()) {
-            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id']);
+            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id'],$obj['professione']);
         } else {
             throw new ApplicationException(Error::$UTENTE_NON_TROVATO);
         }

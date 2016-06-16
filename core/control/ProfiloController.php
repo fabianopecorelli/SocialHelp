@@ -17,7 +17,7 @@ class ProfiloController extends Controller{
     private static $GET_UTENTE_BY_ID = "SELECT * FROM `utente` WHERE `id` = '%d'";
     private static $GET_ESPERIENZE_BY_EMAIL="SELECT * FROM `esperienza` WHERE `email_utente` = '%s'";
     private static $GET_UTENTE_EMAIL = "SELECT * FROM `utente` WHERE `e-mail` = '%s'";
-    
+
     
     public function getEsperienzeByEmail($email) {
         $query = sprintf(self::$GET_ESPERIENZE_BY_EMAIL, $email);
@@ -30,6 +30,13 @@ class ProfiloController extends Controller{
                 $esperienze[] = $esperienza;            }
         }
         return $esperienze;
+    }
+    
+    public function getUtenteByEmail($email){
+        $query = sprintf(self::$GET_UTENTE_EMAIL, $email);
+
+        $res = Controller::getDB()->query($query);
+        return $this->parseUtente($res);
     }
     
     public function getAnnunciByEmail($email) {
@@ -52,10 +59,39 @@ class ProfiloController extends Controller{
         return $this->parseUtente($res);
     }
     
+    public function getVotoMedioEsperienze($email){
+        
+        $esperienze=$this->getEsperienzeByEmail($email);
+        
+        $somma=0;
+        $numero=0;
+        foreach($esperienze as $esperienza){
+            $somma=$somma+$esperienza->getVoto();
+            $numero=$numero+1;
+        }
+        if($numero==0){
+            return 0;
+        }else{
+            return $somma/$numero;
+        }
+    }
+    
+    public function getNumeroEsperienze($email){
+        
+        $esperienze=$this->getEsperienzeByEmail($email);
+        
+        $numero=0;
+        foreach($esperienze as $esperienza){
+            $numero=$numero+1;
+        }
+        return $numero;
+        
+    }
+    
     
     private function parseUtente($res) {
         if ($obj = $res->fetch_assoc()) {
-            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id']);
+            return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id'],$obj['professione']);
         } else {
             throw new ApplicationException(Error::$UTENTE_NON_TROVATO);
         }
