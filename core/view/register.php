@@ -46,7 +46,7 @@
             <div class="register-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Registrazione</p>
 
-                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post">
+                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>
-                                        <input type="radio" name="tipologia" value="Disabile" class="flat-red" checked> Cerco servizi
+                                        <input type="radio" name="tipologia" value="Cliente" class="flat-red" checked> Cerco servizi
                                     </label>
                                 </div>
                                 <div class="col-md-6">
@@ -147,11 +147,11 @@
                         <div class="col-md-6">
                             <div class="user-panel">
                                 <div class="pull-left image" style="margin-bottom: 2%; margin-right: 5%">
-                                    <img src="img/user-standard.png" id="immagine" name="immagine" class="img-circle" alt="User Image">
+                                    <img src="img/user-standard.png" id="immagine"  class="img-circle" alt="User Image">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Immagine personale</label>
-                                    <input type="file" onchange="cambiaImmagine(this)" id="exampleInputFile">
+                                    <input type="file" name="immagine" onchange="cambiaImmagine(this)" id="exampleInputFile">
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Registrati</button>
+                            <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Registrati</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -186,13 +186,14 @@
 
         <script>
                                         function cambiaImmagine(input) {
+                                            alert(input.value);
                                             if (input.files && input.files[0]) {
                                                 var reader = new FileReader();
 
                                                 reader.onload = function (e) {
                                                     $('#immagine').attr('src', e.target.result);
                                                 }
-
+                                                
                                                 reader.readAsDataURL(input.files[0]);
                                             }
                                         }
