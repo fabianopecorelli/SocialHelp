@@ -107,12 +107,21 @@ if(isset($_URL[2])){
     <div class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#statistiche" onclick="initializeChart()" data-toggle="tab">Statistiche</a></li>
-                <li><a href="#annunci" data-toggle="tab">Annunci</a></li>
-                <li><a href="#esperienze" data-toggle="tab">Esperienze</a></li>
+                <?php
+                if($utente->getTipologia()=="Offerente"){
+                printf("<li class=\"active\"><a href=\"#statistiche\" onclick=\"initializeChart()\" data-toggle=\"tab\">Statistiche</a></li>");
+                }
+                      ?>
+                <li<?php if($utente->getTipologia()=="Cliente"){printf(" class=\"active\"");}   ?>><a href="#annunci" data-toggle="tab">Annunci</a></li>
+                <?php
+                if($utente->getTipologia()=="Offerente"){
+                printf("<li><a href=\"#esperienze\" data-toggle=\"tab\">Esperienze</a></li>");
+                }
+                        ?>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane" id="annunci">
+                <div <?php if($utente->getTipologia()=="Cliente"){printf("class=\"active tab-pane\"");}else{printf("class=\"tab-pane\"");}?>id="annunci">
+                
                     <!-- Post -->
                     <?php
                       
@@ -243,11 +252,16 @@ if(isset($_URL[2])){
                     </div>
                     <!-- /.post -->
                 </div>
+                <!--QUESTO E' DA TOGLIERE ALLA FINE-->
                 <div class="tab-pane" id="esperienze">
                     <!-- Post -->
                     
                     <?php
-                    
+                    if($utente->getTipologia()=="Offerente"){
+                        /**
+                         * TOGLIERE IL COMMENTO ALLA FINE
+                         * printf("<div class=\"tab-pane\" id=\"esperienze\">");
+                         */
                     $allEsperienze=$profiloController->getEsperienzeByEmail($utente->getEmail());
                                 foreach($allEsperienze as $esperienza){
                                 $recensore= $profiloController->getUtenteByEmail($esperienza->getRecensore());   
@@ -262,10 +276,13 @@ if(isset($_URL[2])){
                         
                         
                                 }
+                        
+                        /**
+                         * TOGLIERE IL COMMENTO ALLA FINE
+                         * printf("</div>");
+                         */
                     
-                    
-                    
-                    
+                    }
                     ?>
                     
                     <div class="post">
@@ -381,25 +398,23 @@ if(isset($_URL[2])){
                     <!-- /.post -->
                 </div>
                 <!-- /.tab-pane -->
-                <div class="active tab-pane" id="statistiche">
-
-                    <div class="box-body">
-                        <canvas id="pieChart" style="height: 264px; width: 528px;" width="528" height="264"></canvas>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <a href="<?php echo DOMINIO_SITO; ?>/inserisciEsperienza" style="cursor: pointer"><i class="fa fa-plus"></i>
-                                Aggiungi una nuova esperienza</a>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-3">
-                            Recensioni positive: 700<br/>
-                            Recensioni negative: 500
-                        </div>
-
-                    </div>
-                </div>
+                
+                            <?php
+                            if($utente->getTipologia()=="Offerente"){
+                            
+                                printf("<div class=\"active tab-pane\" id=\"statistiche\"><div class=\"box-body\"><canvas id=\"pieChart\" style=\"height: 264px; width: 528px;\" width=\"528\" height=\"264\"></canvas></div>");
+                                printf("<div class=\"row\"><div class=\"col-md-1\"></div><div class=\"col-md-3\">");
+                            
+                            if(($utenteloggato==0)AND($utente->getTipologia()=="Cliente")){
+                                printf("<a href=\"DOMINIO_SITO/inserisciEsperienza\" style=\"cursor: pointer\"><i class=\"fa fa-plus\"></i>Aggiungi una nuova esperienza</a>");
+                                }
+                                printf("</div><div class=\"col-md-4\"></div><div class=\"col-md-3\">");
+                                printf("Recensioni positive: %d",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));
+                                printf("Recensioni negative: %d",$profiloController->getVotiNegativiEsperienze($utente->getEmail()));
+                                printf("</div></div></div>");
+                            }
+                            ?>
+                        
             </div>
             <!-- /.tab-content -->
         </div>
@@ -434,8 +449,8 @@ if(isset($_URL[2])){
                                 // Get context with jQuery - using jQuery's .get() method.
                                 var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
                                 var pieChart = new Chart(pieChartCanvas);
-                                var positive = 700;
-                                var negative = 500;
+                                var positive = <?php printf("%d",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));  ?>;
+                                var negative = <?php printf("%d",$profiloController->getVotiNegativiEsperienze($utente->getEmail()));  ?>;
                                 var PieData = [
                                     {
                                         value: [[positive]],

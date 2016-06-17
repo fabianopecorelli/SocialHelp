@@ -66,7 +66,7 @@ class ProfiloController extends Controller{
         $somma=0;
         $numero=0;
         foreach($esperienze as $esperienza){
-            $somma=$somma+$esperienza->getVoto();
+            $somma=$somma+$this->parseInt($esperienza->getVoto());
             $numero=$numero+1;
         }
         if($numero==0){
@@ -75,6 +75,29 @@ class ProfiloController extends Controller{
             return $somma/$numero;
         }
     }
+    
+    public function getVotiPositiviEsperienze($email){
+        $esperienze=$this->getEsperienzeByEmail($email);
+        $cont=0;
+        foreach($esperienze as $esperienza){
+            if($this->parseInt($esperienza->getVoto())>2){
+                $cont=$cont+1;
+            }
+        }
+        return $cont;
+    }
+    
+    public function getVotiNegativiEsperienze($email){
+        $esperienze=$this->getEsperienzeByEmail($email);
+        $cont=0;
+        foreach($esperienze as $esperienza){
+            if($this->parseInt($esperienza->getVoto())<3){
+                $cont=$cont+1;
+            }
+        }
+        return $cont;
+    }
+    
     
     public function getNumeroEsperienze($email){
         
@@ -88,6 +111,9 @@ class ProfiloController extends Controller{
         
     }
     
+    public function parseInt($Str) {
+        return (int)$Str;
+    }
     
     private function parseUtente($res) {
         if ($obj = $res->fetch_assoc()) {
