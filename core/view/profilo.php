@@ -14,9 +14,9 @@ function parseInt($Str) {
     return (int)$Str;
 }
 
-if(isset($_URL[2])){
+if(isset($_URL[1])){
     //PROFILO UTENTE CON ID
-    $utente=$profiloController->getUtenteById(parseInt($_URL[2]));
+    $utente=$profiloController->getUtenteById(parseInt($_URL[1]));
     $utenteloggato=0;
     
 }else{
@@ -409,7 +409,7 @@ if(isset($_URL[2])){
                                 printf("<a href=\"DOMINIO_SITO/inserisciEsperienza\" style=\"cursor: pointer\"><i class=\"fa fa-plus\"></i>Aggiungi una nuova esperienza</a>");
                                 }
                                 printf("</div><div class=\"col-md-4\"></div><div class=\"col-md-3\">");
-                                printf("Recensioni positive: %d",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));
+                                printf("Recensioni positive: %d <BR>",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));
                                 printf("Recensioni negative: %d",$profiloController->getVotiNegativiEsperienze($utente->getEmail()));
                                 printf("</div></div></div>");
                             }
