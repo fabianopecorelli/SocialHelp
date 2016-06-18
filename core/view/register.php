@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/datepicker/datepicker3.css">
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/all.css">
 
+        <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/select2/select2.min.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -110,14 +111,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group has-feedback">
-                                <div class="input-group">
-                                    <input type="text"  name="citta" class="form-control" placeholder="Città">
-                                    <div class="input-group-addon">
+                             <div class="form-group has-feedback">
+                                <div class="input-group date">
+                                    <select class="form-control select2" name="citta" id="listacitta" style="width: 100%;">
+                                    
+                                    </select><div class="input-group-addon">
                                         <i class="fa fa-map-marker"></i>
                                     </div>
                                 </div>
                             </div>
+                           
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -184,6 +187,8 @@
         <script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
 
+        <script src="<?php echo STYLE_DIR; ?>plugins/select2/select2.full.min.js"></script>
+        <script type="text/javascript" src="<?php echo STYLE_DIR; ?>/scripts/caricacitta.js"></script>
         <script>
                                         function cambiaImmagine(input) {
                                             if (input.files && input.files[0]) {
@@ -192,12 +197,14 @@
                                                 reader.onload = function (e) {
                                                     $('#immagine').attr('src', e.target.result);
                                                 }
-                                                
+
                                                 reader.readAsDataURL(input.files[0]);
                                             }
                                         }
 
                                         $(function () {
+                                            //Initialize Select2 Elements
+                                            $(".select2").select2();
                                             $('input').iCheck({
                                                 checkboxClass: 'icheckbox_square-blue',
                                                 radioClass: 'iradio_square-blue',
@@ -225,5 +232,6 @@
                                             });
                                         });
         </script>
+
     </body>
 </html>

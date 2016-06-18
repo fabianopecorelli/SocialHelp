@@ -50,7 +50,7 @@ if(isset($_URL[2])){
         <!-- Profile Image -->
         <div class="box box-primary">
             <div class="box-body box-profile">
-                <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; printf("%s",$utente->getImmagine()); ?>" alt="user image">
+                <img class="img-circle img-bordered-sm" style="max-width: 136px" src="<?php printf("%s",$utente->getImmagine()); ?>" alt="user image">
 
                 <h3 class="profile-username text-center"><?php printf("%s %s",$utente->getNome(),$utente->getCognome());    ?></h3>
 

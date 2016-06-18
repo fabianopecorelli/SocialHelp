@@ -9,7 +9,6 @@ include_once VIEW_DIR . 'header.php';
 include_once CONTROL_DIR . "HomeController.php";
 
 $homeController = new HomeController();
-
 ?>
 
     <!-- Content Header (Page header) -->
@@ -59,16 +58,16 @@ $homeController = new HomeController();
                                 
                                 
                                 <!-- IL CARICAMENTO DAL DATABASE FINISCE QUI -->
-                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
+<!--                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
                                             <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user2-160x160.jpg" alt="User Image">
                                             <span class="username"><a href="#">Angioletto Caduto</a></span>
                                             <span class="description">Data pubblicazione - 7:27 Oggi</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Sono Angioletto Caduto e offro ripetizioni di ETC.</p>
                                         <div class="col-md-8"></div>
@@ -77,7 +76,7 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio offerta</span>
                                     </div>
-                                    <!-- /.box-body -->
+                                     /.box-body 
                                 </div>
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
@@ -86,9 +85,9 @@ $homeController = new HomeController();
                                             <span class="username"><a href="#">Michele Arcangelo</a></span>
                                             <span class="description">Data pubblicazione - 0:56 23/03/2016</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Offro lezioni di scherma per chi non ha la possibilità di pagarle.</p>
                                         <div class="col-md-8"></div>
@@ -97,7 +96,7 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio offerta</span>
                                     </div>
-                                    <!-- /.box-body -->
+                                     /.box-body 
                                 </div>
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
@@ -106,9 +105,9 @@ $homeController = new HomeController();
                                             <span class="username"><a href="#">Vanni Buglione</a></span>
                                             <span class="description">Data pubblicazione - 4:56 11/03/2016</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Offro passaggio in auto nella zona di Bergamo.</p>
                                         <div class="col-md-8"></div>
@@ -117,10 +116,10 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio offerta</span>
                                     </div>
-                                    <!-- /.box-body -->
+                                     /.box-body 
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="tab-pane" id="richieste">
                             <div class="box-body">
                                 <?php
@@ -140,16 +139,16 @@ $homeController = new HomeController();
                                 
                                 
                                     ?>
-                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
+<!--                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
                                             <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Nanocon La Spada</a></span>
                                             <span class="description">Data pubblicazione - 17:43 26/07/2016</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Cerco volontario che mi aiuti con esercizi per la crescita.</p>
                                         <div class="col-md-8"></div>
@@ -158,10 +157,10 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio richiesta</span>
                                     </div>
-                                    <!-- /.box-body -->
+                                     /.box-body 
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="tab-pane active" id="tutti">
                             <div class="box-body">
                                 <?php
@@ -181,16 +180,16 @@ $homeController = new HomeController();
                                 
                                 
                                     ?>
-                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
+<!--                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
                                             <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user2-160x160.jpg" alt="User Image">
                                             <span class="username"><a href="#">Angioletto Caduto</a></span>
                                             <span class="description">Data pubblicazione - 7:27 Oggi</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Sono Angioletto Caduto e offro ripetizioni di ETC.</p>
                                         <div class="col-md-8"></div>
@@ -199,18 +198,18 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio offerta</span>
                                     </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
+                                     /.box-body 
+                                </div>-->
+<!--                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
                                             <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Nanocon La Spada</a></span>
                                             <span class="description">Data pubblicazione - 17:43 26/07/2016</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Cerco volontario che mi aiuti con esercizi per la crescita.</p>
                                         <div class="col-md-8"></div>
@@ -219,7 +218,7 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio richiesta</span>
                                     </div>
-                                    <!-- /.box-body -->
+                                     /.box-body 
                                 </div>
                                 <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
@@ -228,9 +227,9 @@ $homeController = new HomeController();
                                             <span class="username"><a href="#">Michele Arcangelo</a></span>
                                             <span class="description">Data pubblicazione - 0:56 23/03/2016</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Offro lezioni di scherma per chi non ha la possibilità di pagarle.</p>
                                         <div class="col-md-8"></div>
@@ -239,18 +238,18 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio offerta</span>
                                     </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
+                                     /.box-body 
+                                </div>-->
+<!--                                <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                     <div class="box-header with-border">
                                         <div class="user-block">
                                             <img class="img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user5-128x128.jpg" alt="User Image">
                                             <span class="username"><a href="#">Vanni Buglione</a></span>
                                             <span class="description">Data pubblicazione - 4:56 11/03/2016</span>
                                         </div>
-                                        <!-- /.user-block -->
+                                         /.user-block 
                                     </div>
-                                    <!-- /.box-header -->
+                                     /.box-header 
                                     <div class="box-body">
                                         <p>Offro passaggio in auto nella zona di Bergamo.</p>
                                         <div class="col-md-8"></div>
@@ -259,8 +258,8 @@ $homeController = new HomeController();
                                         </div>
                                         <span class="pull-left text-muted">Annuncio offerta</span>
                                     </div>
-                                    <!-- /.box-body -->
-                                </div>
+                                     /.box-body 
+                                </div>-->
                             </div>
                         </div>
                         <!-- /.tab-content -->
