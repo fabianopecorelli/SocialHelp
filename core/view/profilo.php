@@ -129,7 +129,7 @@ if(isset($_URL[2])){
                                 foreach($allAnnunci as $annuncio){
                         
                         printf("<div class=\"post\"><div class=\"user-block\">");
-                        printf("<img class=\"img-circle img-bordered-sm\" src=\"STYLE_DIR %s\" alt=\"user image\">",$utente->getImmagine());
+                        printf("<img class=\"img-circle img-bordered-sm\" src=\"%s\" alt=\"user image\">",$utente->getImmagine());
                         printf("<span class=\"username\">");
                         printf("<a href=\"#\">%s %s</a><a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a></span>",$utente->getNome(),$utente->getCognome());
                         printf("<span class=\"description\">Data pubblicazione - %s &nbsp&nbsp Data servizio - %s &nbsp&nbsp Luogo servizio - %s</span></div>",$annuncio->getDataPubblicazione(),$annuncio->getData(),$annuncio->getLuogo());
@@ -139,7 +139,7 @@ if(isset($_URL[2])){
                         
                                 }
                     ?>
-                    <div class="post">
+<!--                    <div class="post">
                         <div class="user-block">
                             <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
                             <span class="username">
@@ -148,7 +148,7 @@ if(isset($_URL[2])){
                                 <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                            <span class="description">Shared publicly - 7:30 PM today</span>
                         </div>
-                        <!-- /.user-block -->
+                         /.user-block 
                         <p>
                             Lorem ipsum represents a long-held tradition for designers,
                             typographers and the like. Some people hate it and argue for
@@ -167,9 +167,9 @@ if(isset($_URL[2])){
 
                         <input class="form-control input-sm" type="text" placeholder="Type a comment">
                     </div>
-                    <!-- /.post -->
+                     /.post 
 
-                    <!-- Post -->
+                     Post 
                     <div class="post">
                         <div class="user-block">
                             <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
@@ -180,7 +180,7 @@ if(isset($_URL[2])){
                             </span>
                             <span class="description">Sent you a message - 3 days ago</span>
                         </div>
-                        <!-- /.user-block -->
+                         /.user-block 
                         <p>
                             Lorem ipsum represents a long-held tradition for designers,
                             typographers and the like. Some people hate it and argue for
@@ -200,9 +200,9 @@ if(isset($_URL[2])){
                             </div>
                         </form>
                     </div>
-                    <!-- /.post -->
+                     /.post 
 
-                    <!-- Post -->
+                     Post 
                     <div class="post">
                         <div class="user-block">
                             <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
@@ -212,12 +212,12 @@ if(isset($_URL[2])){
                             </span>
                             <span class="description">Posted 5 photos - 5 days ago</span>
                         </div>
-                        <!-- /.user-block -->
+                         /.user-block 
                         <div class="row margin-bottom">
                             <div class="col-sm-6">
                                 <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo1.png" alt="Photo">
                             </div>
-                            <!-- /.col -->
+                             /.col 
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -225,19 +225,19 @@ if(isset($_URL[2])){
                                         <br>
                                         <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo3.jpg" alt="Photo">
                                     </div>
-                                    <!-- /.col -->
+                                     /.col 
                                     <div class="col-sm-6">
                                         <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo4.jpg" alt="Photo">
                                         <br>
                                         <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo1.png" alt="Photo">
                                     </div>
-                                    <!-- /.col -->
+                                     /.col 
                                 </div>
-                                <!-- /.row -->
+                                 /.row 
                             </div>
-                            <!-- /.col -->
+                             /.col 
                         </div>
-                        <!-- /.row -->
+                         /.row 
 
                         <ul class="list-inline">
                             <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
@@ -249,7 +249,7 @@ if(isset($_URL[2])){
                         </ul>
 
                         <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>
+                    </div>-->
                     <!-- /.post -->
                 </div>
                 <!--QUESTO E' DA TOGLIERE ALLA FINE-->
@@ -267,7 +267,7 @@ if(isset($_URL[2])){
                                 $recensore= $profiloController->getUtenteByEmail($esperienza->getRecensore());   
                         
                         printf("<div class=\"post\"><div class=\"user-block\">");
-                        printf("<img class=\"img-circle img-bordered-sm\" src=\"STYLE_DIR %s\" alt=\"user image\">",$recensore->getImmagine());
+                        printf("<img class=\"img-circle img-bordered-sm\" src=\"%s\" alt=\"user image\">",$recensore->getImmagine());
                         printf("<span class=\"username\">");
                         printf("<a href=\"#\">%s %s</a><a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a></span>",$recensore->getNome(),$recensore->getCognome());
                         printf("<span class=\"description\">Data pubblicazione - %s  &nbsp&nbsp Voto - %d  <i class=\"fa fa-star-o\"></i></span></div>",$esperienza->getData(),$esperienza->getVoto());
@@ -451,6 +451,7 @@ if(isset($_URL[2])){
                                 var pieChart = new Chart(pieChartCanvas);
                                 var positive = <?php printf("%d",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));  ?>;
                                 var negative = <?php printf("%d",$profiloController->getVotiNegativiEsperienze($utente->getEmail()));  ?>;
+                                
                                 var PieData = [
                                     {
                                         value: [[positive]],
