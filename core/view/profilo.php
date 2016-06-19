@@ -72,7 +72,7 @@ if(isset($_URL[1])){
                 <strong><i class="fa fa-calendar margin-r-5"></i> Data di nascita</strong>
 
                 <p class="text-muted">
-                    <?php  printf("%s",$utente->getData());  ?>
+                    <?php  echo date("d/m/Y", strtotime($utente->getData()));  ?>
                 </p>
 
                 <hr>
@@ -209,10 +209,15 @@ if(isset($_URL[1])){
                 
                             <?php
                             if($utente->getTipologia()=="Offerente"){
-                            
-                                printf("<div class=\"active tab-pane\" id=\"statistiche\"><div class=\"box-body\"><canvas id=\"pieChart\" style=\"height: 264px; width: 528px;\" width=\"528\" height=\"264\"></canvas></div>");
+                                
+                                
+                                printf("<div class=\"active tab-pane\" id=\"statistiche\"><div class=\"box-body\">");
+                                if(($profiloController->getVotiPositiviEsperienze($utente->getEmail()))==0 && ($profiloController->getVotiNegativiEsperienze($utente->getEmail()))==0){
+                                    printf("<H2>Utente non recensito!</H2>");
+                                }
+                                printf("<canvas id=\"pieChart\" style=\"height: 264px; width: 528px;\" width=\"528\" height=\"264\"></canvas></div>");
                                 printf("<div class=\"row\"><div class=\"col-md-1\"></div><div class=\"col-md-3\">");
-                            
+                                
                             if(($utenteloggato==0)AND($utente->getTipologia()=="Cliente")){
                                 printf("<a href=\"DOMINIO_SITO/inserisciEsperienza\" style=\"cursor: pointer\"><i class=\"fa fa-plus\"></i>Aggiungi una nuova esperienza</a>");
                                 }
