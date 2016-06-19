@@ -94,10 +94,11 @@ if(isset($_URL[1])){
                 <p class="text-muted"><?php  printf("%s",$utente->getEmail());  ?></p>
 
                 <hr>
-
+                <?php  if(($utente->getTipologia())=="Offerente"){   ?>
                 <strong><i class="fa fa-files-o margin-r-5"></i> <a style="cursor: pointer">Esperienze</a></strong>
 
                 <p class="text-muted">Voto medio: <?php  printf("%s",$profiloController->getVotoMedioEsperienze($utente->getEmail())); ?> <i class="fa fa-star-o"></i>. <br/>  Basato su <?php  printf("%s",$profiloController->getNumeroEsperienze($utente->getEmail())); ?> esperienze.</p>
+                <?php  }  ?>
             </div>
             <!-- /.box-body -->
         </div>
@@ -126,277 +127,84 @@ if(isset($_URL[1])){
                     <?php
                       
                         $allAnnunci=$profiloController->getAnnunciByEmail($utente->getEmail());
-                                foreach($allAnnunci as $annuncio){
-                        
-                        printf("<div class=\"post\"><div class=\"user-block\">");
-                        printf("<img class=\"img-circle img-bordered-sm\" src=\"%s\" alt=\"user image\">",$utente->getImmagine());
-                        printf("<span class=\"username\">");
-                        printf("<a href=\"#\">%s %s</a><a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a></span>",$utente->getNome(),$utente->getCognome());
-                        printf("<span class=\"description\">Data pubblicazione - %s &nbsp&nbsp Data servizio - %s &nbsp&nbsp Luogo servizio - %s</span></div>",$annuncio->getDataPubblicazione(),$annuncio->getData(),$annuncio->getLuogo());
-                        printf("<p>%s</p>",$annuncio->getDescrizione());
-                        printf("<span class=\"pull-left text-muted\">Annuncio %s</span><br></div>", $annuncio->getTipologia());
-                        
-                        
+                                if($allAnnunci==NULL){
+                                    printf("<H2>Non esiste alcun annuncio!</H2>");
                                 }
-                    ?>
-<!--                    <div class="post">
+                                foreach($allAnnunci as $annuncio){
+                        ?>
+                    
+                         <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                         <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
+                            <img class="img-circle img-bordered-sm" src="<?php printf("%s",$utente->getImmagine());  ?>" alt="user image">
                             <span class="username">
                            </span>
-                                  <a href="#">Jonathan Burke Jr.</a>
-                                <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                           <span class="description">Shared publicly - 7:30 PM today</span>
-                        </div>
-                         /.user-block 
-                        <p>
-                            Lorem ipsum represents a long-held tradition for designers,
-                            typographers and the like. Some people hate it and argue for
-                            its demise, but others ignore the hate as they create awesome
-                            tools to help create filler text for everyone from bacon lovers
-                            to Charlie Sheen fans.
-                        </p>
-                        <ul class="list-inline">
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                                    (5)</a></li>
-                        </ul>
-
-                        <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>
-                     /.post 
-
-                     Post 
-                    <div class="post">
-                        <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
-                            <span class="username">
-                                <a href="#">Jonathan Burke Jr.</a>
-                                <a href="#">Sarah Ross</a>
-                                <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                            <span class="description">Sent you a message - 3 days ago</span>
-                        </div>
-                         /.user-block 
-                        <p>
-                            Lorem ipsum represents a long-held tradition for designers,
-                            typographers and the like. Some people hate it and argue for
-                            its demise, but others ignore the hate as they create awesome
-                            tools to help create filler text for everyone from bacon lovers
-                            to Charlie Sheen fans.
-                        </p>
-
-                        <form class="form-horizontal">
-                            <div class="form-group margin-bottom-none">
-                                <div class="col-sm-9">
-                                    <input class="form-control input-sm" placeholder="Response">
-                                </div>
-                                <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                     /.post 
-
-                     Post 
-                    <div class="post">
-                        <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user1-128x128.jpg" alt="user image">
-                            <span class="username">
-                                <a href="#">Jonathan Burke Jr.</a>
-                                <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                            <span class="description">Posted 5 photos - 5 days ago</span>
-                        </div>
-                         /.user-block 
-                        <div class="row margin-bottom">
-                            <div class="col-sm-6">
-                                <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo1.png" alt="Photo">
-                            </div>
-                             /.col 
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo2.png" alt="Photo">
-                                        <br>
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo3.jpg" alt="Photo">
+                            <a href="#"><?php printf("&nbsp %s %s",$utente->getNome(),$utente->getCognome());  ?></a>
+                                <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($annuncio->getDataPubblicazione())); ?> - Data servizio: <?php echo date("d/m/Y", strtotime($annuncio->getData())); ?> - Luogo servizio: <?php echo $annuncio->getLuogo(); ?></span>
+                        </div> 
+                        <div class="box-body">
+                                    <p><?php echo $annuncio->getDescrizione(); ?></p>
+                                    <div class="col-md-8"></div>
+                                    <div class="col-md-4"><?php
+                                    if($utenteloggato==0){
+                                        printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button>");
+                                    }                                    
+                                    ?>
                                     </div>
-                                     /.col 
-                                    <div class="col-sm-6">
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo4.jpg" alt="Photo">
-                                        <br>
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo1.png" alt="Photo">
-                                    </div>
-                                     /.col 
+                                    <span class="pull-left text-muted">Annuncio <?php echo $annuncio->getTipologia(); ?></span>
                                 </div>
-                                 /.row 
                             </div>
-                             /.col 
-                        </div>
-                         /.row 
-
-                        <ul class="list-inline">
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                                    (5)</a></li>
-                        </ul>
-
-                        <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>-->
-                    <!-- /.post -->
+                    
+                    
+                        
+                    <?php     }    ?>
+                    
                 </div>
                 <!--QUESTO E' DA TOGLIERE ALLA FINE-->
-                <div class="tab-pane" id="esperienze">
+                
                     <!-- Post -->
                     
                     <?php
                     if($utente->getTipologia()=="Offerente"){
-                        /**
-                         * TOGLIERE IL COMMENTO ALLA FINE
-                         * printf("<div class=\"tab-pane\" id=\"esperienze\">");
-                         */
+                        
+                          
+                          printf("<div class=\"tab-pane\" id=\"esperienze\">");
+                         
                     $allEsperienze=$profiloController->getEsperienzeByEmail($utente->getEmail());
+                    if($allEsperienze==NULL){
+                                    printf("<H2>Non esiste alcun esperienza!</H2>");
+                                }
                                 foreach($allEsperienze as $esperienza){
                                 $recensore= $profiloController->getUtenteByEmail($esperienza->getRecensore());   
+                        ?>
                         
-                        printf("<div class=\"post\"><div class=\"user-block\">");
-                        printf("<img class=\"img-circle img-bordered-sm\" src=\"%s\" alt=\"user image\">",$recensore->getImmagine());
-                        printf("<span class=\"username\">");
-                        printf("<a href=\"#\">%s %s</a><a href=\"#\" class=\"pull-right btn-box-tool\"><i class=\"fa fa-times\"></i></a></span>",$recensore->getNome(),$recensore->getCognome());
-                        printf("<span class=\"description\">Data pubblicazione - %s  &nbsp&nbsp Voto - %d  <i class=\"fa fa-star-o\"></i></span></div>",$esperienza->getData(),$esperienza->getVoto());
-                        printf("<p>%s</p><br></div>",$esperienza->getDescrizione());
+                    
+                        <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="<?php printf("%s",$recensore->getImmagine());  ?>" alt="user image">
+                            <span class="username">
+                           </span>
+                            <a href="#"><?php printf("&nbsp %s %s",$recensore->getNome(),$recensore->getCognome());  ?></a>
+                            <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($esperienza->getData()));?>  - Voto:<?php printf("%d ",  parseInt($esperienza->getVoto()));?><i class="fa fa-star-o"></i></span>
+                        </div> 
+                        <div class="box-body">
+                            <p><?php printf("%s",$esperienza->getDescrizione()); ?></p>
+                                    <div class="col-md-8"></div>
+                    
+                                </div>
+                            </div>
                         
                         
                         
-                                }
+                         <?php       }
                         
-                        /**
-                         * TOGLIERE IL COMMENTO ALLA FINE
-                         * printf("</div>");
-                         */
+                        
+                          printf("</div>");
+                         
                     
                     }
                     ?>
                     
-                    <div class="post">
-                        <div class="user-block">
-                            <img class="profile-user-img img-responsive img-circle" src="<?php echo STYLE_DIR; ?>dist/img/user4-128x128.jpg" alt="User profile picture">
-                            <span class="username">
-                                <a href="#">Nina Mcintire</a>
-                                <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                            <span class="description">Shared publicly - 7:30 PM today</span>
-                        </div>
-                        <!-- /.user-block -->
-                        <p>
-                            Lorem ipsum represents a long-held tradition for designers,
-                            typographers and the like. Some people hate it and argue for
-                            its demise, but others ignore the hate as they create awesome
-                            tools to help create filler text for everyone from bacon lovers
-                            to Charlie Sheen fans.
-                        </p>
-                        <ul class="list-inline">
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                                    (5)</a></li>
-                        </ul>
-
-                        <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                        <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user7-128x128.jpg" alt="User Image">
-                            <span class="username">
-                                <a href="#">Sarah Ross</a>
-                                <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                            <span class="description">Sent you a message - 3 days ago</span>
-                        </div>
-                        <!-- /.user-block -->
-                        <p>
-                            Lorem ipsum represents a long-held tradition for designers,
-                            typographers and the like. Some people hate it and argue for
-                            its demise, but others ignore the hate as they create awesome
-                            tools to help create filler text for everyone from bacon lovers
-                            to Charlie Sheen fans.
-                        </p>
-
-                        <form class="form-horizontal">
-                            <div class="form-group margin-bottom-none">
-                                <div class="col-sm-9">
-                                    <input class="form-control input-sm" placeholder="Response">
-                                </div>
-                                <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                        <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="<?php echo STYLE_DIR; ?>dist/img/user6-128x128.jpg" alt="User Image">
-                            <span class="username">
-                                <a href="#">Adam Jones</a>
-                                <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                            </span>
-                            <span class="description">Posted 5 photos - 5 days ago</span>
-                        </div>
-                        <!-- /.user-block -->
-                        <div class="row margin-bottom">
-                            <div class="col-sm-6">
-                                <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo1.png" alt="Photo">
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo2.png" alt="Photo">
-                                        <br>
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo3.jpg" alt="Photo">
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-6">
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo4.jpg" alt="Photo">
-                                        <br>
-                                        <img class="img-responsive" src="<?php echo STYLE_DIR; ?>dist/img/photo1.png" alt="Photo">
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-
-                        <ul class="list-inline">
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                            <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                            </li>
-                            <li class="pull-right">
-                                <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                                    (5)</a></li>
-                        </ul>
-
-                        <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-                </div>
+                    
                 <!-- /.tab-pane -->
                 
                             <?php
