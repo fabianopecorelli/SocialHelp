@@ -47,7 +47,7 @@
             <div class="register-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Registrazione</p>
 
-                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post" enctype="multipart/form-data">
+                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post" name="modulo" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
@@ -169,7 +169,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-4">
-                            <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Registrati</button>
+                            <button type="button" onclick="Modulo()" name="submit" class="btn btn-primary btn-block btn-flat">Registrati</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -232,6 +232,22 @@
                                             });
                                         });
         </script>
+        <script>
+            
+            function Modulo() {
+                // Variabili associate ai campi del modulo
+                var nome = document.modulo.nome.value;
+
+                //Effettua il controllo sul campo NOME
+                if ((nome == "") || (nome == "undefined")) {
+                    alert("Il campo Nome è obbligatorio.");
+                    document.modulo.nome.focus();
+                    return false;
+                }else {
+                    document.modulo.submit();
+                }
+                }
+                </script>
 
     </body>
 </html>
