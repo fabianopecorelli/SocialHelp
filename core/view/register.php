@@ -47,7 +47,7 @@
             <div class="register-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Registrazione</p>
 
-                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post" name="modulo" enctype="multipart/form-data">
+                <form action="<?php echo DOMINIO_SITO; ?>/effettuaRegistrazione" method="post" id="modulo" name="modulo" onsubmit="return Modulo()" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
@@ -97,7 +97,7 @@
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
                                 <div class="input-group">
-                                    <input type="email" name="e-mail" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" placeholder="Email">
                                     <div class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </div>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="form-group has-feedback">
                                 <div class="input-group date">
-                                    <input type="text" class="form-control pull-right" name="data-nascita" id="datepicker" placeholder="Data di nascita">
+                                    <input type="text" class="form-control pull-right" name="datanascita" id="datepicker" placeholder="Data di nascita">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
@@ -140,7 +140,7 @@
                                 </div>
                             </div><div class="form-group has-feedback">
                                 <div class="input-group">
-                                    <input type="password" class="form-control" name="password-retyped" placeholder="Conferma password">
+                                    <input type="password" class="form-control" name="passwordretyped" placeholder="Conferma password">
                                     <div class="input-group-addon">
                                         <i class="fa fa-lock"></i>
                                     </div>
@@ -169,7 +169,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-4">
-                            <button type="button" onclick="Modulo()" name="submit" class="btn btn-primary btn-block btn-flat">Registrati</button>
+                            <button type="submit"  name="submit" class="btn btn-primary btn-block btn-flat">Registrati</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -237,14 +237,67 @@
             function Modulo() {
                 // Variabili associate ai campi del modulo
                 var nome = document.modulo.nome.value;
-
+                var cognome = document.modulo.cognome.value;
+                var telefono = document.modulo.telefono.value;
+                var email = document.modulo.email.value;
+                var citta = document.modulo.citta.value;
+                var password = document.modulo.password.value;
+                var passwordretyped = document.modulo.passwordretyped.value;
+                var nascita = document.modulo.datanascita.value;
+                var email_reg_exp = /^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+$/;
+                
+                
                 //Effettua il controllo sul campo NOME
                 if ((nome == "") || (nome == "undefined")) {
                     alert("Il campo Nome è obbligatorio.");
                     document.modulo.nome.focus();
                     return false;
+                //Effettua il controllo sul campo COGNOME
+                }else if ((cognome == "") || (cognome == "undefined")) {
+                    alert("Il campo Cognome è obbligatorio.");
+                    document.modulo.cognome.focus();
+                    return false;
+                //Effettua il controllo sul campo TELEFONO    
+                }else if ((isNaN(telefono)) || (telefono == "") || (telefono == "undefined")) {
+                    alert("Il campo Telefono è numerico ed obbligatorio.");
+                    document.modulo.telefono.value = "";
+                    document.modulo.telefono.focus();
+                    return false;
+                }else if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
+                    alert("Inserire un indirizzo email corretto.");
+                    document.modulo.email.select();
+                    return false;
+                }else if ((nascita == "") || (nascita == "undefined")) {
+                    alert("Il campo Data di nascita è obbligatorio.");
+                    document.modulo.datanascita.focus();
+                    return false;
+                }else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
+                    alert("Il campo Città è obbligatorio.");
+                    document.modulo.citta.focus();
+                    return false;
+                
+                }else if ((password == "") || (password == "undefined")) {
+                    alert("Il campo Password è obbligatorio.");
+                    document.modulo.password.focus();
+                    return false;
+                }
+                //Effettua il controllo sul campo CONFERMA PASSWORD
+                else if ((passwordretyped == "") || (passwordretyped == "undefined")) {
+                    alert("Il campo Conferma password è obbligatorio.");
+                    document.modulo.passwordretyped.focus();
+                    return false;
+                }
+                //Verifica l'uguaglianza tra i campi PASSWORD e CONFERMA PASSWORD
+                else if (password != passwordretyped) {
+                    alert("La password confermata è diversa da quella scelta, controllare.");
+                    document.modulo.passwordretyped.value = "";
+                    document.modulo.passwordretyped.focus();
+                    return false;
                 }else {
+                    
                     document.modulo.submit();
+                    
+                    return true;
                 }
                 }
                 </script>

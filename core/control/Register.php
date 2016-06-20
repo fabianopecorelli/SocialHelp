@@ -11,7 +11,7 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 
 
-$utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['e-mail'], $_POST['data-nascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], null);
+$utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['email'], $_POST['datanascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], null);
 $newUtente = getUtente($utente->getEmail());
 $idUtente = $newUtente->getID();
 if (!($imageName = uploadImage($idUtente))) {
@@ -38,7 +38,7 @@ function register($nome, $cognome, $telefono, $tipologia, $email, $dataNascita, 
         throw new IllegalArgumentException("Cognome assente oppure errato");
     }
     if (!preg_match(Patterns::$TELEPHONE, $telefono)) {
-        throw new IllegalArgumentException("Nome assente oppure errato");
+        throw new IllegalArgumentException("Telefono assente oppure errato");
     }
     if (!in_array($tipologia, Config::$TIPI_UTENTE) || $tipologia == "admin") {
         throw new IllegalArgumentException("Tipo utente errato");
@@ -47,7 +47,7 @@ function register($nome, $cognome, $telefono, $tipologia, $email, $dataNascita, 
         throw new IllegalArgumentException("Email non valido");
     }
     if (!preg_match(Patterns::$GENERIC_DATE, $dataNascita)) {
-        throw new IllegalArgumentException("Matricola non valida");
+        throw new IllegalArgumentException("DataNascita non valida");
     }
     if (!preg_match(Patterns::$NAME_GENERIC, $citta)) {
         throw new IllegalArgumentException("Città assente oppure errato");
