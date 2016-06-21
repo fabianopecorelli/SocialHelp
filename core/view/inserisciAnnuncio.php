@@ -24,14 +24,14 @@ include_once VIEW_DIR . 'header.php';
         <li class="active">Inserisci Annuncio</li>
     </ol>
 </div>
-<form method="post">
+<form action="<?php echo DOMINIO_SITO; ?>/inserisciAnnuncio" method="post" id="modulo" name="modulo" onsubmit="return Modulo()" enctype="multipart/form-data" >
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
             <span class="simple-text">Titolo annuncio:</span>
         </div>
         <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="Inserisci...">
+            <input type="text" name="titolo" class="form-control" placeholder="Inserisci...">
         </div>
     </div>
 
@@ -45,13 +45,13 @@ include_once VIEW_DIR . 'header.php';
                 <div class="row">
                     <div class="col-md-6">
                         <label>
-                            <input type="radio" name="r3" class="flat-red">
+                            <input type="radio" name="tipologia" class="flat-red">
                             Richiesta
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>
-                            <input type="radio" name="r3" class="flat-red">
+                            <input type="radio" name="tipologia" class="flat-red">
                             Offerta
                         </label>
                     </div>                    
@@ -70,7 +70,7 @@ include_once VIEW_DIR . 'header.php';
                 <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" class="form-control pull-right" id="datepicker">
+                <input type="text" class="form-control pull-right" name="data" id="datepicker">
             </div>
         </div>
     </div>
@@ -82,7 +82,7 @@ include_once VIEW_DIR . 'header.php';
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <select class="form-control select2" id="listacitta" style="width: 100%;">
+                <select class="form-control select2" name="citta" id="listacitta" style="width: 100%;">
 
                 </select>
             </div>
@@ -96,7 +96,7 @@ include_once VIEW_DIR . 'header.php';
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <textarea style="resize: none" class="form-control" rows="3" placeholder="Inserisci..."></textarea>
+                <textarea style="resize: none" class="form-control" nome="descrizione" rows="3" placeholder="Inserisci..."></textarea>
             </div>
         </div>
     </div>
@@ -106,10 +106,10 @@ include_once VIEW_DIR . 'header.php';
         <div class="col-md-3">
             <div class="col-md-6">
 
-                <button type="reset" class="btn btn-block btn-danger btn-sm">Annulla</button>
+                <button type="reset" name="reset" class="btn btn-block btn-danger btn-sm">Annulla</button>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-block btn-primary btn-sm">Conferma</button>
+                <button type="submit" name="submit" class="btn btn-block btn-primary btn-sm">Conferma</button>
             </div>
         </div>
     </div>  
@@ -160,3 +160,47 @@ include_once VIEW_DIR . 'header.php';
     });
 
 </script>
+<script>
+            
+            function Modulo() {
+                // Variabili associate ai campi del modulo
+                var titolo = document.modulo.titolo.value;
+                var tipologia = document.modulo.tipologia.value;
+                var citta = document.modulo.citta.value;
+                var data = document.modulo.data.value;
+                var descrizione = document.modulo.descrizione.value;
+                
+                
+                //Effettua il controllo sul campo NOME
+                if ((titolo == "") || (titolo == "undefined")) {
+                    alert("Il campo Titolo è obbligatorio.");
+                    document.modulo.titolo.focus();
+                    return false;
+                //Effettua il controllo sul campo COGNOME
+                }else if ((tipologia == "") || (tipologia == "undefined")) {
+                    alert("Il campo Tipologia è obbligatorio.");
+                    return false;
+                //Effettua il controllo sul campo TELEFONO    
+                }else if ((data == "") || (data == "undefined")) {
+                    alert("Il campo Data è obbligatorio.");
+                    document.modulo.data.focus();
+                    return false;
+                //Effettua il controllo sul campo TELEFONO    
+                }else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
+                    alert("Il campo Città è obbligatorio.");
+                    document.modulo.citta.focus();
+                    return false;
+                
+                }else if((descrizione == "") || (descrizione == "undefined")) {
+                    alert("Il campo Descrizione è obbligatorio.");
+                    document.modulo.descrizione.focus();
+                    return false;
+                    
+                }else {
+                    
+                    document.modulo.submit();
+                    
+                    return true;
+                }
+                }
+                </script>

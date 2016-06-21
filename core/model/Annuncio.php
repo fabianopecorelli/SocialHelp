@@ -17,7 +17,7 @@ class Annuncio {
     private $tipologia;
     private $email;
     
-    function __construct($id, $titolo, $data, $descrizione, $luogo, $dataPubblicazione, $tipologia, $email) {
+    function __construct($id=null, $titolo, $data, $descrizione, $luogo, $dataPubblicazione, $tipologia, $email) {
         $this->id = $id;
         $this->titolo = $titolo;
         $this->data = $data;

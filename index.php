@@ -87,6 +87,10 @@ try {
             case 'effettuaRegistrazione':
                 include_once CONTROL_DIR . "Register.php";
                 break;
+            case 'inserisciAnnuncio':
+                StringUtils::checkPermission("all");
+                include_once CONTROL_DIR . "InserisciAnnuncio.php";
+                break;
             case 'effettuaLogin':
                 include_once CONTROL_DIR . "Login.php";
                 break;
