@@ -46,7 +46,7 @@
 
             <div class="login-box-body" style="background: #e6eddc;border: solid 2px;border-radius: 45px;">
                 <p class="login-box-msg title">Log In</p>
-                <form action="<?php echo DOMINIO_SITO; ?>/effettuaLogin" method="post">
+                <form action="<?php echo DOMINIO_SITO; ?>/effettuaLogin" method="post" onsubmit="return Modulo()" id="modulo" name="modulo">
 
                     <div class="form-group has-feedback">
                         <div class="input-group date">
@@ -144,5 +144,30 @@
                 });
             });
         </script>
+        <script>
+            
+            function Modulo() {
+                // Variabili associate ai campi del modulo
+                var email = document.modulo.email.value;
+                var password = document.modulo.password.value;
+                var email_reg_exp = /^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+$/;
+                
+                
+                if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
+                    alert("Inserire un indirizzo email corretto.");
+                    document.modulo.email.select();
+                    return false;
+                }else if ((password == "") || (password == "undefined")) {
+                    alert("Il campo Password è obbligatorio.");
+                    document.modulo.password.focus();
+                    return false;
+                }else {
+                    
+                    document.modulo.submit();
+                    
+                    return true;
+                }
+                }
+                </script>
     </body>
 </html>
