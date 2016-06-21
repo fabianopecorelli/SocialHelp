@@ -150,7 +150,7 @@
                 // Variabili associate ai campi del modulo
                 var email = document.modulo.email.value;
                 var password = document.modulo.password.value;
-                var email_reg_exp = /^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+$/;
+                var email_reg_exp = /^[_a-zA-Z0-9+-]+(\.[_a-zA-Z0-9+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
                 
                 
                 if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {

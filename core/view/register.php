@@ -244,7 +244,7 @@
                 var password = document.modulo.password.value;
                 var passwordretyped = document.modulo.passwordretyped.value;
                 var nascita = document.modulo.datanascita.value;
-                var email_reg_exp = /^[_a-z0-9+-]+(\.[_a-z0-9+-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+$/;
+                var email_reg_exp = /^[_a-zA-Z0-9+-]+(\.[_a-zA-Z0-9+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
                 
                 
                 //Effettua il controllo sul campo NOME
