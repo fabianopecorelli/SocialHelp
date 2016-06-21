@@ -24,7 +24,7 @@ include_once VIEW_DIR . 'header.php';
         <li class="active">Inserisci Annuncio</li>
     </ol>
 </div>
-<form action="<?php echo DOMINIO_SITO; ?>/inserisciAnnuncio" method="post" id="modulo" name="modulo" onsubmit="return Modulo()" enctype="multipart/form-data" >
+<form action="<?php echo DOMINIO_SITO; ?>/inserimentoAnnuncio" method="post" id="modulo" name="modulo" onsubmit="return Modulo()" enctype="multipart/form-data" >
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -45,13 +45,13 @@ include_once VIEW_DIR . 'header.php';
                 <div class="row">
                     <div class="col-md-6">
                         <label>
-                            <input type="radio" name="tipologia" class="flat-red">
+                            <input type="radio" name="tipologia" value="Richiesta" class="flat-red">
                             Richiesta
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label>
-                            <input type="radio" name="tipologia" class="flat-red">
+                            <input type="radio" name="tipologia" value="Offerta" class="flat-red">
                             Offerta
                         </label>
                     </div>                    
@@ -96,7 +96,7 @@ include_once VIEW_DIR . 'header.php';
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <textarea style="resize: none" class="form-control" nome="descrizione" rows="3" placeholder="Inserisci..."></textarea>
+                <textarea style="resize: none" class="form-control" id="descrizione" nome="descrizione" rows="3" placeholder="Inserisci..."></textarea>
             </div>
         </div>
     </div>
@@ -166,8 +166,8 @@ include_once VIEW_DIR . 'header.php';
                 // Variabili associate ai campi del modulo
                 var titolo = document.modulo.titolo.value;
                 var tipologia = document.modulo.tipologia.value;
-                var citta = document.modulo.citta.value;
                 var data = document.modulo.data.value;
+                var citta = document.modulo.citta.value;
                 var descrizione = document.modulo.descrizione.value;
                 
                 

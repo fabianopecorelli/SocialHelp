@@ -10,9 +10,8 @@ include_once MODEL_DIR . 'Annuncio.php';
 include_once MODEL_DIR . 'Utente.php';
 include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
-
-
-$Annuncio = inserisciAnnuncio($_POST['titolo'], $_POST['data'], $_POST['descrizione'], $_POST['citta'], $_POST['tipologia'], $_POST['email']);
+$utente=unserialize($_SESSION['user']);//QUI DA RIVEDERE!!!
+$Annuncio = inserisciAnnuncio($_POST['titolo'], $_POST['data'], $_POST['descrizione'], $_POST['citta'], $_POST['tipologia'],$utente);
 
 
 
