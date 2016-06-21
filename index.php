@@ -91,6 +91,10 @@ try {
                 StringUtils::checkPermission("all");
                 include_once CONTROL_DIR . "InserisciAnnuncio.php";
                 break;
+            case 'inserimentoEsperienza':
+                StringUtils::checkPermission("all");
+                include_once CONTROL_DIR . "InserisciEsperienza.php";
+                break;
             case 'effettuaLogin':
                 include_once CONTROL_DIR . "Login.php";
                 break;

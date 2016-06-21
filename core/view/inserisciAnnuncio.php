@@ -24,7 +24,7 @@ include_once VIEW_DIR . 'header.php';
         <li class="active">Inserisci Annuncio</li>
     </ol>
 </div>
-<form action="<?php echo DOMINIO_SITO; ?>/inserimentoAnnuncio" method="post" id="modulo" name="modulo" onsubmit="return Modulo()" enctype="multipart/form-data" >
+<form action="<?php echo DOMINIO_SITO; ?>/inserimentoAnnuncio" method="POST" id="modulo" name="modulo" onsubmit="return Modulo()" enctype="multipart/form-data" >
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -96,7 +96,7 @@ include_once VIEW_DIR . 'header.php';
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <textarea style="resize: none" class="form-control" id="descrizione" nome="descrizione" rows="3" placeholder="Inserisci..."></textarea>
+                <textarea style="resize: none" class="form-control" id="descrizione" name="descrizione" rows="3" placeholder="Inserisci..."></textarea>
             </div>
         </div>
     </div>
@@ -169,7 +169,6 @@ include_once VIEW_DIR . 'header.php';
                 var data = document.modulo.data.value;
                 var citta = document.modulo.citta.value;
                 var descrizione = document.modulo.descrizione.value;
-                
                 
                 //Effettua il controllo sul campo NOME
                 if ((titolo == "") || (titolo == "undefined")) {

@@ -7,7 +7,7 @@
  */
 include_once MODEL_DIR . 'Utente.php';
 
-if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
+if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
 }
 ?>
@@ -40,16 +40,16 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
         <link rel="shortcut icon" href="<?php echo STYLE_DIR; ?>img/favicon.png" type="image/x-icon" />
 
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/select2/select2.min.css">
-        
+        <link href="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.css" rel="stylesheet" type="text/css" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
 
- 
+
+
 
     </head>
     <!--
@@ -95,49 +95,49 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
                             <!-- Messages: style can be found in dropdown.less-->
 
                             <!-- User Account Menu -->
-                            <?php if (isset($user) && !empty($user)){?>
-                            <li class="dropdown user user-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <!-- The user image in the navbar-->
-                                    <img src="<?php echo $user->getImmagine(); ?>" class="user-image" alt="User Image">
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs"><?php echo $user->getNome(); ?></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- The user image in the menu -->
-                                    <li class="user-header">
-                                        <img src="<?php echo $user->getImmagine(); ?>" class="img-circle" alt="User Image">
+                            <?php if (isset($user) && !empty($user)) { ?>
+                                <li class="dropdown user user-menu">
+                                    <!-- Menu Toggle Button -->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <!-- The user image in the navbar-->
+                                        <img src="<?php echo $user->getImmagine(); ?>" class="user-image" alt="User Image">
+                                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                        <span class="hidden-xs"><?php echo $user->getNome(); ?></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- The user image in the menu -->
+                                        <li class="user-header">
+                                            <img src="<?php echo $user->getImmagine(); ?>" class="img-circle" alt="User Image">
 
-                                        <p>
-                                            <?php echo $user->getNome() ." - ". $user->getTipologia(); ?> 
-                                            <small><?php echo $user->getEmail(); ?></small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="<?php echo DOMINIO_SITO;?>/profilo" class="btn btn-default btn-flat">Profilo</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="<?php echo DOMINIO_SITO;?>/logout" class="btn btn-default btn-flat">Log out</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <?php }
-                            else {?>
-                             <li class="dropdown user user-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="<?php echo DOMINIO_SITO;?>/auth">
-                                    <!-- The user image in the navbar-->
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    
-                                    <span class="hidden-xs">Login</span>
-                                    <i class="fa fa-sign-in"></i>
-                                </a>
-                                
-                            </li>
+                                            <p>
+                                                <?php echo $user->getNome() . " - " . $user->getTipologia(); ?> 
+                                                <small><?php echo $user->getEmail(); ?></small>
+                                            </p>
+                                        </li>
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="<?php echo DOMINIO_SITO; ?>/profilo" class="btn btn-default btn-flat">Profilo</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="<?php echo DOMINIO_SITO; ?>/logout" class="btn btn-default btn-flat">Log out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <?php } else {
+                                ?>
+                                <li class="dropdown user user-menu">
+                                    <!-- Menu Toggle Button -->
+                                    <a href="<?php echo DOMINIO_SITO; ?>/auth">
+                                        <!-- The user image in the navbar-->
+                                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+
+                                        <span class="hidden-xs">Login</span>
+                                        <i class="fa fa-sign-in"></i>
+                                    </a>
+
+                                </li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -150,17 +150,17 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
                 <section class="sidebar">
 
                     <!-- Sidebar user panel (optional) -->
-                    <?php if (isset($user) && !empty($user)){?>
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="<?php echo $user->getImmagine(); ?>" class="img-circle" alt="User Image">
+                    <?php if (isset($user) && !empty($user)) { ?>
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                <img src="<?php echo $user->getImmagine(); ?>" class="img-circle" alt="User Image">
+                            </div>
+                            <div class="pull-left info">
+                                <p><?php echo $user->getNome(); ?></p>
+                                <!-- Status -->
+                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            </div>
                         </div>
-                        <div class="pull-left info">
-                            <p><?php echo $user->getNome(); ?></p>
-                            <!-- Status -->
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
                     <?php } ?>
 
                     <form action="#" method="get" class="sidebar-form">
@@ -178,15 +178,15 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
                         <li class="active"><a href="<?php echo DOMINIO_SITO; ?>/"><i class="fa fa-home"></i> <span>Home</span></a></li>
-                        <?php if (isset($user) && !empty($user)){?>
-                        <li><a href="<?php echo DOMINIO_SITO; ?>/profilo"><i class="fa fa-user"></i> <span>Profilo</span></a></li>
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-pencil"></i> <span>Gestione Annunci</span> <i class="fa fa-angle-left pull-right"></i></a>
-                            <ul class="treeview-menu">
-                                <li><a href="<?php echo DOMINIO_SITO; ?>/inserisciAnnuncio">Nuovo Annuncio</a></li>
-                                <li><a href="<?php echo DOMINIO_SITO; ?>/ricercaAnnuncio">Cerca Annuncio</a></li>
-                            </ul>
-                        </li>
+                        <?php if (isset($user) && !empty($user)) { ?>
+                            <li><a href="<?php echo DOMINIO_SITO; ?>/profilo"><i class="fa fa-user"></i> <span>Profilo</span></a></li>
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-pencil"></i> <span>Gestione Annunci</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="<?php echo DOMINIO_SITO; ?>/inserisciAnnuncio">Nuovo Annuncio</a></li>
+                                    <li><a href="<?php echo DOMINIO_SITO; ?>/ricercaAnnuncio">Cerca Annuncio</a></li>
+                                </ul>
+                            </li>
                         <?php } ?>
                     </ul>
                     <!-- /.sidebar-menu -->

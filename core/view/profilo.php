@@ -18,7 +18,7 @@ if(isset($_URL[1])){
     //PROFILO UTENTE CON ID
     $utente=$profiloController->getUtenteById(parseInt($_URL[1]));
     $utenteloggato=0;
-    
+    $utenteLoggato = unserialize($_SESSION['user']);
 }else{
     //PROFILO UTENTE LOGGATO
     $utente=unserialize($_SESSION['user']);
@@ -218,8 +218,8 @@ if(isset($_URL[1])){
                                 printf("<canvas id=\"pieChart\" style=\"height: 264px; width: 528px;\" width=\"528\" height=\"264\"></canvas></div>");
                                 printf("<div class=\"row\"><div class=\"col-md-1\"></div><div class=\"col-md-3\">");
                                 
-                            if(($utenteloggato==0)AND($utente->getTipologia()=="Cliente")){
-                                printf("<a href=\"DOMINIO_SITO/inserisciEsperienza\" style=\"cursor: pointer\"><i class=\"fa fa-plus\"></i>Aggiungi una nuova esperienza</a>");
+                            if(($utenteloggato==0) && ($utenteLoggato->getTipologia()=="Cliente")){
+                                printf("<a href=\"%s/inserisciEsperienza/%s\" style=\"cursor: pointer\"><i class=\"fa fa-plus\"></i>Aggiungi una nuova esperienza</a>",DOMINIO_SITO,$utente->getId());
                                 }
                                 printf("</div><div class=\"col-md-4\"></div><div class=\"col-md-3\">");
                                 printf("Recensioni positive: %d <BR>",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));

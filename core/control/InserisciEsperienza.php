@@ -6,48 +6,47 @@
  * and open the template in the editor.
  */
 include_once CONTROL_DIR . 'Controller.php';
-include_once MODEL_DIR . 'Annuncio.php';
+include_once MODEL_DIR . 'Esperienza.php';
 include_once MODEL_DIR . 'Utente.php';
 include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
+
 $utente=unserialize($_SESSION['user']);//QUI DA RIVEDERE!!!
-$Annuncio = inserisciAnnuncio($_POST['titolo'], $_POST['data'], $_POST['descrizione'], $_POST['citta'], $_POST['tipologia'],$utente->getEmail());
+$esperienza = inserisciEsperienza($_POST['titolo'], $_POST['descrizione'], $_GET['voto'],$utente->getEmail(), $_GET['email_utente']);
 
 
 
-function inserisciAnnuncio($titolo, $data, $descrizione, $luogo, $tipologia, $email) {
+function inserisciEsperienza($titolo, $descrizione, $voto, $recensore,$email) {
     if (!preg_match(Patterns::$NAME_GENERIC, $titolo)) {
         throw new IllegalArgumentException("Titolo assente oppure errato");
     }
-    if (!preg_match(Patterns::$GENERIC_DATE, $data)) {
-        throw new IllegalArgumentException("Data non valida");
+    if (!preg_match(Patterns::$NAME_GENERIC, $descrizione)) {
+        throw new IllegalArgumentException("Descrizione assente oppure errato");
     }
-    if (!preg_match(Patterns::$NAME_GENERIC, $luogo)) {
-        throw new IllegalArgumentException("Luogo assente oppure errato");
+    if (!preg_match(Patterns::$EMAIL, $recensore)) {
+        throw new IllegalArgumentException("Email non valida");
     }
     if (!preg_match(Patterns::$EMAIL, $email)) {
         throw new IllegalArgumentException("Email non valida");
     }
     //CONVERT TO DATETIME
-    $data = str_replace('/', '-', $data);
-    $TheDate = date("Y-m-d H:i:s", strtotime($data));
     $dataPubblicazione= new DateTime();
     $dataPub=$dataPubblicazione->format("Y-m-d H:i:s");
-    return createAnnuncio(new Annuncio(null,$titolo, $TheDate, $descrizione, $luogo, $dataPub, $tipologia, $email));
+    return createEsperienza(new Esperienza(null,$titolo, $dataPub, $descrizione, $recensore, $email, $voto));
 }
 
-function createAnnuncio($Annuncio) {
+function createEsperienza($esperienza) {
     
-    $INSERT_ANNUNCIO = "INSERT INTO `annuncio` (`titolo`, `data`, `descrizione`, `luogo`, `data_pubblicazione`, `tipologia`, `email_utente`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s');";
+    $INSERT_ESPERIENZA = "INSERT INTO `esperienza`(`titolo`, `data`, `descrizione`, `recensore`, `voto`, `email_utente`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');";
 
-    $query = sprintf($INSERT_ANNUNCIO, $Annuncio->getTitolo(), $Annuncio->getData(), $Annuncio->getDescrizione(), $Annuncio->getLuogo(), $Annuncio->getDataPubblicazione(),$Annuncio->getTipologia(), $Annuncio->getEmail());
+    $query = sprintf($INSERT_ESPERIENZA, $esperienza->getTitolo(), $esperienza->getData(), $esperienza->getDescrizione(), $esperienza->getRecensore(), $esperienza->getVoto(),$esperienza->getEmailUtente());
     if (!Controller::getDB()->query($query)) {
         if (Controller::getDB()->errno == 1062) {
             throw new ApplicationException(Error::$EMAIL_ESISTE, Controller::getDB()->error, Controller::getDB()->errno);
         } else
             throw new ApplicationException(Error::$INSERIMENTO_FALLITO, Controller::getDB()->error, Controller::getDB()->errno);
     }
-    return $Annuncio;
+    return $esperienza;
 }
 
 header("Location:".DOMINIO_SITO."/");

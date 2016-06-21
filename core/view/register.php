@@ -91,6 +91,12 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="input-group" style="visibility: hidden;">
+                                <input type="text" class="form-control" name="professione" id="prof" placeholder="Professione">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-suitcase"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
