@@ -11,14 +11,15 @@ include_once MODEL_DIR . 'Utente.php';
 include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 $utente=unserialize($_SESSION['user']);//QUI DA RIVEDERE!!!
-$Annuncio = inserisciAnnuncio($_POST['titolo'], $_POST['data'], $_POST['descrizione'], $_POST['citta'], $_POST['tipologia'],$utente->getEmail());
+$tipoUtente=$utente->getTipologia();
+$Annuncio = inserisciAnnuncio($_POST['titolo'], $_POST['data'], $_POST['descrizione'], $_POST['citta'],$utente->getEmail(),$tipoUtente);
 
 
 
-function inserisciAnnuncio($titolo, $data, $descrizione, $luogo, $tipologia, $email) {
-    if (!preg_match(Patterns::$NAME_GENERIC, $titolo)) {
+function inserisciAnnuncio($titolo, $data, $descrizione, $luogo, $email,$tipoUtente) {
+    /**if (!preg_match(Patterns::$MATRICOLA, $titolo)) {
         throw new IllegalArgumentException("Titolo assente oppure errato");
-    }
+    }*/
     if (!preg_match(Patterns::$GENERIC_DATE, $data)) {
         throw new IllegalArgumentException("Data non valida");
     }
@@ -29,6 +30,11 @@ function inserisciAnnuncio($titolo, $data, $descrizione, $luogo, $tipologia, $em
         throw new IllegalArgumentException("Email non valida");
     }
     //CONVERT TO DATETIME
+    if($tipoUtente=="Cliente"){
+        $tipologia="Richiesta";
+    }else{
+        $tipologia="Offerta";
+    }
     $data = str_replace('/', '-', $data);
     $TheDate = date("Y-m-d H:i:s", strtotime($data));
     $dataPubblicazione= new DateTime();
