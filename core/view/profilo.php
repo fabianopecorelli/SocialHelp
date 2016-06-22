@@ -144,11 +144,7 @@ if(isset($_URL[1])){
                         <div class="box-body">
                                     <p><?php echo $annuncio->getDescrizione(); ?></p>
                                     <div class="col-md-8"></div>
-                                    <div class="col-md-4"><?php
-                                    if($utenteloggato==0){
-                                        printf("<button type=\"button\" class=\"btn btn-block btn-primary btn-sm\" href=\"#\">Sono interessato</button>");
-                                    }                                    
-                                    ?>
+                                    <div class="col-md-4">
                                     </div>
                                     <span class="pull-left text-muted">Annuncio <?php echo $annuncio->getTipologia(); ?></span>
                                 </div>
@@ -174,7 +170,8 @@ if(isset($_URL[1])){
                                     printf("<H2>Non esiste alcun esperienza!</H2>");
                                 }
                                 foreach($allEsperienze as $esperienza){
-                                $recensore= $profiloController->getUtenteByEmail($esperienza->getRecensore());   
+                                $recensore= $profiloController->getUtenteByEmail($esperienza->getRecensore()); 
+                                $id = $recensore->getId();
                         ?>
                         
                     
@@ -183,7 +180,7 @@ if(isset($_URL[1])){
                             <img class="img-circle img-bordered-sm" src="<?php printf("%s",$recensore->getImmagine());  ?>" alt="user image">
                             <span class="username">
                            </span>
-                            <a href="#"><?php printf("&nbsp %s %s",$recensore->getNome(),$recensore->getCognome());  ?></a>
+                            <a href="<?php echo DOMINIO_SITO;?>/profilo/<?php echo $id; ?>"><?php printf("&nbsp %s %s",$recensore->getNome(),$recensore->getCognome());  ?></a>
                             <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($esperienza->getData()));?>  - Voto:<?php printf("%d ",  parseInt($esperienza->getVoto()));?><i class="fa fa-star-o"></i></span>
                         </div> 
                         <div class="box-body">
