@@ -41,6 +41,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/select2/select2.min.css">
         <link href="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.css" rel="stylesheet" type="text/css" />
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -48,9 +49,89 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+        <script src="<?php echo STYLE_DIR; ?>plugins/jQuery/jQuery-2.2.0.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/search/typeahead.min.js"></script>
 
-
-
+        <script>
+            function showResult(str) {
+                if (str.length == 0) {
+                    document.getElementById("livesearch").innerHTML = "";
+                    document.getElementById("livesearch").style.border = "0px";
+                    return;
+                }
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {  // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("livesearch").innerHTML = xmlhttp.responseText;
+                        document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+                    }
+                }
+                xmlhttp.open("GET", "<?php echo DOMINIO_SITO; ?>/livesearch?q=" + str, true);
+                xmlhttp.send();
+            }
+            $(document).ready(function () {
+                $('input.typeahead').typeahead({
+                    name: 'typeahead',
+                    remote: '<?php echo DOMINIO_SITO; ?>/livesearch?key=%QUERY',
+                    limit: 10
+                });
+            });
+        </script>
+        <style type="text/css">
+            .bs-example{
+                font-family: sans-serif;
+                position: relative;
+                margin: 50px;
+            }
+            .typeahead, .tt-query, .tt-hint {
+                border: 2px solid #CCCCCC;
+                border-radius: 8px;
+                font-size: 24px;
+                height: 30px;
+                line-height: 30px;
+                outline: medium none;
+                padding: 8px 12px;
+                width: 100%;
+            }
+            .typeahead {
+                background-color: #FFFFFF;
+            }
+            .typeahead:focus {
+                border: 2px solid #0097CF;
+            }
+            .tt-query {
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            }
+            .tt-hint {
+                color: #999999;
+            }
+            .tt-dropdown-menu {
+                background-color: #FFFFFF;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                margin-top: 12px;
+                padding: 8px 0;
+                width: 100%;
+            }
+            .tt-suggestion {
+                font-size: 24px;
+                line-height: 24px;
+                padding: 3px 20px;
+            }
+            .tt-suggestion.tt-is-under-cursor {
+                background-color: #0097CF;
+                color: #FFFFFF;
+            }
+            .tt-suggestion p {
+                margin: 0;
+            }
+        </style>
     </head>
     <!--
     BODY TAG OPTIONS:
@@ -162,16 +243,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                             </div>
                         </div>
                     <?php } ?>
+<!--                            <input type="text" onkeyup="showResult(this.value)" class="form-control" placeholder="Ricerca Utente...">-->
 
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Ricerca Utente...">
-                            <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
+                    <input type="text" style="width: 100%" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
+                           
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">

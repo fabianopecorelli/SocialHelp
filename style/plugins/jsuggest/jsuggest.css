@@ -1,0 +1,43 @@
+input.input {
+	height: 20px;
+	border: #ccc solid 1px;
+	padding: 3px;
+	font: 13px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	width: 200px;
+	margin-right: 3px;
+	color: #666;
+}
+input.button {
+	text-decoration: none;
+	font: 13px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color: #666;
+	height: 28px;
+	border: #ccc solid 1px;
+	padding: 5px 3px 6px 3px;
+	background-color: #f1f1f1;
+	width: 60px;
+}
+input.button:hover {
+	background-color: #ccc;
+	border-color: #999;
+	color: #333;
+}
+.suggestions-dropdown {
+	color: #666;
+	padding: 0 0 50px 0;
+}
+.suggestions-dropdown ul {
+	font: 13px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border: #ccc solid 1px;
+	list-style: none;
+	background: #fff;
+}
+.suggestions-dropdown ul li {
+	font: 13px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	padding: 6px 8px 8px 8px;
+	list-style: none;
+	background: none;
+}
+.suggestions-dropdown ul li:hover {
+	background-color: #eee;
+}

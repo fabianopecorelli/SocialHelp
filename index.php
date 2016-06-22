@@ -101,6 +101,9 @@ try {
             case 'logout':
                 include_once CONTROL_DIR . "Logout.php";
                 break;
+            case 'livesearch':
+                include_once CONTROL_DIR . "SearchController.php";
+                break;
             default:
                 header('Location: '.DOMINIO_SITO.'/');
                 exit;
