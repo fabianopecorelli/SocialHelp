@@ -35,30 +35,6 @@ include_once VIEW_DIR . 'header.php';
         </div>
     </div>
 
-    <div class="row" style="margin-top: 2%">
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <span class="simple-text">Tipologia:</span>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>
-                            <input type="radio" name="tipologia" value="Richiesta" class="flat-red">
-                            Richiesta
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <label>
-                            <input type="radio" name="tipologia" value="Offerta" class="flat-red">
-                            Offerta
-                        </label>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row" style="margin-top: 2%">
         <div class="col-md-3"></div>
@@ -165,26 +141,18 @@ include_once VIEW_DIR . 'header.php';
             function Modulo() {
                 // Variabili associate ai campi del modulo
                 var titolo = document.modulo.titolo.value;
-                var tipologia = document.modulo.tipologia.value;
                 var data = document.modulo.data.value;
                 var citta = document.modulo.citta.value;
                 var descrizione = document.modulo.descrizione.value;
                 
-                //Effettua il controllo sul campo NOME
                 if ((titolo == "") || (titolo == "undefined")) {
                     alert("Il campo Titolo è obbligatorio.");
                     document.modulo.titolo.focus();
                     return false;
-                //Effettua il controllo sul campo COGNOME
-                }else if ((tipologia == "") || (tipologia == "undefined")) {
-                    alert("Il campo Tipologia è obbligatorio.");
-                    return false;
-                //Effettua il controllo sul campo TELEFONO    
                 }else if ((data == "") || (data == "undefined")) {
                     alert("Il campo Data è obbligatorio.");
                     document.modulo.data.focus();
                     return false;
-                //Effettua il controllo sul campo TELEFONO    
                 }else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
                     alert("Il campo Città è obbligatorio.");
                     document.modulo.citta.focus();

@@ -40,12 +40,12 @@ $homeController = new HomeController();
                         $allAnnunci = $homeController->getAllAnnunci();
                         foreach ($allAnnunci as $annuncio) {
                             $utenteAnnuncio = $homeController->getUtenteByEmail($annuncio->getEmail());
-                            ?>
+                            $id = $utenteAnnuncio->getId();?>
                             <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                 <div class="box-header with-border">
                                     <div class="user-block">
                                         <img class="img-circle" src="<?php echo $utenteAnnuncio->getImmagine(); ?>" alt="User Image">
-                                        <span class="username"><a href="#"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a></span>
+                                        <span class="username"><a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php  echo $id ?>"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a></span>
                                         <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($annuncio->getDataPubblicazione())); ?> - Data servizio: <?php echo date("d/m/Y", strtotime($annuncio->getData())); ?> - Luogo servizio: <?php echo $annuncio->getLuogo(); ?></span>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@ $homeController = new HomeController();
                                     <p><?php echo $annuncio->getDescrizione(); ?></p>
                                     <div class="col-md-8"></div>
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-block btn-primary btn-sm" href="#">Sono interessato</button>
+                                        <a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php  echo $id; ?>"><button type="button" class="btn btn-block btn-primary btn-sm">Sono interessato</button></a>
                                     </div>
                                     <span class="pull-left text-muted">Annuncio <?php echo $annuncio->getTipologia(); ?></span>
                                 </div>

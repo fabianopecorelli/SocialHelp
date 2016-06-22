@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 16, 2016 alle 12:42
+-- Creato il: Giu 22, 2016 alle 15:47
 -- Versione del server: 10.1.10-MariaDB
 -- Versione PHP: 5.6.19
 
@@ -37,6 +37,17 @@ CREATE TABLE `annuncio` (
   `email_utente` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `annuncio`
+--
+
+INSERT INTO `annuncio` (`id`, `titolo`, `data`, `descrizione`, `luogo`, `data_pubblicazione`, `tipologia`, `email_utente`) VALUES
+(1, 'nuovo', '2016-06-10 00:00:00', 'cdcewwc', 'cwecwec', '2016-06-08 00:00:00', 'Offerta', 'fabianopecorelli@gmail.com'),
+(12, 'Nuovo', '2016-06-15 00:00:00', 'Dec', 'ALIMINUSA', '2016-06-21 12:44:05', 'Offerta', 'fabianopecorelli@gmail.com'),
+(13, 'Annuncio di baff', '2016-06-15 00:00:00', 'Vendo piaggio liberty', 'NOCERA INFERIORE', '2016-06-21 12:45:48', 'Richiesta', 'fabianopecorelli@gmail.com'),
+(14, 'vwsv', '2016-06-22 00:00:00', 'vsvds', 'ABBADIA LARIANA', '2016-06-21 12:46:52', 'Offerta', 'fabianopecorelli@gmail.com'),
+(15, 'vwsv', '2016-06-22 00:00:00', 'vsvds', 'ABBADIA LARIANA', '2016-06-21 12:51:24', 'Offerta', 'fabianopecorelli@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +63,13 @@ CREATE TABLE `esperienza` (
   `voto` enum('1','2','3','4','5') NOT NULL,
   `email_utente` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `esperienza`
+--
+
+INSERT INTO `esperienza` (`id`, `titolo`, `data`, `descrizione`, `recensore`, `voto`, `email_utente`) VALUES
+(1, 'cwe', '2016-06-21 15:38:07', 'wcdw', 'bafkaos@gmail.com', '3', 'fabianopecorelli@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -70,8 +88,17 @@ CREATE TABLE `utente` (
   `immagine` varchar(200) DEFAULT NULL,
   `tipologia` enum('Cliente','Offerente') NOT NULL,
   `data` datetime NOT NULL,
-  `id` int(10) NOT NULL
+  `id` int(10) NOT NULL,
+  `professione` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+INSERT INTO `utente` (`nome`, `cognome`, `telefono`, `e-mail`, `citta`, `password`, `descrizione`, `immagine`, `tipologia`, `data`, `id`, `professione`) VALUES
+('Baf', 'Kaos', '3450594401', 'bafkaos@gmail.com', 'NOCERA INFERIORE', '7bf1aa4cb46cdf090418df1b80680360', 'Descrizione', '/SocialHelp/uploads/images/profile/28.png', 'Cliente', '1991-09-17 00:00:00', 28, NULL),
+('Fabiano', 'Pecorelli', '3450594401', 'fabianopecorelli@gmail.com', 'Nocera Inferiore', '6e14fc951f9952c71e9965dabac95eff', 'Ciao sono bafiano', '/SocialHelp/uploads/images/profile/27.png', 'Offerente', '2016-06-18 00:00:00', 27, NULL);
 
 --
 -- Indici per le tabelle scaricate
@@ -82,14 +109,14 @@ CREATE TABLE `utente` (
 --
 ALTER TABLE `annuncio`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email_utente` (`email_utente`);
+  ADD KEY `email_utente` (`email_utente`);
 
 --
 -- Indici per le tabelle `esperienza`
 --
 ALTER TABLE `esperienza`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email_utente` (`email_utente`);
+  ADD KEY `email_utente` (`email_utente`);
 
 --
 -- Indici per le tabelle `utente`
@@ -106,17 +133,17 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `annuncio`
 --
 ALTER TABLE `annuncio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT per la tabella `esperienza`
 --
 ALTER TABLE `esperienza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -125,13 +152,13 @@ ALTER TABLE `utente`
 -- Limiti per la tabella `annuncio`
 --
 ALTER TABLE `annuncio`
-  ADD CONSTRAINT `annuncio_utente` FOREIGN KEY (`email_utente`) REFERENCES `utente` (`e-mail`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `utente_annuncio` FOREIGN KEY (`email_utente`) REFERENCES `utente` (`e-mail`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `esperienza`
 --
 ALTER TABLE `esperienza`
-  ADD CONSTRAINT `esperienza_utente` FOREIGN KEY (`email_utente`) REFERENCES `utente` (`e-mail`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `utente_esperienza` FOREIGN KEY (`email_utente`) REFERENCES `utente` (`e-mail`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
