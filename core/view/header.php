@@ -81,6 +81,10 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     limit: 10
                 });
             });
+            function rimuoviTag(){
+            var el = document.getElementById("testo");
+                el.value = el.value.replace(/(<([^>]+)>)/ig,"");
+            }
         </script>
         <style type="text/css">
             .bs-example{
@@ -91,7 +95,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             .typeahead, .tt-query, .tt-hint {
                 border: 2px solid #CCCCCC;
                 border-radius: 8px;
-                font-size: 24px;
+                font-size: 16px;
                 height: 30px;
                 line-height: 30px;
                 outline: medium none;
@@ -120,7 +124,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 width: 100%;
             }
             .tt-suggestion {
-                font-size: 24px;
+                font-size: 16px;
                 line-height: 24px;
                 padding: 3px 20px;
             }
@@ -130,6 +134,9 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             }
             .tt-suggestion p {
                 margin: 0;
+            }
+            .twitter-typeahead{
+                margin: 15px;
             }
         </style>
     </head>
@@ -244,8 +251,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         </div>
                     <?php } ?>
 <!--                            <input type="text" onkeyup="showResult(this.value)" class="form-control" placeholder="Ricerca Utente...">-->
-
-                    <input type="text" style="width: 100%" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
+                    
+                    <input type="text" style="width: 100%" id="testo" onkeyup="rimuoviTag();" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
                            
 
                     <!-- Sidebar Menu -->

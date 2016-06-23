@@ -11,9 +11,9 @@ $arr = array();
 foreach ($utenti as $u) {
     $nome = $u->getNome();
     $cognome = $u->getCognome();
-    if ((strtolower($q) == strtolower(substr($nome, 0, $size))) || (strtolower($q) == strtolower(substr($cognome, 0, $size)))){
-        $hint = $hint . "<li><a style='background: white; color: black;' href='".DOMINIO_SITO."/profilo/".$u->getId()."' target='_blank'>".$nome." ".$cognome."</a></li>";
-        $arr[] = $nome." ".$cognome;
+    if ((strtolower($q) == strtolower(substr($nome, 0, $size))) || (strtolower($q) == strtolower(substr($cognome, 0, $size))) || (strtolower($q) == strtolower(substr($nome." ".$cognome, 0, $size)))){
+//        $hint = $hint . "<li><a style='background: white; color: black;' href='".DOMINIO_SITO."/profilo/".$u->getId()."' target='_blank'>".$nome." ".$cognome."</a></li>";
+        $arr[] = "<a style='color: black;' onclick='rimuoviTag();' href='".DOMINIO_SITO."/profilo/".$u->getId()."' target='_blank'>".$nome." ".$cognome."</a>";
     }
 }
 echo json_encode($arr);
