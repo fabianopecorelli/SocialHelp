@@ -140,7 +140,7 @@
             this.applyClass = 'btn-success';
             this.cancelClass = 'btn-default';
 
-            this.format = 'MM/DD/YYYY';
+            this.format = 'DD/MM/YYYY';
             this.separator = ' - ';
 
             this.locale = {
@@ -148,10 +148,10 @@
                 cancelLabel: 'Annulla',
                 fromLabel: 'Da',
                 toLabel: 'A',
-                weekLabel: 'W',
-                customRangeLabel: 'Custom Range',
-                daysOfWeek: moment.weekdaysMin(),
-                monthNames: moment.monthsShort(),
+                weekLabel: 'S',
+                customRangeLabel: 'Seleziona periodo',
+                daysOfWeek: 'Do_Lu_Ma_Me_Gi_Ve_Sa'.split('_'),
+                monthNames: 'Gen_Feb_Mar_Apr_Mag_Giu_Lug_Ago_Set_Ott_Nov_Dic'.split('_'),
                 firstDay: moment.localeData()._week.dow
             };
 

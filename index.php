@@ -104,6 +104,12 @@ try {
             case 'livesearch':
                 include_once CONTROL_DIR . "SearchController.php";
                 break;
+            case 'cercaUtente':
+                include_once CONTROL_DIR . "UtenteFinder.php";
+                break;
+            case 'cercaAnnunci':
+                include_once CONTROL_DIR . "CercaAnnunci.php";
+                break;
             default:
                 header('Location: '.DOMINIO_SITO.'/');
                 exit;

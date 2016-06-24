@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                              <div class="form-group has-feedback">
-                                <div class="input-group date">
+                                <div class="input-group">
                                     <select class="form-control select2" name="citta" id="listacitta" style="width: 100%;">
                                     
                                     </select><div class="input-group-addon">

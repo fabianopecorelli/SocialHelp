@@ -81,9 +81,76 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     limit: 10
                 });
             });
-            function rimuoviTag(){
-            var el = document.getElementById("testo");
-                el.value = el.value.replace(/(<([^>]+)>)/ig,"");
+            function rimuoviTag() {
+                var el = document.getElementById("testo");
+                el.value = el.value.replace(/(<([^>]+)>)/ig, "");
+            }
+            function inviaDati(e, val) {
+                if (e.code == "Enter") {
+                    var nomeUtente = document.getElementById("testo").value.split(" ");
+                    var nome = nomeUtente[0];
+                    var cognome = nomeUtente[1];
+                    if (cognome == undefined) {
+                        toastr["warning"]("Utente non trovato.");
+                        document.modulo.typeahead.focus();
+                    }
+                    if (val == -1) {
+                        $.get("<?php echo DOMINIO_SITO; ?>/cercaUtente?nome=" + nome + "&cognome=" + cognome, function (data) {
+                            var id = data;
+                            if ((id == "") || (id == undefined) || (id == "non trovato")) {
+                                toastr["warning"]("Utente non trovato.");
+                                document.modulo.typeahead.focus();
+                            }
+                            if ((id == "piu utenti")) {
+                                toastr["warning"]("Esistono più utenti con questo nome. Per favore fare click sull'utente desiderato.");
+                                document.modulo.typeahead.focus();
+                            }
+                            window.open('<?php echo DOMINIO_SITO; ?>/profilo/' + id, '_blank');
+                        });
+                    } else
+                        window.open('<?php echo DOMINIO_SITO; ?>/profilo/' + val, '_blank');
+                }
+            }
+            
+function prova(value){
+    var str = value.split("[");
+    var id = str[1].split("]")[0];
+    val = id;
+//    window.open('<?php echo DOMINIO_SITO; ?>/profile/' + id, '_blank');
+}
+            function Modulo() {
+                // Variabili associate ai campi del modulo
+                var nomeUtente = document.modulo.typeahead.value.split(" ");
+                var nome = nomeUtente[0];
+                var cognome = nomeUtente[1];
+                if (cognome == undefined) {
+                    toastr["warning"]("Utente non trovato.");
+                    document.modulo.typeahead.focus();
+                    return false;
+                }
+                //Effettua il controllo sul campo NOME
+
+//                xmlhttp = new XMLHttpRequest();
+//                xmlhttp.onreadystatechange = function () {
+//                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//                        var id = xmlhttp.responseText;
+//                        if ((id == "") || (id == undefined) || (id == "non trovato")) {
+//                            toastr["warning"]("Utente non trovato.");
+//                            document.modulo.typeahead.focus();
+//                            return false;
+//                        }
+//                        if ((id == "piu utenti")) {
+//                            toastr["warning"]("Esistono più utenti con questo nome. Per favore fare click sull'utente desiderato.");
+//                            document.modulo.typeahead.focus();
+//                            return false;
+//                        }
+//                    }
+//                }
+//                xmlhttp.open("GET", "<?php echo DOMINIO_SITO; ?>/cercaUtente?nome=" + nome + "&cognome=" + cognome, true);
+//                xmlhttp.send();
+                check = false;
+
+                return false;
             }
         </script>
         <style type="text/css">
@@ -124,7 +191,7 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                 width: 100%;
             }
             .tt-suggestion {
-                font-size: 16px;
+                font-size: 12px;
                 line-height: 24px;
                 padding: 3px 20px;
             }
@@ -251,9 +318,8 @@ if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         </div>
                     <?php } ?>
 <!--                            <input type="text" onkeyup="showResult(this.value)" class="form-control" placeholder="Ricerca Utente...">-->
-                    
-                    <input type="text" style="width: 100%" id="testo" onkeyup="rimuoviTag();" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
-                           
+
+                    <input onkeypress="inviaDati(event, -1)" type="text" style="width: 100%" id="testo" onkeyup="rimuoviTag();" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">

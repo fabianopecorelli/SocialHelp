@@ -6,9 +6,12 @@
  * @since 30/05/16
  */
 include_once VIEW_DIR . 'header.php';
+include_once CONTROL_DIR . "HomeController.php";
+
+$homeController = new HomeController();
 ?>
 
-    <!-- Content Header (Page header) -->
+<!-- Content Header (Page header) -->
 <div class="big-title">
     <div class="col-md-12">
         <div class="col-md-4"></div>
@@ -24,118 +27,131 @@ include_once VIEW_DIR . 'header.php';
         <li class="active">Ricerca Annuncio</li>
     </ol>
 </div>
-        <form>
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <span class="simple-text">Ricerca:</span>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Inserisci...">
-                </div><!-- Your Page Content Here -->
-            </div>
 
-            <div class="row" style="margin-top: 2%">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <span class="simple-text">Tipologia:</span>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <select class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div>
-                </div><!-- Your Page Content Here -->
-            </div>
 
-            <div class="row" style="margin-top: 2%">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <span class="simple-text">Periodo:</span>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
-                            <span>Ultimi 30 giorni</span>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                    </div>
-                </div><!-- Your Page Content Here -->
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <span class="simple-text">Tipologia:</span>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="tipologia" value="Richiesta" class="flat-red" checked> Richiesta
+                </label>
             </div>
-            
-            <div class="row" style="margin-top: 2%">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <span class="simple-text">Luogo:</span>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <select class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div>
-                </div><!-- Your Page Content Here -->
+            <div class="col-md-6">
+                <label>
+                    <input type="radio" name="tipologia" value="Offerta" class="flat-red"> Offerta
+                </label>
             </div>
+        </div>
+    </div><!-- Your Page Content Here -->
+</div>
 
-            <div class="row" style="margin-top: 2%">
-                <div class="col-md-6"></div>
-                <div class="col-md-3">
-                    <div class="col-md-6">
+<div class="row" style="margin-top: 2%">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <span class="simple-text">Periodo:</span>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                <span name='periodo' id='periodo'>Ultimi 30 giorni</span>
+                <i class="fa fa-caret-down"></i>
+            </button>
+        </div>
+    </div><!-- Your Page Content Here -->
+</div>
 
-                        <button type="reset" class="btn btn-block btn-danger btn-sm">Annulla</button>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-block btn-primary btn-sm">Conferma</button>
-                    </div>
-                </div>
-            </div>     
-        </form>
+<div class="row" style="margin-top: 2%">
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <span class="simple-text">Luogo:</span>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <select class="form-control select2" name="citta" id="listacitta" style="width: 130%;">
+
+            </select>
+        </div>
+    </div><!-- Your Page Content Here -->
+</div>
+
+<div class="row" style="margin-top: 2%">
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+            <button type="submit" onclick="submitForm()" class="btn btn-block btn-primary btn-sm">Cerca</button>
+        </div>
+    </div>
+</div>  
+<div id="annunci">
+
+</div>
 <!-- /.content-wrapper -->
 <?php include_once VIEW_DIR . 'footer.php'; ?>
 <script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="<?php echo STYLE_DIR; ?>plugins/daterangepicker/moment.min.js"></script>
 <script src="<?php echo STYLE_DIR; ?>plugins/daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo STYLE_DIR; ?>plugins/select2/select2.full.min.js"></script>
 
+<script type="text/javascript" src="<?php echo STYLE_DIR; ?>/scripts/caricacitta.js"></script>
 <script>
-    $(function () {
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        });
+                $(function () {
+                    //Date picker
+                    $('#datepicker').datepicker({
+                        autoclose: true
+                    });
 
-        $(".select2").select2();
-        $('#daterange-btn span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        $('#daterange-btn').daterangepicker(
-                {
-                    ranges: {
-                        'Oggi': [moment(), moment()],
-                        'Ieri': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Ultima settimana': [moment().subtract(6, 'days'), moment()],
-                        'Ultimo mese': [moment().subtract(29, 'days'), moment()],
-                        'Questo mese': [moment().startOf('month'), moment().endOf('month')],
-                        'Mese scorso': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function (start, end) {
-                    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                    $(".select2").select2();
+                    $('#daterange-btn span').html(moment().subtract(29, 'days').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY'));
+                    $('#daterange-btn').daterangepicker(
+                            {
+                                ranges: {
+                                    'Oggi': [moment(), moment()],
+                                    'Ieri': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                    'Ultima settimana': [moment().subtract(6, 'days'), moment()],
+                                    'Ultimo mese': [moment().subtract(29, 'days'), moment()],
+                                    'Questo mese': [moment().startOf('month'), moment().endOf('month')],
+                                    'Mese scorso': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                                },
+                                startDate: moment().subtract(29, 'days'),
+                                endDate: moment()
+                            },
+                            function (start, end) {
+                                $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+                            }
+                    );
+                });
+
+                function submitForm() {
+                    var radioTipologia = document.getElementsByName('tipologia');
+                    var tipologia;
+                    for (var i = 0, l = radioTipologia.length; i < l; i++)
+                    {
+                        if (radioTipologia[i].checked)
+                        {
+                            tipologia = radioTipologia[i].value;
+                        }
+                    }
+                    var periodo = document.getElementById('periodo').innerHTML;
+                    var luogo = document.getElementById('listacitta').value;
+                    
+                    if ((luogo == "Seleziona città...")) {
+                        toastr["error"]("Selezionare la città.");
+                        return;
+                        //Effettua il controllo sul campo COGNOME
+                    }
+//                    window.open("<?php  echo DOMINIO_SITO;     ?>/cercaAnnunci?tipologia='" + tipologia + "'&periodo='" + periodo + "'&luogo='" + luogo + "'");
+                    $.get("<?php  echo DOMINIO_SITO;     ?>/cercaAnnunci?tipologia='" + tipologia + "'&periodo='" + periodo + "'&luogo='" + luogo + "'", function (data) {
+                        document.getElementById("annunci").innerHTML = data;
+                    });
                 }
-        );
-    });
+
 </script>
