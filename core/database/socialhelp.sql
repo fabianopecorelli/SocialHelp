@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 22, 2016 alle 15:47
+-- Creato il: Giu 25, 2016 alle 00:44
 -- Versione del server: 10.1.10-MariaDB
 -- Versione PHP: 5.6.19
 
@@ -143,7 +143,7 @@ ALTER TABLE `esperienza`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- Limiti per le tabelle scaricate
 --
