@@ -11,19 +11,18 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 
 
-$utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['email'], $_POST['datanascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], null);
+$utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['email'], $_POST['datanascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], "".UPLOADS_DIR."/images/profile/user-standard.png");
 $newUtente = getUtente($utente->getEmail());
 $idUtente = $newUtente->getID();
 if (!($imageName = uploadImage($idUtente))) {
     echo "UPLOAD FAILED";
 }
 else{
-    echo "ERRORE CARICAMENTO";
+    echo "OK";
+    $imagePath = UPLOADS_DIR . "images/profile/" . $imageName;
+    $newUtente->setImmagine($imagePath);
+    updateUtente($newUtente);
 }
-$imagePath = UPLOADS_DIR . "images/profile/" . $imageName;
-$newUtente->setImmagine($imagePath);
-updateUtente($newUtente);
-
 $_SESSION['loggedin'] = true;
 $_SESSION['user'] = serialize($newUtente);
 

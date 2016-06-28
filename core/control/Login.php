@@ -11,8 +11,6 @@ include_once MODEL_DIR . 'Utente.php';
 
 login($_POST['email'], $_POST['password'], (@$_POST['remember'] == "1" ? true : false));
 
-
-
 function login($email, $password, $remember) {
     if (!preg_match(Patterns::$EMAIL, $email)) {
         throw new ApplicationException(Error::$EMAIL_NON_VALIDA);
@@ -22,14 +20,16 @@ function login($email, $password, $remember) {
     }
 
     $user = getUtente($email, $password);
+    if ($user) {
+        $_SESSION['loggedin'] = true;
+        $_SESSION['user'] = serialize($user);
 
-    $_SESSION['loggedin'] = true;
-    $_SESSION['user'] = serialize($user);
-
-    if ($remember) {
-        setPermanentCookie($user->getPassword());
-    }
-     header("Location:" . DOMINIO_SITO . "/home");
+        if ($remember) {
+            setPermanentCookie($user->getPassword());
+        }
+        header("Location:" . DOMINIO_SITO . "/");
+    } else
+        header("Location:" . DOMINIO_SITO . "/auth");
     return $user;
 }
 
@@ -66,10 +66,10 @@ function getUtenteByIdentity($identity) {
  * @throws ApplicationException [$UTENTE_NON_TROVATO]
  */
 function parseUtente($res) {
-    if ($obj = $res->fetch_assoc()) {
+    if ($res && $obj = $res->fetch_assoc()) {
         return new Utente($obj['nome'], $obj['cognome'], $obj['telefono'], $obj['e-mail'], $obj['citta'], $obj['password'], $obj['descrizione'], $obj['immagine'], $obj['tipologia'], $obj['data'], $obj['id']);
     } else {
-        header("Location:" . DOMINIO_SITO . "/");
+        header("Location:" . DOMINIO_SITO . "/auth");
     }
 }
 

@@ -13,7 +13,7 @@ foreach ($utenti as $u) {
     $cognome = $u->getCognome();
     if ((strtolower($q) == strtolower(substr($nome, 0, $size))) || (strtolower($q) == strtolower(substr($cognome, 0, $size))) || (strtolower($q) == strtolower(substr($nome." ".$cognome, 0, $size)))){
 //        $hint = $hint . "<li><a style='background: white; color: black;' href='".DOMINIO_SITO."/profilo/".$u->getId()."' target='_blank'>".$nome." ".$cognome."</a></li>";
-        $arr[] = "<a style='color: black;' onclick='rimuoviTag();' href='".DOMINIO_SITO."/profilo/".$u->getId()."' target='_blank'><div class='row'><div class='col-md-2'><img width='50px' heigth='50px' src='".$u->getImmagine()."'/></div><div class='col-md-2'></div><div class='col-md-7'>".$nome." ".$cognome."</div></div>(".$u->getEmail().")</div></div></a>";
+        $arr[] = "<a style='color: black;' onclick='rimuoviTag();' href='".DOMINIO_SITO."/profilo/".$u->getId()."' target='_blank'><div class='row'><div class='col-md-2'><img width='50px' heigth='50px' src='".$u->getImmagine()."'/></div><div class='col-md-2'></div><div class='col-md-7'>".$nome." ".$cognome."</div></div><span hidden='true'>[".DOMINIO_SITO."/profilo/".$u->getId()."]</span>(".$u->getEmail().")</div></div></a>";
     }
 }
 echo json_encode($arr);

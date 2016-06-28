@@ -40,11 +40,13 @@ function parseUtente($res) {
 $tipologia = $_GET['tipologia'];
 $periodo = explode(" - ", $_GET['periodo']);
 $da = str_replace('/', '-', $periodo[0]);
-$da = explode("'", $da)[1];
+$at = explode("'", $da);
+$da = $at[1];
 $da = date("Y-m-d H:i:s", strtotime($da));
 
 $a = str_replace('/', '-', $periodo[1]);
-$a = explode("'", $a)[0];
+$to = explode("'", $a);
+$a = $to[0];
 $a = date("Y-m-d H:i:s", strtotime($a));
 $luogo = $_GET['luogo'];
 ?>

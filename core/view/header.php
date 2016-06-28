@@ -319,7 +319,7 @@ function prova(value){
                     <?php } ?>
 <!--                            <input type="text" onkeyup="showResult(this.value)" class="form-control" placeholder="Ricerca Utente...">-->
 
-                    <input onkeypress="inviaDati(event, -1)" type="text" style="width: 100%" id="testo" onkeyup="rimuoviTag();" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
+                    <input type="text" style="width: 100%" id="testo" onkeyup="rimuoviTag();" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Cerca Utente">
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu">
