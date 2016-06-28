@@ -97,7 +97,7 @@ if(isset($_URL[1])){
                 <?php  if(($utente->getTipologia())=="Offerente"){   ?>
                 <strong><i class="fa fa-files-o margin-r-5"></i> <a style="cursor: pointer">Esperienze</a></strong>
 
-                <p class="text-muted">Voto medio: <?php  printf("%s",$profiloController->getVotoMedioEsperienze($utente->getEmail())); ?> <i class="fa fa-star-o"></i>. <br/>  Basato su <?php  printf("%s",$profiloController->getNumeroEsperienze($utente->getEmail())); ?> esperienze.</p>
+                <p class="text-muted">Voto medio: <?php  printf("%d",$profiloController->getVotoMedioEsperienze($utente->getEmail())); ?> <i class="fa fa-star-o"></i>. <br/>  Basato su <?php  printf("%s",$profiloController->getNumeroEsperienze($utente->getEmail())); ?> esperienze.</p>
                 <?php  }  ?>
             </div>
             <!-- /.box-body -->
@@ -181,7 +181,7 @@ if(isset($_URL[1])){
                             <span class="username">
                            </span>
                             <a href="<?php echo DOMINIO_SITO;?>/profilo/<?php echo $id; ?>"><?php printf("&nbsp %s %s",$recensore->getNome(),$recensore->getCognome());  ?></a>
-                            <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($esperienza->getData()));?>  - Voto:<?php printf("%d ",  parseInt($esperienza->getVoto()));?><i class="fa fa-star-o"></i></span>
+                            <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($esperienza->getData()));?>  - Voto:<?php printf("%d ",  $esperienza->getVoto());?><i class="fa fa-star-o"></i></span>
                         </div> 
                         <div class="box-body">
                             <p><?php printf("%s",$esperienza->getDescrizione()); ?></p>
@@ -259,8 +259,8 @@ if(isset($_URL[1])){
                                 // Get context with jQuery - using jQuery's .get() method.
                                 var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
                                 var pieChart = new Chart(pieChartCanvas);
-                                var positive = <?php printf("%d",$profiloController->getVotiPositiviEsperienze($utente->getEmail()));  ?>;
-                                var negative = <?php printf("%d",$profiloController->getVotiNegativiEsperienze($utente->getEmail()));  ?>;
+                                var positive = <?php printf("%d",  $profiloController->getVotiPositiviEsperienze($utente->getEmail()));  ?>;
+                                var negative = <?php printf("%d",  $profiloController->getVotiNegativiEsperienze($utente->getEmail()));  ?>;
                                 
                                 var PieData = [
                                     {

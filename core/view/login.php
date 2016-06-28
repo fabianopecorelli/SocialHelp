@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>dist/css/AdminLTE.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/square/blue.css">
-
+        <link href="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="<?php echo STYLE_DIR; ?>img/favicon.png" type="image/x-icon" />
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/datepicker/datepicker3.css">
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/all.css">
@@ -102,6 +102,8 @@
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>dist/js/app.min.js"></script>
 
         <script>
             function cambiaImmagine(input) {
@@ -154,11 +156,11 @@
                 
                 
                 if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
-                    alert("Inserire un indirizzo email corretto.");
+                    toastr["error"]("Inserire un indirizzo email corretto.");
                     document.modulo.email.select();
                     return false;
                 }else if ((password == "") || (password == "undefined")) {
-                    alert("Il campo Password è obbligatorio.");
+                    toastr["error"]("Il campo Password è obbligatorio.");
                     document.modulo.password.focus();
                     return false;
                 }else {

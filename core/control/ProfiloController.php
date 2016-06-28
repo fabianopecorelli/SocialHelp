@@ -25,7 +25,7 @@ class ProfiloController extends Controller{
         $esperienze = array();
         if($res){
             while ($obj = $res->fetch_assoc()) {
-                $esperienza = new Esperienza($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['recensore'], $obj['voto'], $obj['email_utente']);
+                $esperienza = new Esperienza($obj['id'], $obj['titolo'], $obj['data'], $obj['descrizione'], $obj['recensore'],$obj['email_utente'], $obj['voto']);
                 $esperienza->setId($obj['id']);
                 $esperienze[] = $esperienza;            }
         }
@@ -66,7 +66,7 @@ class ProfiloController extends Controller{
         $somma=0;
         $numero=0;
         foreach($esperienze as $esperienza){
-            $somma=$somma+$this->parseInt($esperienza->getVoto());
+            $somma=$somma+$esperienza->getVoto();
             $numero=$numero+1;
         }
         if($numero==0){

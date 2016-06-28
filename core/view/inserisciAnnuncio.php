@@ -146,20 +146,20 @@ include_once VIEW_DIR . 'header.php';
                 var descrizione = document.modulo.descrizione.value;
                 
                 if ((titolo == "") || (titolo == "undefined")) {
-                    alert("Il campo Titolo è obbligatorio.");
+                    toastr["error"]("Il campo Titolo è obbligatorio.");
                     document.modulo.titolo.focus();
                     return false;
                 }else if ((data == "") || (data == "undefined")) {
-                    alert("Il campo Data è obbligatorio.");
+                    toastr["error"]("Il campo Data è obbligatorio.");
                     document.modulo.data.focus();
                     return false;
                 }else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
-                    alert("Il campo Città è obbligatorio.");
+                    toastr["error"]("Il campo Città è obbligatorio.");
                     document.modulo.citta.focus();
                     return false;
                 
                 }else if((descrizione == "") || (descrizione == "undefined")) {
-                    alert("Il campo Descrizione è obbligatorio.");
+                    toastr["error"]("Il campo Descrizione è obbligatorio.");
                     document.modulo.descrizione.focus();
                     return false;
                     
