@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>dist/css/AdminLTE.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/square/blue.css">
-
+        <link href="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.css" rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="<?php echo STYLE_DIR; ?>img/favicon.png" type="image/x-icon" />
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/datepicker/datepicker3.css">
         <link rel="stylesheet" href="<?php echo STYLE_DIR; ?>plugins/iCheck/all.css">
@@ -192,6 +192,7 @@
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
+        <script src="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.js"></script>
 
         <script src="<?php echo STYLE_DIR; ?>plugins/select2/select2.full.min.js"></script>
         <script type="text/javascript" src="<?php echo STYLE_DIR; ?>/scripts/caricacitta.js"></script>
@@ -255,47 +256,47 @@
                 
                 //Effettua il controllo sul campo NOME
                 if ((nome == "") || (nome == "undefined")) {
-                    alert("Il campo Nome è obbligatorio.");
+                    toastr["error"]("Il campo Nome è obbligatorio.");
                     document.modulo.nome.focus();
                     return false;
                 //Effettua il controllo sul campo COGNOME
                 }else if ((cognome == "") || (cognome == "undefined")) {
-                    alert("Il campo Cognome è obbligatorio.");
+                    toastr["error"]("Il campo Cognome è obbligatorio.");
                     document.modulo.cognome.focus();
                     return false;
                 //Effettua il controllo sul campo TELEFONO    
                 }else if ((isNaN(telefono)) || (telefono == "") || (telefono == "undefined")) {
-                    alert("Il campo Telefono è numerico ed obbligatorio.");
+                    toastr["error"]("Il campo Telefono è numerico ed obbligatorio.");
                     document.modulo.telefono.value = "";
                     document.modulo.telefono.focus();
                     return false;
                 }else if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
-                    alert("Inserire un indirizzo email corretto.");
+                    toastr["error"]("Inserire un indirizzo email corretto.");
                     document.modulo.email.select();
                     return false;
                 }else if ((nascita == "") || (nascita == "undefined")) {
-                    alert("Il campo Data di nascita è obbligatorio.");
+                    toastr["error"]("Il campo Data di nascita è obbligatorio.");
                     document.modulo.datanascita.focus();
                     return false;
                 }else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
-                    alert("Il campo Città è obbligatorio.");
+                    toastr["error"]("Il campo Città è obbligatorio.");
                     document.modulo.citta.focus();
                     return false;
                 
                 }else if ((password == "") || (password == "undefined")) {
-                    alert("Il campo Password è obbligatorio.");
+                    toastr["error"]("Il campo Password è obbligatorio.");
                     document.modulo.password.focus();
                     return false;
                 }
                 //Effettua il controllo sul campo CONFERMA PASSWORD
                 else if ((passwordretyped == "") || (passwordretyped == "undefined")) {
-                    alert("Il campo Conferma password è obbligatorio.");
+                    toastr["error"]("Il campo Conferma password è obbligatorio.");
                     document.modulo.passwordretyped.focus();
                     return false;
                 }
                 //Verifica l'uguaglianza tra i campi PASSWORD e CONFERMA PASSWORD
                 else if (password != passwordretyped) {
-                    alert("La password confermata è diversa da quella scelta, controllare.");
+                    toastr["error"]("La password confermata è diversa da quella scelta, controllare.");
                     document.modulo.passwordretyped.value = "";
                     document.modulo.passwordretyped.focus();
                     return false;
