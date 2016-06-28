@@ -102,14 +102,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback">
-                                <div class="input-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Email">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group has-feedback">
                                 <div class="input-group date">
                                     <input type="text" class="form-control pull-right" name="datanascita" id="datepicker" placeholder="Data di nascita">
                                     <div class="input-group-addon">
@@ -123,6 +115,14 @@
                                     
                                     </select><div class="input-group-addon">
                                         <i class="fa fa-map-marker"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
                                     </div>
                                 </div>
                             </div>

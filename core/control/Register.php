@@ -11,7 +11,7 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 
 
-$utente = register($_POST['nome'], $_POST['cognome'], $_POST['telefono'], $_POST['tipologia'], $_POST['email'], $_POST['datanascita'], $_POST['citta'], $_POST['descrizione'], $_POST['password'], "".UPLOADS_DIR."/images/profile/user-standard.png");
+$utente = register(strip_tags(htmlspecialchars($_POST['nome'])), strip_tags(htmlspecialchars($_POST['cognome'])), $_POST['telefono'], $_POST['tipologia'], strip_tags(htmlspecialchars($_POST['email'])), $_POST['datanascita'], $_POST['citta'], strip_tags(htmlspecialchars($_POST['descrizione'])), strip_tags(htmlspecialchars($_POST['password'])), "".UPLOADS_DIR."/images/profile/user-standard.png");
 $newUtente = getUtente($utente->getEmail());
 $idUtente = $newUtente->getID();
 if (!($imageName = uploadImage($idUtente))) {
