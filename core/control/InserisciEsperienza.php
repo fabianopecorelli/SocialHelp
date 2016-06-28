@@ -12,7 +12,7 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 
 $utente=unserialize($_SESSION['user']);//QUI DA RIVEDERE!!!
-$esperienza = inserisciEsperienza($_POST['titolo'], $_POST['descrizione'], $_GET['voto'],$utente->getEmail(), $_GET['email_utente']);
+$esperienza = inserisciEsperienza(strip_tags(htmlspecialchars($_POST['titolo'])), strip_tags(htmlspecialchars($_POST['descrizione'])), $_GET['voto'],$utente->getEmail(), $_GET['email_utente']);
 
 
 

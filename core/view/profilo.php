@@ -110,7 +110,7 @@ if(isset($_URL[1])){
             <ul class="nav nav-tabs">
                 <?php
                 if($utente->getTipologia()=="Offerente"){
-                printf("<li class=\"active\"><a href=\"#statistiche\" onclick=\"initializeChart()\" data-toggle=\"tab\">Statistiche</a></li>");
+                printf("<li class=\"active\"><a href=\"#statistiche\" onclick=\"\" data-toggle=\"tab\">Statistiche</a></li>");
                 }
                       ?>
                 <li<?php if($utente->getTipologia()=="Cliente"){printf(" class=\"active\"");}   ?>><a href="#annunci" data-toggle="tab">Annunci</a></li>
@@ -237,6 +237,7 @@ if(isset($_URL[1])){
 <!-- ./wrapper -->
 
 <?php include_once VIEW_DIR . 'footer.php'; ?>
+
 
 <!-- FastClick -->
 <script src="<?php echo STYLE_DIR; ?>plugins/fastclick/fastclick.js"></script>

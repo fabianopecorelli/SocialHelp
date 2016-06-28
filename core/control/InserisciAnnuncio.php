@@ -12,7 +12,7 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 $utente=unserialize($_SESSION['user']);//QUI DA RIVEDERE!!!
 $tipoUtente=$utente->getTipologia();
-$Annuncio = inserisciAnnuncio($_POST['titolo'], $_POST['data'], $_POST['descrizione'], $_POST['citta'],$utente->getEmail(),$tipoUtente);
+$Annuncio = inserisciAnnuncio(strip_tags(htmlspecialchars($_POST['titolo'])), $_POST['data'], strip_tags(htmlspecialchars($_POST['descrizione'])), $_POST['citta'],$utente->getEmail(),$tipoUtente);
 
 
 

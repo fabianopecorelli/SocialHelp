@@ -43,7 +43,7 @@ include_once VIEW_DIR . 'header.php';
         </div>
         <div class="col-md-3">
             <div class="input-group date">
-                <div class="input-group-addon">
+                <div class="input-group-addon" onclick="document.getElementById('datepicker').focus()">
                     <i class="fa fa-calendar"></i>
                 </div>
                 <input type="text" class="form-control pull-right" name="data" id="datepicker">
