@@ -158,8 +158,8 @@
                     toastr["error"]("Inserire un indirizzo email corretto.");
                     document.modulo.email.select();
                     return false;
-                }else if ((password == "") || (password == "undefined")) {
-                    toastr["error"]("Il campo Password è obbligatorio.");
+                }else if ((password == "") || (password == "undefined") || ((password.length)<8)) {
+                    toastr["error"]("Inserire una password valida.");
                     document.modulo.password.focus();
                     return false;
                 }else {

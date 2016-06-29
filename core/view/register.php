@@ -170,7 +170,7 @@
                         <div class="col-xs-8">
                             <div class="checkbox icheck">
                                 <label>
-                                    <input type="checkbox" class="flat-red" style="position: absolute; opacity: 0;"> Autorizzo il trattamento dei dati personali
+                                    <input type="checkbox" class="flat-red" name="accetto" id="accetto" style="position: absolute; opacity: 0;"> Autorizzo il trattamento dei dati personali
                                 </label>
                             </div>
                         </div>
@@ -252,7 +252,9 @@
                 var password = document.modulo.password.value;
                 var passwordretyped = document.modulo.passwordretyped.value;
                 var nascita = document.modulo.datanascita.value;
+                var accetto = document.modulo.accetto;
                 var email_reg_exp = /^[_a-zA-Z0-9+-]+(\.[_a-zA-Z0-9+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
+                var tel_reg_exp = /^[0-9]{5,10}$/;
 
 
                 //Effettua il controllo sul campo NOME
@@ -266,8 +268,8 @@
                     document.modulo.cognome.focus();
                     return false;
                     //Effettua il controllo sul campo TELEFONO    
-                } else if ((isNaN(telefono)) || (telefono == "") || (telefono == "undefined")) {
-                    toastr["error"]("Il campo Telefono è numerico ed obbligatorio.");
+                } else if ((isNaN(telefono)) || (telefono == "") || (telefono == "undefined") || !tel_reg_exp.test(telefono)) {
+                    toastr["error"]("Il campo Telefono è obbligatorio, numerico di almeno 5 cifre e massimo 10.");
                     document.modulo.telefono.value = "";
                     document.modulo.telefono.focus();
                     return false;
@@ -284,8 +286,8 @@
                     document.modulo.citta.focus();
                     return false;
 
-                } else if ((password == "") || (password == "undefined")) {
-                    toastr["error"]("Il campo Password è obbligatorio.");
+                } else if ((password == "") || (password == "undefined") || ((password.length)<8)) {
+                    toastr["error"]("Il campo Password è obbligatorio e deve avere una lunghezza minima di 8 caratteri.");
                     document.modulo.password.focus();
                     return false;
                 }
@@ -300,6 +302,9 @@
                     toastr["error"]("La password confermata è diversa da quella scelta, controllare.");
                     document.modulo.passwordretyped.value = "";
                     document.modulo.passwordretyped.focus();
+                    return false;
+                }else if (!(accetto.checked)) {
+                    toastr["error"]("E' necessario autorizzare il trattamento dei dati.");
                     return false;
                 } else {
 
