@@ -38,12 +38,12 @@ $homeController = new HomeController();
         <div class="form-group">
             <div class="col-md-6">
                 <label>
-                    <input type="radio" name="tipologia" value="Richiesta" class="flat-red" checked> Richiesta
+                    <input type="radio" name="tipologia" value="Richiesta" class="flat-red" checked> Cerco
                 </label>
             </div>
             <div class="col-md-6">
                 <label>
-                    <input type="radio" name="tipologia" value="Offerta" class="flat-red"> Offerta
+                    <input type="radio" name="tipologia" value="Offerta" class="flat-red"> Offro
                 </label>
             </div>
         </div>
@@ -101,6 +101,8 @@ $homeController = new HomeController();
 <script src="<?php echo STYLE_DIR; ?>plugins/daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo STYLE_DIR; ?>plugins/select2/select2.full.min.js"></script>
 
+
+
 <script type="text/javascript" src="<?php echo STYLE_DIR; ?>/scripts/caricacitta.js"></script>
 <script>
                 $(function () {
@@ -108,6 +110,28 @@ $homeController = new HomeController();
                     $('#datepicker').datepicker({
                         autoclose: true
                     });
+                    
+                    $('input').iCheck({
+                        checkboxClass: 'icheckbox_square-blue',
+                        radioClass: 'iradio_square-blue',
+                        increaseArea: '20%' // optional
+                    });
+                    //iCheck for checkbox and radio inputs
+                    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                        checkboxClass: 'icheckbox_minimal-blue',
+                        radioClass: 'iradio_minimal-blue'
+                    });
+                    //Red color scheme for iCheck
+                    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                        checkboxClass: 'icheckbox_minimal-red',
+                        radioClass: 'iradio_minimal-red'
+                    });
+                    //Flat red color scheme for iCheck
+                    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                        checkboxClass: 'icheckbox_flat-green',
+                        radioClass: 'iradio_flat-green'
+                    });
+                });
 
                     $(".select2").select2();
                     $('#daterange-btn span').html(moment().subtract(29, 'days').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY'));
@@ -128,7 +152,6 @@ $homeController = new HomeController();
                                 $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
                             }
                     );
-                });
 
                 function submitForm() {
                     var radioTipologia = document.getElementsByName('tipologia');
@@ -142,14 +165,14 @@ $homeController = new HomeController();
                     }
                     var periodo = document.getElementById('periodo').innerHTML;
                     var luogo = document.getElementById('listacitta').value;
-                    
+
                     if ((luogo == "Seleziona città...")) {
                         toastr["error"]("Selezionare la città.");
                         return;
                         //Effettua il controllo sul campo COGNOME
                     }
-//                    window.open("<?php  echo DOMINIO_SITO;     ?>/cercaAnnunci?tipologia='" + tipologia + "'&periodo='" + periodo + "'&luogo='" + luogo + "'");
-                    $.get("<?php  echo DOMINIO_SITO;     ?>/cercaAnnunci?tipologia='" + tipologia + "'&periodo='" + periodo + "'&luogo='" + luogo + "'", function (data) {
+//                    window.open("<?php echo DOMINIO_SITO; ?>/cercaAnnunci?tipologia='" + tipologia + "'&periodo='" + periodo + "'&luogo='" + luogo + "'");
+                    $.get("<?php echo DOMINIO_SITO; ?>/cercaAnnunci?tipologia='" + tipologia + "'&periodo='" + periodo + "'&luogo='" + luogo + "'", function (data) {
                         document.getElementById("annunci").innerHTML = data;
                     });
                 }

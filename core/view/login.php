@@ -82,9 +82,8 @@
                     </div>
 <!--                    <a href="#">Password dimenticata?</a>
                     <br/>-->
-                    <a href="<?php echo DOMINIO_SITO; ?>/register">Registrati</a>
                     <br/>
-                    <a href="<?php echo DOMINIO_SITO; ?>">Accedi come ospite</a>
+                    <a href="<?php echo DOMINIO_SITO; ?>/register">Registrati</a>
 
 
 

@@ -6,6 +6,7 @@
  * @since 30/05/16
  */
 ?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -105,14 +106,14 @@
                                 <div class="input-group date">
                                     <input type="text" class="form-control pull-right" name="datanascita" id="datepicker" placeholder="Data di nascita">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+                                        <i class="fa fa-calendar" onclick="document.getElementById('datepicker').focus()"></i>
                                     </div>
                                 </div>
                             </div>
-                             <div class="form-group has-feedback">
+                            <div class="form-group has-feedback">
                                 <div class="input-group">
                                     <select class="form-control select2" name="citta" id="listacitta" style="width: 100%;">
-                                    
+
                                     </select><div class="input-group-addon">
                                         <i class="fa fa-map-marker"></i>
                                     </div>
@@ -126,12 +127,12 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="simple-text">Descrizione:</label>
-                                <textarea style="resize: none" class="form-control" name="descrizione" rows="3" placeholder="Inserisci descrizione..."></textarea>
+                                <textarea style="resize: none" class="form-control" name="descrizione" rows="3" placeholder="Inserisci una tua descrizione..."></textarea>
                             </div>
                         </div>
                     </div>
@@ -169,7 +170,7 @@
                         <div class="col-xs-8">
                             <div class="checkbox icheck">
                                 <label>
-                                    <input type="checkbox" class="flat-red" style="position: absolute; opacity: 0;"> Accetto <a href="#">termini e condizioni</a>
+                                    <input type="checkbox" class="flat-red" style="position: absolute; opacity: 0;"> Autorizzo il trattamento dei dati personali
                                 </label>
                             </div>
                         </div>
@@ -184,12 +185,12 @@
             </div>
             <!-- /.register-box -->
         </div>
+
         <!-- jQuery 2.2.0 -->
         <script src="<?php echo STYLE_DIR; ?>plugins/jQuery/jQuery-2.2.0.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?php echo STYLE_DIR; ?>bootstrap/js/bootstrap.min.js"></script>
         <!-- iCheck -->
-        <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/datepicker/bootstrap-datepicker.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/iCheck/icheck.min.js"></script>
         <script src="<?php echo STYLE_DIR; ?>plugins/toastr/toastr.js"></script>
@@ -240,7 +241,7 @@
                                         });
         </script>
         <script>
-            
+
             function Modulo() {
                 // Variabili associate ai campi del modulo
                 var nome = document.modulo.nome.value;
@@ -252,38 +253,38 @@
                 var passwordretyped = document.modulo.passwordretyped.value;
                 var nascita = document.modulo.datanascita.value;
                 var email_reg_exp = /^[_a-zA-Z0-9+-]+(\.[_a-zA-Z0-9+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
-                
-                
+
+
                 //Effettua il controllo sul campo NOME
                 if ((nome == "") || (nome == "undefined")) {
                     toastr["error"]("Il campo Nome è obbligatorio.");
                     document.modulo.nome.focus();
                     return false;
-                //Effettua il controllo sul campo COGNOME
-                }else if ((cognome == "") || (cognome == "undefined")) {
+                    //Effettua il controllo sul campo COGNOME
+                } else if ((cognome == "") || (cognome == "undefined")) {
                     toastr["error"]("Il campo Cognome è obbligatorio.");
                     document.modulo.cognome.focus();
                     return false;
-                //Effettua il controllo sul campo TELEFONO    
-                }else if ((isNaN(telefono)) || (telefono == "") || (telefono == "undefined")) {
+                    //Effettua il controllo sul campo TELEFONO    
+                } else if ((isNaN(telefono)) || (telefono == "") || (telefono == "undefined")) {
                     toastr["error"]("Il campo Telefono è numerico ed obbligatorio.");
                     document.modulo.telefono.value = "";
                     document.modulo.telefono.focus();
                     return false;
-                }else if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
+                } else if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
                     toastr["error"]("Inserire un indirizzo email corretto.");
                     document.modulo.email.select();
                     return false;
-                }else if ((nascita == "") || (nascita == "undefined")) {
+                } else if ((nascita == "") || (nascita == "undefined")) {
                     toastr["error"]("Il campo Data di nascita è obbligatorio.");
                     document.modulo.datanascita.focus();
                     return false;
-                }else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
+                } else if ((citta == "") || (citta == "undefined") || (citta == "Seleziona città...")) {
                     toastr["error"]("Il campo Città è obbligatorio.");
                     document.modulo.citta.focus();
                     return false;
-                
-                }else if ((password == "") || (password == "undefined")) {
+
+                } else if ((password == "") || (password == "undefined")) {
                     toastr["error"]("Il campo Password è obbligatorio.");
                     document.modulo.password.focus();
                     return false;
@@ -300,14 +301,24 @@
                     document.modulo.passwordretyped.value = "";
                     document.modulo.passwordretyped.focus();
                     return false;
-                }else {
-                    
+                } else {
+
                     document.modulo.submit();
-                    
+
                     return true;
                 }
-                }
-                </script>
+            }
+        </script>
 
+        <?php
+        if ($_SESSION['toast-type'] && $_SESSION['toast-message']) {
+            ?>
+            <script>
+                toastr["<?php echo $_SESSION['toast-type'] ?>"]("<?php echo $_SESSION['toast-message'] ?>");
+            </script>
+        <?php 
+        unset($_SESSION['toast-type']);
+        unset($_SESSION['toast-message']);
+        } ?>
     </body>
 </html>

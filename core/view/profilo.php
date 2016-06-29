@@ -95,8 +95,6 @@ if(isset($_URL[1])){
 
                 <hr>
                 <?php  if(($utente->getTipologia())=="Offerente"){   ?>
-                <strong><i class="fa fa-files-o margin-r-5"></i> <a style="cursor: pointer">Esperienze</a></strong>
-
                 <p class="text-muted">Voto medio: <?php  printf("%d",$profiloController->getVotoMedioEsperienze($utente->getEmail())); ?> <i class="fa fa-star-o"></i>. <br/>  Basato su <?php  printf("%s",$profiloController->getNumeroEsperienze($utente->getEmail())); ?> esperienze.</p>
                 <?php  }  ?>
             </div>
@@ -138,7 +136,7 @@ if(isset($_URL[1])){
                             <img class="img-circle img-bordered-sm" src="<?php printf("%s",$utente->getImmagine());  ?>" alt="user image">
                             <span class="username">
                            </span>
-                            <a href="#"><?php printf("&nbsp %s %s",$utente->getNome(),$utente->getCognome());  ?></a>
+                            <a href="#"><?php printf("&nbsp %s %s",$utente->getNome(),$utente->getCognome());  ?></a> <p><?php echo strtoupper($annuncio->getTitolo()); ?></p>
                                 <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($annuncio->getDataPubblicazione())); ?> - Data servizio: <?php echo date("d/m/Y", strtotime($annuncio->getData())); ?> - Luogo servizio: <?php echo $annuncio->getLuogo(); ?></span>
                         </div> 
                         <div class="box-body">
@@ -307,3 +305,14 @@ if(isset($_URL[1])){
 
                             });
 </script>
+<?php
+if ($_SESSION['toast-type'] && $_SESSION['toast-message']) {
+    ?>
+    <script>
+        toastr["<?php echo $_SESSION['toast-type'] ?>"]("<?php echo $_SESSION['toast-message'] ?>");
+    </script>
+    <?php
+    unset($_SESSION['toast-type']);
+    unset($_SESSION['toast-message']);
+}
+?>

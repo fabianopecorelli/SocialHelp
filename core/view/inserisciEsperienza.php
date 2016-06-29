@@ -158,10 +158,20 @@ if(isset($_URL[1])){
 
         } else {
             var email = "<?= $utente->getEmail() ?>";
-            alert(email);
             document.modulo.action = "<?php echo DOMINIO_SITO; ?>/inserimentoEsperienza?voto="+rating+"&email_utente="+email;
             document.modulo.submit();
             return true;
         }
     }
 </script>
+<?php
+if ($_SESSION['toast-type'] && $_SESSION['toast-message']) {
+    ?>
+    <script>
+        toastr["<?php echo $_SESSION['toast-type'] ?>"]("<?php echo $_SESSION['toast-message'] ?>");
+    </script>
+    <?php
+    unset($_SESSION['toast-type']);
+    unset($_SESSION['toast-message']);
+}
+?>

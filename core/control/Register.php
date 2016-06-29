@@ -11,13 +11,12 @@ include_once EXCEPTION_DIR . "IllegalArgumentException.php";
 
 
 
-$utente = register(strip_tags(htmlspecialchars($_POST['nome'])), strip_tags(htmlspecialchars($_POST['cognome'])), $_POST['telefono'], $_POST['tipologia'], strip_tags(htmlspecialchars($_POST['email'])), $_POST['datanascita'], $_POST['citta'], strip_tags(htmlspecialchars($_POST['descrizione'])), strip_tags(htmlspecialchars($_POST['password'])), "".UPLOADS_DIR."/images/profile/user-standard.png");
+$utente = register(strip_tags(htmlspecialchars(addslashes($_POST['nome']))), strip_tags(htmlspecialchars(addslashes($_POST['cognome']))), $_POST['telefono'], $_POST['tipologia'], strip_tags(htmlspecialchars(addslashes($_POST['email']))), $_POST['datanascita'], $_POST['citta'], strip_tags(htmlspecialchars(addslashes($_POST['descrizione']))), strip_tags(htmlspecialchars(addslashes($_POST['password']))), "" . UPLOADS_DIR . "/images/profile/user-standard.png");
 $newUtente = getUtente($utente->getEmail());
 $idUtente = $newUtente->getID();
 if (!($imageName = uploadImage($idUtente))) {
     echo "UPLOAD FAILED";
-}
-else{
+} else {
     echo "OK";
     $imagePath = UPLOADS_DIR . "images/profile/" . $imageName;
     $newUtente->setImmagine($imagePath);
@@ -31,28 +30,52 @@ $_SESSION['user'] = serialize($newUtente);
 
 function register($nome, $cognome, $telefono, $tipologia, $email, $dataNascita, $citta, $descrizione, $password, $imagePath) {
     if (!preg_match(Patterns::$NAME_GENERIC, $nome)) {
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Nome assente oppure errato";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Nome assente oppure errato");
     }
     if (!preg_match(Patterns::$NAME_GENERIC, $cognome)) {
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Nome assente oppure errato";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Cognome assente oppure errato");
     }
     if (!preg_match(Patterns::$TELEPHONE, $telefono)) {
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Telefono assente oppure errato";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Telefono assente oppure errato");
     }
     if (!in_array($tipologia, Config::$TIPI_UTENTE) || $tipologia == "admin") {
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Tipo utente errato";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Tipo utente errato");
     }
     if (!preg_match(Patterns::$EMAIL, $email)) {
-        throw new IllegalArgumentException("Email non valido");
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Email non valida";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+        throw new IllegalArgumentException("Email non valida");
     }
     if (!preg_match(Patterns::$GENERIC_DATE, $dataNascita)) {
-        throw new IllegalArgumentException("DataNascita non valida");
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Data di nascita non valida";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+        throw new IllegalArgumentException("Data di nascita non valida");
     }
     if (!preg_match(Patterns::$NAME_GENERIC, $citta)) {
-        throw new IllegalArgumentException("Città assente oppure errato");
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Città assente oppure errata";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+        throw new IllegalArgumentException("Città assente oppure errata");
     }
     if (strlen($password) < Config::$MIN_PASSWORD_LEN) {
-        throw new IllegalArgumentException("Password è troppo corta");
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Password troppo corta";
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+        throw new IllegalArgumentException("Password troppo corta");
     }
     //CONVERT TO DATETIME
     $dataNascita = str_replace('/', '-', $dataNascita);
@@ -72,9 +95,16 @@ function createUtente($utente) {
 
     if (!Controller::getDB()->query($query)) {
         if (Controller::getDB()->errno == 1062) {
+            $_SESSION['toast-type'] = "error";
+            $_SESSION['toast-message'] = "E-mail gia esistente";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
             throw new ApplicationException(Error::$EMAIL_ESISTE, Controller::getDB()->error, Controller::getDB()->errno);
-        } else
+        } else {
+            $_SESSION['toast-type'] = "error";
+            $_SESSION['toast-message'] = "Registrazione non riuscita";
+                    header("Location: " . $_SERVER['HTTP_REFERER']);
             throw new ApplicationException(Error::$INSERIMENTO_FALLITO, Controller::getDB()->error, Controller::getDB()->errno);
+        }
     }
     return $utente;
 }
@@ -102,13 +132,13 @@ function uploadImage($idUtente) {
         }
     }
     if (file_exists($target_file)) {
-        
-            echo 'errore 2';
+
+        echo 'errore 2';
         $uploadOk = 0;
     }
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        
-            echo 'errore 3';
+
+        echo 'errore 3';
         $uploadOk = 0;
     }
 
@@ -142,4 +172,6 @@ function getUtente($email) {
     }
 }
 
-header("Location:".DOMINIO_SITO."/");
+$_SESSION['toast-type'] = "success";
+$_SESSION['toast-message'] = "Benvenuto in SocialHelp";
+header("Location:" . DOMINIO_SITO . "/");

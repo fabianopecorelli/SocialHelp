@@ -40,12 +40,13 @@ $homeController = new HomeController();
                         $allAnnunci = $homeController->getAllAnnunci();
                         foreach ($allAnnunci as $annuncio) {
                             $utenteAnnuncio = $homeController->getUtenteByEmail($annuncio->getEmail());
-                            $id = $utenteAnnuncio->getId();?>
+                            $id = $utenteAnnuncio->getId();
+                            ?>
                             <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                 <div class="box-header with-border">
                                     <div class="user-block">
                                         <img class="img-circle" src="<?php echo $utenteAnnuncio->getImmagine(); ?>" alt="User Image">
-                                        <span class="username"><a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php  echo $id ?>"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a></span>
+                                        <span class="username"><a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php echo $id ?>"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a> <p><?php echo strtoupper($annuncio->getTitolo()); ?></p></span>
                                         <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($annuncio->getDataPubblicazione())); ?> - Data servizio: <?php echo date("d/m/Y", strtotime($annuncio->getData())); ?> - Luogo servizio: <?php echo $annuncio->getLuogo(); ?></span>
                                     </div>
                                 </div>
@@ -53,12 +54,12 @@ $homeController = new HomeController();
                                     <p><?php echo $annuncio->getDescrizione(); ?></p>
                                     <div class="col-md-8"></div>
                                     <div class="col-md-4">
-                                        <a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php  echo $id; ?>"><button type="button" class="btn btn-block btn-primary btn-sm">Sono interessato</button></a>
+                                        <a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php echo $id; ?>"><button type="button" class="btn btn-block btn-primary btn-sm">Sono interessato</button></a>
                                     </div>
                                     <span class="pull-left text-muted">Annuncio <?php echo $annuncio->getTipologia(); ?></span>
                                 </div>
                             </div>
-                        <?php } ?>
+<?php } ?>
                     </div>
                 </div>
                 <div class="tab-pane" id="offerte">
@@ -67,12 +68,13 @@ $homeController = new HomeController();
                         $allAnnunci = $homeController->getAllAnnunciOfferta();
                         foreach ($allAnnunci as $annuncio) {
                             $utenteAnnuncio = $homeController->getUtenteByEmail($annuncio->getEmail());
+                            $id = $utenteAnnuncio->getId();
                             ?>
                             <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                 <div class="box-header with-border">
                                     <div class="user-block">
                                         <img class="img-circle" src="<?php echo $utenteAnnuncio->getImmagine(); ?>" alt="User Image">
-                                        <span class="username"><a href="#"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a></span>
+                                        <span class="username"><a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php echo $id ?>"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a> <p><?php echo strtoupper($annuncio->getTitolo()); ?></p></span>
                                         <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($annuncio->getDataPubblicazione())); ?> - Data servizio: <?php echo date("d/m/Y", strtotime($annuncio->getData())); ?> - Luogo servizio: <?php echo $annuncio->getLuogo(); ?></span>
                                     </div>
                                 </div>
@@ -85,7 +87,7 @@ $homeController = new HomeController();
                                     <span class="pull-left text-muted">Annuncio <?php echo $annuncio->getTipologia(); ?></span>
                                 </div>
                             </div>
-                        <?php } ?>
+<?php } ?>
                     </div>
                 </div>
 
@@ -95,12 +97,13 @@ $homeController = new HomeController();
                         $allAnnunci = $homeController->getAllAnnunciRichiesta();
                         foreach ($allAnnunci as $annuncio) {
                             $utenteAnnuncio = $homeController->getUtenteByEmail($annuncio->getEmail());
+                            $id = $utenteAnnuncio->getId();
                             ?>
                             <div class="box box-widget" style="border: 1px solid; border-radius: 10px; border-color: #1e9bd7;">
                                 <div class="box-header with-border">
                                     <div class="user-block">
                                         <img class="img-circle" src="<?php echo $utenteAnnuncio->getImmagine(); ?>" alt="User Image">
-                                        <span class="username"><a href="#"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a></span>
+                                        <span class="username"><a href="<?php echo DOMINIO_SITO; ?>/profilo/<?php echo $id ?>"><?php echo $utenteAnnuncio->getNome(); ?> <?php echo $utenteAnnuncio->getCognome(); ?></a> <p><?php echo strtoupper($annuncio->getTitolo()); ?></p></span>
                                         <span class="description">Data pubblicazione: <?php echo date("d/m/Y", strtotime($annuncio->getDataPubblicazione())); ?> - Data servizio: <?php echo date("d/m/Y", strtotime($annuncio->getData())); ?> - Luogo servizio: <?php echo $annuncio->getLuogo(); ?></span>
                                     </div>
                                 </div>
@@ -113,7 +116,7 @@ $homeController = new HomeController();
                                     <span class="pull-left text-muted">Annuncio <?php echo $annuncio->getTipologia(); ?></span>
                                 </div>
                             </div>
-                        <?php } ?>
+<?php } ?>
                     </div>
                 </div>
                 <!-- /.tab-content -->
@@ -126,3 +129,14 @@ $homeController = new HomeController();
 
 <!-- /.content-wrapper -->
 <?php include_once VIEW_DIR . 'footer.php'; ?>
+<?php
+if ($_SESSION['toast-type'] && $_SESSION['toast-message']) {
+    ?>
+    <script>
+        toastr["<?php echo $_SESSION['toast-type'] ?>"]("<?php echo $_SESSION['toast-message'] ?>");
+    </script>
+    <?php
+    unset($_SESSION['toast-type']);
+    unset($_SESSION['toast-message']);
+}
+?>
