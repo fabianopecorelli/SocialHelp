@@ -33,8 +33,10 @@ function login($email, $password, $remember) {
         if ($remember) {
             setPermanentCookie($user->getPassword());
         }
+        $_SESSION['toast-type'] = "success";
+        $_SESSION['toast-message'] = "Bentornato".$user->getNome();
         header("Location:" . DOMINIO_SITO . "/");
-    } else{
+    } else {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Utente non trovato";
         header("Location: " . $_SERVER['HTTP_REFERER']);
