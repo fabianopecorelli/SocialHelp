@@ -15,7 +15,7 @@ define('CONTROL_DIR', CORE_DIR . "control" . DIRECTORY_SEPARATOR);
 define('UPLOADS_DIR', DOMINIO_SITO . "/uploads/");
 define('STYLE_DIR', DOMINIO_SITO . DIRECTORY_SEPARATOR . "style" . DIRECTORY_SEPARATOR);
 define('UTILS_DIR', CORE_DIR . "utils" . DIRECTORY_SEPARATOR);
-define('DEBUG', true);
+define('DEBUG', false);
  
 try {
     if (DEBUG == true) {
@@ -56,16 +56,16 @@ try {
             case '':
                 include_once VIEW_DIR. "home.php";
                 break;
-            case 'template':
-                include_once "template.html";
-                break;
+//            case 'template':
+//                include_once "template.html";
+//                break;
             case 'inserisciEsperienza':
                 StringUtils::checkPermission("Cliente");
                 include_once VIEW_DIR . "inserisciEsperienza.php";
                 break;
-             case 'standard':
-                include_once "standard.html";
-                break;
+//             case 'standard':
+//                include_once "standard.html";
+//                break;
              case 'inserisciAnnuncio':
                 StringUtils::checkPermission("all");
                 include_once VIEW_DIR . "inserisciAnnuncio.php";
@@ -79,12 +79,15 @@ try {
                 include_once VIEW_DIR . "profilo.php";
                 break;
             case 'auth':
+                StringUtils::checkPermission("not_logged");
                 include_once VIEW_DIR . "login.php";
                 break;
             case 'register':
+                StringUtils::checkPermission("not_logged");
                 include_once VIEW_DIR . "register.php";
                 break;
             case 'effettuaRegistrazione':
+                StringUtils::checkPermission("not_logged");
                 include_once CONTROL_DIR . "Register.php";
                 break;
             case 'inserimentoAnnuncio':
@@ -96,9 +99,11 @@ try {
                 include_once CONTROL_DIR . "InserisciEsperienza.php";
                 break;
             case 'effettuaLogin':
+                StringUtils::checkPermission("not_logged");
                 include_once CONTROL_DIR . "Login.php";
                 break;
             case 'logout':
+                StringUtils::checkPermission("all");
                 include_once CONTROL_DIR . "Logout.php";
                 break;
             case 'livesearch':
@@ -108,6 +113,7 @@ try {
                 include_once CONTROL_DIR . "UtenteFinder.php";
                 break;
             case 'cercaAnnunci':
+                StringUtils::checkPermission("all");
                 include_once CONTROL_DIR . "CercaAnnunci.php";
                 break;
             default:

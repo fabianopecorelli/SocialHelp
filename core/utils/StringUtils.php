@@ -27,11 +27,16 @@ class StringUtils {
      */
     public static function checkPermission($level, $redirect = DOMINIO_SITO . "/auth") {
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            $redirect = DOMINIO_SITO . "/";
             /** @var Utente $user */
             $user = unserialize($_SESSION['user']);
             if (strtolower($user->getTipologia()) == strtolower($level) || strtolower($level) == "all") {
                 return;
             }
+        }
+        else if (strtolower($level) == "not_logged"){
+            $redirect = DOMINIO_SITO . "/auth";
+            return;
         }
         header('Location: ' . $redirect);
         exit;
