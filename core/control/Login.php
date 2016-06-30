@@ -34,7 +34,7 @@ function login($email, $password, $remember) {
             setPermanentCookie($user->getPassword());
         }
         $_SESSION['toast-type'] = "success";
-        $_SESSION['toast-message'] = "Bentornato".$user->getNome();
+        $_SESSION['toast-message'] = "Bentornato ".$user->getNome();
         header("Location:" . DOMINIO_SITO . "/");
     } else {
         $_SESSION['toast-type'] = "error";
