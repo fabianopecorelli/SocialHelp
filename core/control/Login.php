@@ -13,9 +13,15 @@ login($_POST['email'], $_POST['password'], (@$_POST['remember'] == "1" ? true : 
 
 function login($email, $password, $remember) {
     if (!preg_match(Patterns::$EMAIL, $email)) {
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Email non valida";
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new ApplicationException(Error::$EMAIL_NON_VALIDA);
     }
     if (strlen($password) < Config::$MIN_PASSWORD_LEN) {
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Password troppo corta";
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new ApplicationException(Error::$PASS_CORTA);
     }
 
@@ -28,8 +34,11 @@ function login($email, $password, $remember) {
             setPermanentCookie($user->getPassword());
         }
         header("Location:" . DOMINIO_SITO . "/");
-    } else
-        header("Location:" . DOMINIO_SITO . "/auth");
+    } else{
+        $_SESSION['toast-type'] = "error";
+        $_SESSION['toast-message'] = "Utente non trovato";
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
     return $user;
 }
 

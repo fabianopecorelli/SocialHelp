@@ -32,49 +32,49 @@ function register($nome, $cognome, $telefono, $tipologia, $email, $dataNascita, 
     if (!preg_match(Patterns::$NAME_GENERIC, $nome)) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Nome assente oppure errato";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Nome assente oppure errato");
     }
     if (!preg_match(Patterns::$NAME_GENERIC, $cognome)) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Nome assente oppure errato";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Cognome assente oppure errato");
     }
     if (!preg_match(Patterns::$TELEPHONE, $telefono)) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Telefono assente oppure errato";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Telefono assente oppure errato");
     }
     if (!in_array($tipologia, Config::$TIPI_UTENTE) || $tipologia == "admin") {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Tipo utente errato";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Tipo utente errato");
     }
     if (!preg_match(Patterns::$EMAIL, $email)) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Email non valida";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Email non valida");
     }
     if (!preg_match(Patterns::$GENERIC_DATE, $dataNascita)) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Data di nascita non valida";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Data di nascita non valida");
     }
     if (!preg_match(Patterns::$NAME_GENERIC, $citta)) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Città assente oppure errata";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Città assente oppure errata");
     }
     if (strlen($password) < Config::$MIN_PASSWORD_LEN) {
         $_SESSION['toast-type'] = "error";
         $_SESSION['toast-message'] = "Password troppo corta";
-                header("Location: " . $_SERVER['HTTP_REFERER']);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         throw new IllegalArgumentException("Password troppo corta");
     }
     //CONVERT TO DATETIME
@@ -97,12 +97,12 @@ function createUtente($utente) {
         if (Controller::getDB()->errno == 1062) {
             $_SESSION['toast-type'] = "error";
             $_SESSION['toast-message'] = "E-mail gia esistente";
-                    header("Location: " . $_SERVER['HTTP_REFERER']);
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             throw new ApplicationException(Error::$EMAIL_ESISTE, Controller::getDB()->error, Controller::getDB()->errno);
         } else {
             $_SESSION['toast-type'] = "error";
             $_SESSION['toast-message'] = "Registrazione non riuscita";
-                    header("Location: " . $_SERVER['HTTP_REFERER']);
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             throw new ApplicationException(Error::$INSERIMENTO_FALLITO, Controller::getDB()->error, Controller::getDB()->errno);
         }
     }
