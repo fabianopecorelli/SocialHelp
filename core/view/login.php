@@ -80,8 +80,8 @@
                         </div>
                         <!-- /.col -->
                     </div>
-<!--                    <a href="#">Password dimenticata?</a>
-                    <br/>-->
+                    <!--                    <a href="#">Password dimenticata?</a>
+                                        <br/>-->
                     <br/>
                     <a href="<?php echo DOMINIO_SITO; ?>/register">Registrati</a>
 
@@ -105,70 +105,81 @@
         <script src="<?php echo STYLE_DIR; ?>dist/js/app.min.js"></script>
 
         <script>
-            function cambiaImmagine(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+                    function cambiaImmagine(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
 
-                    reader.onload = function (e) {
-                        $('#immagine').attr('src', e.target.result);
+                            reader.onload = function (e) {
+                                $('#immagine').attr('src', e.target.result);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
                     }
 
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
+                    $(function () {
+                        $('input').iCheck({
+                            checkboxClass: 'icheckbox_square-blue',
+                            radioClass: 'iradio_square-blue',
+                            increaseArea: '20%' // optional
+                        });
+                        //Date picker
+                        $('#datepicker').datepicker({
+                            autoclose: true
+                        });
 
-            $(function () {
-                $('input').iCheck({
-                    checkboxClass: 'icheckbox_square-blue',
-                    radioClass: 'iradio_square-blue',
-                    increaseArea: '20%' // optional
-                });
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                });
-
-                //iCheck for checkbox and radio inputs
-                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-                    checkboxClass: 'icheckbox_minimal-blue',
-                    radioClass: 'iradio_minimal-blue'
-                });
-                //Red color scheme for iCheck
-                $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-                    checkboxClass: 'icheckbox_minimal-red',
-                    radioClass: 'iradio_minimal-red'
-                });
-                //Flat red color scheme for iCheck
-                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-            });
+                        //iCheck for checkbox and radio inputs
+                        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                            checkboxClass: 'icheckbox_minimal-blue',
+                            radioClass: 'iradio_minimal-blue'
+                        });
+                        //Red color scheme for iCheck
+                        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                            checkboxClass: 'icheckbox_minimal-red',
+                            radioClass: 'iradio_minimal-red'
+                        });
+                        //Flat red color scheme for iCheck
+                        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                            checkboxClass: 'icheckbox_flat-green',
+                            radioClass: 'iradio_flat-green'
+                        });
+                    });
         </script>
         <script>
-            
+
             function Modulo() {
                 // Variabili associate ai campi del modulo
                 var email = document.modulo.email.value;
                 var password = document.modulo.password.value;
                 var email_reg_exp = /^[_a-zA-Z0-9+-]+(\.[_a-zA-Z0-9+-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
-                
-                
+
+
                 if (!email_reg_exp.test(email) || (email == "") || (email == "undefined")) {
                     toastr["error"]("Inserire un indirizzo email corretto.");
                     document.modulo.email.select();
                     return false;
-                }else if ((password == "") || (password == "undefined") || ((password.length)<8)) {
+                } else if ((password == "") || (password == "undefined") || ((password.length) < 8)) {
                     toastr["error"]("Inserire una password valida.");
                     document.modulo.password.focus();
                     return false;
-                }else {
-                    
+                } else {
+
                     document.modulo.submit();
-                    
+
                     return true;
                 }
-                }
-                </script>
+            }
+        </script>
+        <?php
+        if ($_SESSION['toast-type'] && $_SESSION['toast-message']) {
+            ?>
+            <script>
+                toastr["<?php echo $_SESSION['toast-type'] ?>"]("<?php echo $_SESSION['toast-message'] ?>");
+            </script>
+            <?php
+            unset($_SESSION['toast-type']);
+            unset($_SESSION['toast-message']);
+        }
+        ?>
     </body>
 </html>
